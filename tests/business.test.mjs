@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import { calculateChecklistProgress, createChecklistForEvent } from '../src/config/checklistPresets.ts'
 import { calculateEventRisks } from '../src/config/riskRules.ts'
@@ -134,4 +135,15 @@ test('quick capture parser proposes money and task actions without applying them
   assert.equal(money?.amount, 120000)
   assert.match(task?.title ?? '', /Запросить закрывающие документы/i)
   assert.equal(task?.deadline, '2026-05-20')
+})
+
+test('GitHub Pages deployment uses the repository base and reload-safe hash routing', () => {
+  const viteConfig = readFileSync(new URL('../vite.config.ts', import.meta.url), 'utf8')
+  const router = readFileSync(new URL('../src/lib/react-router-dom.tsx', import.meta.url), 'utf8')
+  const workflow = readFileSync(new URL('../.github/workflows/pages.yml', import.meta.url), 'utf8')
+  assert.match(viteConfig, /base:\s*['"]\/EventFlow\/['"]/)
+  assert.match(router, /window\.location\.hash/)
+  assert.match(router, /routerHref\(to\)/)
+  assert.match(workflow, /actions\/deploy-pages@v4/)
+  assert.match(workflow, /path:\s*\.\/dist/)
 })
