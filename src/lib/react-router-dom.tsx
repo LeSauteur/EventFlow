@@ -22,6 +22,7 @@ interface RouterContextValue {
 
 const RouterContext = createContext<RouterContextValue | null>(null)
 const ParamsContext = createContext<Record<string, string>>({})
+const routerBase = import.meta.env.BASE_URL || '/'
 
 function normalizePath(path: string) {
   if (!path) return '/'
@@ -29,20 +30,37 @@ function normalizePath(path: string) {
   return clean !== '/' ? clean.replace(/\/+$/, '') : clean
 }
 
+function parseRouterLocation(value: string) {
+  const url = new URL(value || '/', 'https://eventflow.local')
+  return { pathname: normalizePath(url.pathname), search: url.search }
+}
+
+function readRouterLocation() {
+  return parseRouterLocation(window.location.hash.startsWith('#') ? window.location.hash.slice(1) : '/')
+}
+
+function routerHref(to: string) {
+  const target = to.startsWith('/') ? to : `/${to}`
+  return `${routerBase}#${target}`
+}
+
 export function BrowserRouter({ children }: { children: ReactNode }) {
-  const [location, setLocation] = useState(() => ({ pathname: normalizePath(window.location.pathname), search: window.location.search }))
+  const [location, setLocation] = useState(readRouterLocation)
 
   useEffect(() => {
-    const handlePopState = () => setLocation({ pathname: normalizePath(window.location.pathname), search: window.location.search })
-    window.addEventListener('popstate', handlePopState)
-    return () => window.removeEventListener('popstate', handlePopState)
+    const handleLocationChange = () => setLocation(readRouterLocation())
+    window.addEventListener('popstate', handleLocationChange)
+    window.addEventListener('hashchange', handleLocationChange)
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange)
+      window.removeEventListener('hashchange', handleLocationChange)
+    }
   }, [])
 
   const navigate: Navigate = useCallback((to, options) => {
     const method = options?.replace ? 'replaceState' : 'pushState'
-    window.history[method](null, '', to)
-    const url = new URL(to, window.location.origin)
-    setLocation({ pathname: normalizePath(url.pathname), search: url.search })
+    window.history[method](null, '', routerHref(to))
+    setLocation(parseRouterLocation(to))
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
@@ -78,7 +96,7 @@ export function Link({ to, onClick, ...props }: AnchorHTMLAttributes<HTMLAnchorE
       navigate(to)
     }
   }
-  return <a {...props} href={to} onClick={handleClick} />
+  return <a {...props} href={routerHref(to)} onClick={handleClick} />
 }
 
 export function NavLink({
