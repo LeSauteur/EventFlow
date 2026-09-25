@@ -182,6 +182,7 @@ h1 { margin: 0; font-size: clamp(2rem, 2.5vw, 2.55rem); line-height: 1.05; lette
 .form-intro p { margin: 5px 0 0; color: #7c8cac; font-size: .78rem; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; padding: 22px 0; }
 .form-grid label { display: grid; gap: 7px; color: #3d4e75; font-size: .78rem; font-weight: 700; }
+.form-grid label > span small { color: #8190aa; font-size: .68rem; font-weight: 500; }
 .form-grid label.full-field { grid-column: 1 / -1; }
 .form-grid input, .form-grid select { width: 100%; height: 44px; padding: 0 12px; border: 1px solid #d2ddeb; border-radius: 7px; color: #17254b; background: #fff; }
 .form-grid input:hover, .form-grid select:hover { border-color: #9dbbe4; }

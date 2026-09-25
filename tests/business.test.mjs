@@ -44,6 +44,27 @@ test('checklist preset is generated and progress ignores not applicable items', 
   assert.equal(calculateChecklistProgress(sample), 50)
 })
 
+test('new service event types receive focused checklist presets', () => {
+  const logistics = createChecklistForEvent('logistics-event', 'Логистика')
+  const transfer = createChecklistForEvent('transfer-event', 'Трансфер')
+  const catering = createChecklistForEvent('catering-event', 'Кейтеринг')
+  assert.ok(logistics.some((item) => item.category === 'logistics'))
+  assert.ok(transfer.some((item) => item.category === 'logistics'))
+  assert.ok(catering.some((item) => item.category === 'catering'))
+  assert.equal(logistics.some((item) => item.category === 'catering'), false)
+})
+
+test('new event form keeps guests and budget optional and exposes the requested types', () => {
+  const source = readFileSync(new URL('../src/pages/NewEventPage.tsx', import.meta.url), 'utf8')
+  const eventTypes = source.match(/const eventTypes = \[(.*?)\]/s)?.[1] ?? ''
+  for (const type of ['Логистика', 'Трансфер', 'Кейтеринг']) assert.match(eventTypes, new RegExp(type))
+  assert.doesNotMatch(eventTypes, /Ужин|Обед/)
+  assert.doesNotMatch(source, /<input required type="number" min="1"/)
+  assert.doesNotMatch(source, /<input required type="number" min="0"/)
+  assert.match(source, /guests: Number\(form\.guests\)/)
+  assert.match(source, /budget: Number\(form\.budget\)/)
+})
+
 test('deadline engine distinguishes today, tomorrow and overdue', () => {
   const now = new Date('2026-09-19T12:00:00')
   assert.equal(getDeadlineState('2026-09-18', now), 'overdue')
