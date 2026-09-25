@@ -53,7 +53,7 @@ function read<T>(storage: Storage, key: string, fallback: T): T {
 }
 function write<T>(storage: Storage, key: string, value: T) { storage.setItem(key, JSON.stringify(value)) }
 
-function writeAll(data: EventFlowData, storage: Storage) {
+export function saveAll(data: EventFlowData, storage: Storage = window.localStorage) {
   write(storage, STORAGE_KEYS.events, data.events)
   write(storage, STORAGE_KEYS.tasks, data.tasks)
   write(storage, STORAGE_KEYS.risks, data.risks)
@@ -69,7 +69,7 @@ function writeAll(data: EventFlowData, storage: Storage) {
 
 export function ensureSeedData(storage: Storage = window.localStorage): EventFlowData {
   const version = storage.getItem(STORAGE_KEYS.schemaVersion)
-  if (!version) writeAll(seedData, storage)
+  if (!version) saveAll(seedData, storage)
   else if (version !== SCHEMA_VERSION) {
     const existing = loadAll(storage)
     const events = existing.events
@@ -80,7 +80,7 @@ export function ensureSeedData(storage: Storage = window.localStorage): EventFlo
       if (!budgets.some((item) => item.eventId === event.id)) budgets.push({ eventId: event.id, clientLimit: event.budget, baseCost: 0, venue: 0, catering: 0, equipment: 0, accommodation: 0, transfer: 0, other: 0, serviceFeePercent: 0, commissionPercent: 0, vatPercent: 0, comment: '', updatedAt: new Date().toISOString() })
     }
     const migrated: EventFlowData = { ...existing, events, checklistItems, budgets }
-    writeAll(migrated, storage)
+    saveAll(migrated, storage)
   } else {
     for (const [name, key] of Object.entries(STORAGE_KEYS)) {
       if (name !== 'schemaVersion' && storage.getItem(key) === null) {
@@ -100,11 +100,11 @@ export function loadAll(storage: Storage = window.localStorage): EventFlowData {
   }
 }
 
-export function resetToDemo(storage: Storage = window.localStorage) { writeAll(seedData, storage); return loadAll(storage) }
+export function resetToDemo(storage: Storage = window.localStorage) { saveAll(seedData, storage); return loadAll(storage) }
 
 export function createBackup(storage: Storage = window.localStorage): BackupPayload {
   const data = loadAll(storage)
-  return { format: 'eventflow-backup', schemaVersion: SCHEMA_VERSION, exportedAt: new Date().toISOString(), data: { events: data.events, checklistItems: data.checklistItems, questions: data.questions, contractors: data.contractors, templates: data.templates, budgets: data.budgets, activities: data.activities, tasks: data.tasks, settings: data.settings } }
+  return { format: 'eventflow-backup', schemaVersion: SCHEMA_VERSION, exportedAt: new Date().toISOString(), data: { events: data.events, checklistItems: data.checklistItems, questions: data.questions, contractors: data.contractors, templates: data.templates, budgets: data.budgets, activities: data.activities, tasks: data.tasks, risks: data.risks, settings: data.settings } }
 }
 
 export function validateBackup(value: unknown): value is BackupPayload {
@@ -118,7 +118,29 @@ export function validateBackup(value: unknown): value is BackupPayload {
 export function importBackup(backup: BackupPayload, storage: Storage = window.localStorage) {
   if (!validateBackup(backup)) throw new Error('Некорректная структура резервной копии')
   const current = loadAll(storage)
-  writeAll({ ...current, ...clone(backup.data), risks: current.risks }, storage)
+  const mergeById = <T extends { id: string }>(existing: T[], incoming: T[]) => {
+    const merged = new Map(existing.map((item) => [item.id, item]))
+    for (const item of incoming) merged.set(item.id, clone(item))
+    return [...merged.values()]
+  }
+  const mergeBudgets = (existing: EventBudget[], incoming: EventBudget[]) => {
+    const merged = new Map(existing.map((item) => [item.eventId, item]))
+    for (const item of incoming) merged.set(item.eventId, clone(item))
+    return [...merged.values()]
+  }
+  saveAll({
+    ...current,
+    events: mergeById(current.events, backup.data.events),
+    tasks: mergeById(current.tasks, backup.data.tasks),
+    risks: mergeById(current.risks, backup.data.risks ?? []),
+    activities: mergeById(current.activities, backup.data.activities),
+    checklistItems: mergeById(current.checklistItems, backup.data.checklistItems),
+    questions: mergeById(current.questions, backup.data.questions),
+    contractors: mergeById(current.contractors, backup.data.contractors),
+    templates: mergeById(current.templates, backup.data.templates),
+    budgets: mergeBudgets(current.budgets, backup.data.budgets),
+    settings: { ...current.settings, ...clone(backup.data.settings) },
+  }, storage)
   return loadAll(storage)
 }
 

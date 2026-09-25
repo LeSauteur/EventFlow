@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "updated_at": "2026-09-25T00:00:00.000Z",
+  "data": {
+    "events": [],
+    "tasks": [],
+    "risks": [],
+    "activities": [],
+    "checklistItems": [],
+    "questions": [],
+    "contractors": [],
+    "templates": [],
+    "budgets": []
+  },
+  "record_versions": {
+    "events": {},
+    "tasks": {},
+    "risks": {},
+    "activities": {},
+    "checklistItems": {},
+    "questions": {},
+    "contractors": {},
+    "templates": {},
+    "budgets": {}
+  },
+  "tombstones": {
+    "events": [],
+    "tasks": [],
+    "risks": [],
+    "activities": [],
+    "checklistItems": [],
+    "questions": [],
+    "contractors": [],
+    "templates": [],
+    "budgets": []
+  }
+}
