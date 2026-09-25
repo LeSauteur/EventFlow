@@ -1,51 +1,52 @@
 {
   "version": 1,
-  "updated_at": "2026-09-25T07:26:31.276Z",
+  "updated_at": "2026-09-25T07:31:13.6736941Z",
   "data": {
     "events": [
       {
         "id": "event-1",
-        "title": "J&J / Ростов / Ужин",
+        "title": "J&J Иваново",
         "client": "Johnson & Johnson",
-        "city": "Ростов-на-Дону",
-        "date": "2025-05-28",
-        "guests": 40,
+        "city": "Иваново",
+        "date": "2026-10-01",
+        "guests": 120,
         "budget": 1200000,
-        "type": "Ужин",
+        "type": "Корпоративное мероприятие",
         "status": "В работе",
-        "progress": 72,
-        "updatedAt": "2026-09-19T08:05:50.501Z"
+        "progress": 50,
+        "contractorId": "contractor-1"
       },
       {
         "id": "event-2",
-        "title": "Kenvue / Москва / Конференция",
+        "title": "Kenvue Москва",
         "client": "Kenvue",
         "city": "Москва",
-        "date": "2025-06-12",
-        "guests": 120,
+        "date": "2026-10-17",
+        "guests": 106,
         "budget": 3500000,
         "type": "Конференция",
         "status": "В работе",
-        "progress": 45
+        "progress": 45,
+        "contractorId": "contractor-2"
       },
       {
         "id": "event-3",
-        "title": "Махачкала / Обед",
+        "title": "Новосибирск",
         "client": "AstraZeneca",
-        "city": "Махачкала",
-        "date": "2025-05-20",
-        "guests": 25,
-        "budget": 800000,
-        "type": "Обед",
+        "city": "Новосибирск",
+        "date": "2026-11-06",
+        "guests": 80,
+        "budget": 1800000,
+        "type": "Конференция",
         "status": "Согласование",
         "progress": 30
       },
       {
         "id": "event-4",
-        "title": "Регата / Тимбилдинг",
+        "title": "Регата Сочи",
         "client": "Bayer",
         "city": "Сочи",
-        "date": "2025-07-05",
+        "date": "2026-11-23",
         "guests": 50,
         "budget": 2000000,
         "type": "Тимбилдинг",
@@ -57,8 +58,8 @@
       {
         "id": "task-1",
         "eventId": "event-1",
-        "eventName": "J&J Ростов",
-        "title": "Ресторан не подтвердил сервисный сбор",
+        "eventName": "J&J Иваново",
+        "title": "Подтвердить финальное меню с отелем",
         "deadline": "Сегодня, 16:00",
         "status": "Просрочено",
         "priority": "Критичный"
@@ -75,8 +76,8 @@
       {
         "id": "task-3",
         "eventId": "event-3",
-        "eventName": "Махачкала",
-        "title": "Пересогласовать меню с доктором",
+        "eventName": "Новосибирск",
+        "title": "Запросить КП у подрядчиков",
         "deadline": "Срочно",
         "status": "Ожидаем",
         "priority": "Высокий"
@@ -108,19 +109,12 @@
     "activities": [
       {
         "eventId": "event-1",
-        "type": "checklist",
-        "title": "Выполнен пункт чек-листа",
-        "description": "Подтверждена дата",
-        "id": "activity-1789805150501-36e1a6eaf9f45",
-        "timestamp": "2026-09-19T08:05:50.501Z"
-      },
-      {
-        "eventId": "event-1",
-        "type": "checklist",
-        "title": "Изменён пункт чек-листа",
-        "description": "Подтверждена дата",
-        "id": "activity-1789805145183-2c8632e2c9fa",
-        "timestamp": "2026-09-19T08:05:45.183Z"
+        "type": "note",
+        "entityId": "capture-1789842430482",
+        "title": "Заметка",
+        "description": "QA публикации: localStorage работает",
+        "id": "activity-1789842430482-7d8c83b65f1c18",
+        "timestamp": "2026-09-19T18:27:10.482Z"
       },
       {
         "id": "activity-1",
@@ -165,10 +159,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T08:05:50.501Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T08:05:50.501Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-general-2",
@@ -179,10 +173,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-general-3",
@@ -193,10 +187,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-general-4",
@@ -207,10 +201,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-general-5",
@@ -221,10 +215,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-general-6",
@@ -235,10 +229,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-1",
@@ -249,10 +243,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-2",
@@ -263,10 +257,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-3",
@@ -277,10 +271,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-4",
@@ -291,10 +285,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-5",
@@ -305,10 +299,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-6",
@@ -319,10 +313,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-7",
@@ -333,10 +327,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-8",
@@ -347,10 +341,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-9",
@@ -361,10 +355,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-venue-10",
@@ -375,10 +369,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-catering-1",
@@ -389,10 +383,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-catering-2",
@@ -403,10 +397,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-catering-3",
@@ -417,10 +411,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-catering-4",
@@ -431,10 +425,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-catering-5",
@@ -445,10 +439,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-catering-6",
@@ -456,13 +450,13 @@
         "category": "catering",
         "title": "Согласовано меню с клиентом",
         "description": "",
-        "status": "todo",
+        "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-catering-7",
@@ -470,13 +464,293 @@
         "category": "catering",
         "title": "Подтверждены специальные требования гостей",
         "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-equipment-1",
+        "eventId": "event-1",
+        "category": "equipment",
+        "title": "Подтверждён экран",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-equipment-2",
+        "eventId": "event-1",
+        "category": "equipment",
+        "title": "Подтверждён проектор",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-equipment-3",
+        "eventId": "event-1",
+        "category": "equipment",
+        "title": "Подтверждён звук",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-equipment-4",
+        "eventId": "event-1",
+        "category": "equipment",
+        "title": "Подтверждены микрофоны",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-equipment-5",
+        "eventId": "event-1",
+        "category": "equipment",
+        "title": "Проверен Wi‑Fi",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-equipment-6",
+        "eventId": "event-1",
+        "category": "equipment",
+        "title": "Согласовано время монтажа",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-equipment-7",
+        "eventId": "event-1",
+        "category": "equipment",
+        "title": "Согласован доступ подрядчиков",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-logistics-1",
+        "eventId": "event-1",
+        "category": "logistics",
+        "title": "Согласован маршрут",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-logistics-2",
+        "eventId": "event-1",
+        "category": "logistics",
+        "title": "Подтверждено количество участников",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-logistics-3",
+        "eventId": "event-1",
+        "category": "logistics",
+        "title": "Подтверждён транспорт",
+        "description": "",
+        "status": "done",
+        "priority": "high",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-logistics-4",
+        "eventId": "event-1",
+        "category": "logistics",
+        "title": "Согласовано время подачи",
+        "description": "",
+        "status": "done",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-logistics-5",
+        "eventId": "event-1",
+        "category": "logistics",
+        "title": "Получены контакты водителя",
+        "description": "",
+        "status": "overdue",
+        "priority": "normal",
+        "deadline": "2026-09-18",
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-logistics-6",
+        "eventId": "event-1",
+        "category": "logistics",
+        "title": "Получено финальное подтверждение",
+        "description": "",
+        "status": "waiting",
+        "priority": "high",
+        "deadline": "2026-09-20",
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-accommodation-1",
+        "eventId": "event-1",
+        "category": "accommodation",
+        "title": "Подтверждено количество номеров",
+        "description": "",
         "status": "todo",
         "priority": "normal",
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-accommodation-2",
+        "eventId": "event-1",
+        "category": "accommodation",
+        "title": "Согласованы категории номеров",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-accommodation-3",
+        "eventId": "event-1",
+        "category": "accommodation",
+        "title": "Подтверждены даты проживания",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-accommodation-4",
+        "eventId": "event-1",
+        "category": "accommodation",
+        "title": "Уточнён ранний заезд",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-accommodation-5",
+        "eventId": "event-1",
+        "category": "accommodation",
+        "title": "Уточнён поздний выезд",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-accommodation-6",
+        "eventId": "event-1",
+        "category": "accommodation",
+        "title": "Получены списки гостей",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-1-accommodation-7",
+        "eventId": "event-1",
+        "category": "accommodation",
+        "title": "Подтверждено бронирование",
+        "description": "",
+        "status": "todo",
+        "priority": "critical",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-documents-1",
@@ -489,8 +763,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-documents-2",
@@ -503,8 +777,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-documents-3",
@@ -517,8 +791,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-documents-4",
@@ -531,8 +805,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-documents-5",
@@ -545,8 +819,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-1-documents-6",
@@ -559,8 +833,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-general-1",
@@ -571,10 +845,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-general-2",
@@ -585,10 +859,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-general-3",
@@ -599,10 +873,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-general-4",
@@ -613,10 +887,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-general-5",
@@ -627,10 +901,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-general-6",
@@ -641,10 +915,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-1",
@@ -655,10 +929,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-2",
@@ -669,10 +943,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-3",
@@ -683,10 +957,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-4",
@@ -697,10 +971,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-5",
@@ -711,10 +985,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-6",
@@ -725,10 +999,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-7",
@@ -739,10 +1013,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-8",
@@ -753,10 +1027,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-9",
@@ -767,10 +1041,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-venue-10",
@@ -781,10 +1055,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-catering-1",
@@ -792,13 +1066,13 @@
         "category": "catering",
         "title": "Получено актуальное меню",
         "description": "",
-        "status": "done",
+        "status": "overdue",
         "priority": "high",
-        "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "deadline": "2026-09-18",
+        "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-catering-2",
@@ -806,13 +1080,13 @@
         "category": "catering",
         "title": "Подтверждена актуальность цен",
         "description": "",
-        "status": "todo",
+        "status": "waiting",
         "priority": "high",
-        "deadline": null,
+        "deadline": "2026-09-20",
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-catering-3",
@@ -825,8 +1099,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-catering-4",
@@ -839,8 +1113,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-catering-5",
@@ -853,8 +1127,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-catering-6",
@@ -867,8 +1141,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-catering-7",
@@ -881,8 +1155,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-equipment-1",
@@ -895,8 +1169,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-equipment-2",
@@ -909,8 +1183,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-equipment-3",
@@ -923,8 +1197,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-equipment-4",
@@ -937,8 +1211,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-equipment-5",
@@ -951,8 +1225,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-equipment-6",
@@ -965,8 +1239,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-equipment-7",
@@ -979,8 +1253,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-documents-1",
@@ -993,8 +1267,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-documents-2",
@@ -1007,8 +1281,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-documents-3",
@@ -1021,8 +1295,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-documents-4",
@@ -1035,8 +1309,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-documents-5",
@@ -1049,8 +1323,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-2-documents-6",
@@ -1063,8 +1337,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-general-1",
@@ -1075,10 +1349,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-general-2",
@@ -1089,10 +1363,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-general-3",
@@ -1103,10 +1377,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-general-4",
@@ -1117,10 +1391,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-general-5",
@@ -1131,10 +1405,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-general-6",
@@ -1145,10 +1419,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-1",
@@ -1159,10 +1433,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-2",
@@ -1173,10 +1447,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-3",
@@ -1187,10 +1461,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.682Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-4",
@@ -1198,13 +1472,13 @@
         "category": "venue",
         "title": "Уточнён НДС",
         "description": "",
-        "status": "todo",
+        "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-5",
@@ -1212,13 +1486,13 @@
         "category": "venue",
         "title": "Уточнён сервисный сбор / комиссия",
         "description": "",
-        "status": "todo",
+        "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": null,
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-6",
@@ -1226,13 +1500,13 @@
         "category": "venue",
         "title": "Подтверждены условия оплаты",
         "description": "",
-        "status": "todo",
+        "status": "overdue",
         "priority": "normal",
-        "deadline": null,
+        "deadline": "2026-09-18",
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-7",
@@ -1240,13 +1514,13 @@
         "category": "venue",
         "title": "Подтверждены условия отмены",
         "description": "",
-        "status": "todo",
+        "status": "waiting",
         "priority": "high",
-        "deadline": null,
+        "deadline": "2026-09-20",
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-8",
@@ -1259,8 +1533,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-9",
@@ -1273,8 +1547,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-venue-10",
@@ -1287,8 +1561,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-catering-1",
@@ -1301,8 +1575,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-catering-2",
@@ -1315,8 +1589,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-catering-3",
@@ -1329,8 +1603,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-catering-4",
@@ -1343,8 +1617,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-catering-5",
@@ -1357,8 +1631,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-catering-6",
@@ -1371,8 +1645,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-catering-7",
@@ -1385,8 +1659,106 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-3-equipment-1",
+        "eventId": "event-3",
+        "category": "equipment",
+        "title": "Подтверждён экран",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-3-equipment-2",
+        "eventId": "event-3",
+        "category": "equipment",
+        "title": "Подтверждён проектор",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-3-equipment-3",
+        "eventId": "event-3",
+        "category": "equipment",
+        "title": "Подтверждён звук",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-3-equipment-4",
+        "eventId": "event-3",
+        "category": "equipment",
+        "title": "Подтверждены микрофоны",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-3-equipment-5",
+        "eventId": "event-3",
+        "category": "equipment",
+        "title": "Проверен Wi‑Fi",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-3-equipment-6",
+        "eventId": "event-3",
+        "category": "equipment",
+        "title": "Согласовано время монтажа",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
+      },
+      {
+        "id": "check-event-3-equipment-7",
+        "eventId": "event-3",
+        "category": "equipment",
+        "title": "Согласован доступ подрядчиков",
+        "description": "",
+        "status": "todo",
+        "priority": "normal",
+        "deadline": null,
+        "completedAt": null,
+        "notes": "",
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-documents-1",
@@ -1399,8 +1771,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-documents-2",
@@ -1413,8 +1785,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-documents-3",
@@ -1427,8 +1799,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-documents-4",
@@ -1441,8 +1813,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-documents-5",
@@ -1455,8 +1827,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-3-documents-6",
@@ -1469,8 +1841,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.682Z",
-        "updatedAt": "2026-09-19T07:46:51.682Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-general-1",
@@ -1481,10 +1853,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-general-2",
@@ -1495,10 +1867,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-general-3",
@@ -1509,10 +1881,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-general-4",
@@ -1523,10 +1895,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-general-5",
@@ -1537,10 +1909,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-general-6",
@@ -1551,10 +1923,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-1",
@@ -1565,10 +1937,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-2",
@@ -1579,10 +1951,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-3",
@@ -1593,10 +1965,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-4",
@@ -1607,10 +1979,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-5",
@@ -1621,10 +1993,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-6",
@@ -1635,10 +2007,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-7",
@@ -1649,10 +2021,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-8",
@@ -1663,10 +2035,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-9",
@@ -1677,10 +2049,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-venue-10",
@@ -1691,10 +2063,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-catering-1",
@@ -1705,10 +2077,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-catering-2",
@@ -1719,10 +2091,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-catering-3",
@@ -1733,10 +2105,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-catering-4",
@@ -1747,10 +2119,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-catering-5",
@@ -1761,10 +2133,10 @@
         "status": "done",
         "priority": "high",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-catering-6",
@@ -1775,10 +2147,10 @@
         "status": "done",
         "priority": "critical",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-catering-7",
@@ -1789,10 +2161,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-equipment-1",
@@ -1803,10 +2175,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-equipment-2",
@@ -1817,10 +2189,10 @@
         "status": "done",
         "priority": "normal",
         "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "completedAt": "2026-09-19T18:26:40.853Z",
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-equipment-3",
@@ -1828,13 +2200,13 @@
         "category": "equipment",
         "title": "Подтверждён звук",
         "description": "",
-        "status": "done",
+        "status": "overdue",
         "priority": "normal",
-        "deadline": null,
-        "completedAt": "2026-09-19T07:46:51.683Z",
+        "deadline": "2026-09-18",
+        "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-equipment-4",
@@ -1842,13 +2214,13 @@
         "category": "equipment",
         "title": "Подтверждены микрофоны",
         "description": "",
-        "status": "todo",
+        "status": "waiting",
         "priority": "normal",
-        "deadline": null,
+        "deadline": "2026-09-20",
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-equipment-5",
@@ -1861,8 +2233,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-equipment-6",
@@ -1875,8 +2247,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-equipment-7",
@@ -1889,8 +2261,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-logistics-1",
@@ -1903,8 +2275,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-logistics-2",
@@ -1917,8 +2289,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-logistics-3",
@@ -1931,8 +2303,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-logistics-4",
@@ -1945,8 +2317,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-logistics-5",
@@ -1959,8 +2331,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-logistics-6",
@@ -1973,8 +2345,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-documents-1",
@@ -1987,8 +2359,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-documents-2",
@@ -2001,8 +2373,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-documents-3",
@@ -2015,8 +2387,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-documents-4",
@@ -2029,8 +2401,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-documents-5",
@@ -2043,8 +2415,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "check-event-4-documents-6",
@@ -2057,8 +2429,8 @@
         "deadline": null,
         "completedAt": null,
         "notes": "",
-        "createdAt": "2026-09-19T07:46:51.683Z",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "createdAt": "2026-09-19T18:26:40.853Z",
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       }
     ],
     "questions": [
@@ -2071,7 +2443,7 @@
         "deadline": "2026-09-19",
         "priority": "critical",
         "status": "waiting_external",
-        "createdAt": "2026-09-19T07:46:51.683Z",
+        "createdAt": "2026-09-19T18:26:40.853Z",
         "resolvedAt": null
       },
       {
@@ -2083,7 +2455,7 @@
         "deadline": "2026-09-20",
         "priority": "high",
         "status": "open",
-        "createdAt": "2026-09-19T07:46:51.683Z",
+        "createdAt": "2026-09-19T18:26:40.853Z",
         "resolvedAt": null
       },
       {
@@ -2095,7 +2467,7 @@
         "deadline": "2026-09-18",
         "priority": "high",
         "status": "waiting_external",
-        "createdAt": "2026-09-19T07:46:51.683Z",
+        "createdAt": "2026-09-19T18:26:40.853Z",
         "resolvedAt": null
       },
       {
@@ -2107,7 +2479,7 @@
         "deadline": "2026-09-20",
         "priority": "high",
         "status": "waiting_client",
-        "createdAt": "2026-09-19T07:46:51.683Z",
+        "createdAt": "2026-09-19T18:26:40.853Z",
         "resolvedAt": null
       }
     ],
@@ -2178,7 +2550,7 @@
           "deadline"
         ],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-2",
@@ -2193,7 +2565,7 @@
           "priceValidity"
         ],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-3",
@@ -2206,7 +2578,7 @@
           "price"
         ],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-4",
@@ -2218,7 +2590,7 @@
           "serviceFee"
         ],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-5",
@@ -2230,7 +2602,7 @@
           "deadline"
         ],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-6",
@@ -2242,7 +2614,7 @@
           "deadline"
         ],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-7",
@@ -2252,7 +2624,7 @@
         "body": "Здравствуйте! Просим направить проект договора и перечень необходимых реквизитов по мероприятию {{event.title}}.",
         "requiredTopics": [],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-8",
@@ -2262,7 +2634,7 @@
         "body": "Здравствуйте! Просим направить акт, УПД и счёт-фактуру, если она применяется, по мероприятию {{event.title}}.",
         "requiredTopics": [],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-9",
@@ -2274,7 +2646,7 @@
           "price"
         ],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "id": "template-10",
@@ -2284,7 +2656,7 @@
         "body": "Здравствуйте! Подтверждаем трансфер на {{event.date}} в городе {{event.city}}. Просим направить контакт водителя и финальные данные автомобиля.",
         "requiredTopics": [],
         "custom": false,
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       }
     ],
     "budgets": [
@@ -2302,7 +2674,7 @@
         "commissionPercent": 0,
         "vatPercent": 20,
         "comment": "",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "eventId": "event-2",
@@ -2318,23 +2690,23 @@
         "commissionPercent": 0,
         "vatPercent": 20,
         "comment": "",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "eventId": "event-3",
-        "clientLimit": 800000,
-        "baseCost": 40000,
-        "venue": 176000,
-        "catering": 368000,
-        "equipment": 64000,
+        "clientLimit": 1800000,
+        "baseCost": 90000,
+        "venue": 396000,
+        "catering": 828000,
+        "equipment": 144000,
         "accommodation": 0,
-        "transfer": 40000,
-        "other": 24000,
+        "transfer": 90000,
+        "other": 54000,
         "serviceFeePercent": 10,
         "commissionPercent": 0,
         "vatPercent": 20,
         "comment": "",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       },
       {
         "eventId": "event-4",
@@ -2350,201 +2722,227 @@
         "commissionPercent": 0,
         "vatPercent": 20,
         "comment": "",
-        "updatedAt": "2026-09-19T07:46:51.683Z"
+        "updatedAt": "2026-09-19T18:26:40.853Z"
       }
     ]
   },
   "record_versions": {
     "events": {
-      "event-1": "2026-09-19T08:05:50.501Z",
-      "event-2": "2026-09-25T07:26:16.303Z",
-      "event-3": "2026-09-25T07:26:16.303Z",
-      "event-4": "2026-09-25T07:26:16.303Z"
+      "event-1": "2026-09-25T07:31:13.6736941Z",
+      "event-2": "2026-09-25T07:31:13.6736941Z",
+      "event-3": "2026-09-25T07:31:13.6736941Z",
+      "event-4": "2026-09-25T07:31:13.6736941Z"
     },
     "tasks": {
-      "task-1": "2026-09-25T07:26:16.303Z",
-      "task-2": "2026-09-25T07:26:16.303Z",
-      "task-3": "2026-09-25T07:26:16.303Z"
+      "task-1": "2026-09-25T07:31:13.6736941Z",
+      "task-2": "2026-09-25T07:31:13.6736941Z",
+      "task-3": "2026-09-25T07:31:13.6736941Z"
     },
     "risks": {
-      "risk-1": "2026-09-25T07:26:16.303Z",
-      "risk-2": "2026-09-25T07:26:16.303Z",
-      "risk-3": "2026-09-25T07:26:16.303Z"
+      "risk-1": "2026-09-25T07:31:13.6736941Z",
+      "risk-2": "2026-09-25T07:31:13.6736941Z",
+      "risk-3": "2026-09-25T07:31:13.6736941Z"
     },
     "activities": {
-      "activity-1789805150501-36e1a6eaf9f45": "2026-09-19T08:05:50.501Z",
-      "activity-1789805145183-2c8632e2c9fa": "2026-09-19T08:05:45.183Z",
-      "activity-1": "2026-09-25T07:26:16.303Z",
-      "activity-2": "2026-09-25T07:26:16.303Z",
-      "activity-3": "2026-09-25T07:26:16.303Z",
-      "activity-4": "2026-09-25T07:26:16.303Z"
+      "activity-1789842430482-7d8c83b65f1c18": "2026-09-25T07:31:13.6736941Z",
+      "activity-1": "2026-09-25T07:31:13.6736941Z",
+      "activity-2": "2026-09-25T07:31:13.6736941Z",
+      "activity-3": "2026-09-25T07:31:13.6736941Z",
+      "activity-4": "2026-09-25T07:31:13.6736941Z"
     },
     "checklistItems": {
-      "check-event-1-general-1": "2026-09-19T08:05:50.501Z",
-      "check-event-1-general-2": "2026-09-19T07:46:51.682Z",
-      "check-event-1-general-3": "2026-09-19T07:46:51.682Z",
-      "check-event-1-general-4": "2026-09-19T07:46:51.682Z",
-      "check-event-1-general-5": "2026-09-19T07:46:51.682Z",
-      "check-event-1-general-6": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-1": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-2": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-3": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-4": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-5": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-6": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-7": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-8": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-9": "2026-09-19T07:46:51.682Z",
-      "check-event-1-venue-10": "2026-09-19T07:46:51.682Z",
-      "check-event-1-catering-1": "2026-09-19T07:46:51.682Z",
-      "check-event-1-catering-2": "2026-09-19T07:46:51.682Z",
-      "check-event-1-catering-3": "2026-09-19T07:46:51.682Z",
-      "check-event-1-catering-4": "2026-09-19T07:46:51.682Z",
-      "check-event-1-catering-5": "2026-09-19T07:46:51.682Z",
-      "check-event-1-catering-6": "2026-09-19T07:46:51.682Z",
-      "check-event-1-catering-7": "2026-09-19T07:46:51.682Z",
-      "check-event-1-documents-1": "2026-09-19T07:46:51.682Z",
-      "check-event-1-documents-2": "2026-09-19T07:46:51.682Z",
-      "check-event-1-documents-3": "2026-09-19T07:46:51.682Z",
-      "check-event-1-documents-4": "2026-09-19T07:46:51.682Z",
-      "check-event-1-documents-5": "2026-09-19T07:46:51.682Z",
-      "check-event-1-documents-6": "2026-09-19T07:46:51.682Z",
-      "check-event-2-general-1": "2026-09-19T07:46:51.682Z",
-      "check-event-2-general-2": "2026-09-19T07:46:51.682Z",
-      "check-event-2-general-3": "2026-09-19T07:46:51.682Z",
-      "check-event-2-general-4": "2026-09-19T07:46:51.682Z",
-      "check-event-2-general-5": "2026-09-19T07:46:51.682Z",
-      "check-event-2-general-6": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-1": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-2": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-3": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-4": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-5": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-6": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-7": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-8": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-9": "2026-09-19T07:46:51.682Z",
-      "check-event-2-venue-10": "2026-09-19T07:46:51.682Z",
-      "check-event-2-catering-1": "2026-09-19T07:46:51.682Z",
-      "check-event-2-catering-2": "2026-09-19T07:46:51.682Z",
-      "check-event-2-catering-3": "2026-09-19T07:46:51.682Z",
-      "check-event-2-catering-4": "2026-09-19T07:46:51.682Z",
-      "check-event-2-catering-5": "2026-09-19T07:46:51.682Z",
-      "check-event-2-catering-6": "2026-09-19T07:46:51.682Z",
-      "check-event-2-catering-7": "2026-09-19T07:46:51.682Z",
-      "check-event-2-equipment-1": "2026-09-19T07:46:51.682Z",
-      "check-event-2-equipment-2": "2026-09-19T07:46:51.682Z",
-      "check-event-2-equipment-3": "2026-09-19T07:46:51.682Z",
-      "check-event-2-equipment-4": "2026-09-19T07:46:51.682Z",
-      "check-event-2-equipment-5": "2026-09-19T07:46:51.682Z",
-      "check-event-2-equipment-6": "2026-09-19T07:46:51.682Z",
-      "check-event-2-equipment-7": "2026-09-19T07:46:51.682Z",
-      "check-event-2-documents-1": "2026-09-19T07:46:51.682Z",
-      "check-event-2-documents-2": "2026-09-19T07:46:51.682Z",
-      "check-event-2-documents-3": "2026-09-19T07:46:51.682Z",
-      "check-event-2-documents-4": "2026-09-19T07:46:51.682Z",
-      "check-event-2-documents-5": "2026-09-19T07:46:51.682Z",
-      "check-event-2-documents-6": "2026-09-19T07:46:51.682Z",
-      "check-event-3-general-1": "2026-09-19T07:46:51.682Z",
-      "check-event-3-general-2": "2026-09-19T07:46:51.682Z",
-      "check-event-3-general-3": "2026-09-19T07:46:51.682Z",
-      "check-event-3-general-4": "2026-09-19T07:46:51.682Z",
-      "check-event-3-general-5": "2026-09-19T07:46:51.682Z",
-      "check-event-3-general-6": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-1": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-2": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-3": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-4": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-5": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-6": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-7": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-8": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-9": "2026-09-19T07:46:51.682Z",
-      "check-event-3-venue-10": "2026-09-19T07:46:51.682Z",
-      "check-event-3-catering-1": "2026-09-19T07:46:51.682Z",
-      "check-event-3-catering-2": "2026-09-19T07:46:51.682Z",
-      "check-event-3-catering-3": "2026-09-19T07:46:51.682Z",
-      "check-event-3-catering-4": "2026-09-19T07:46:51.682Z",
-      "check-event-3-catering-5": "2026-09-19T07:46:51.682Z",
-      "check-event-3-catering-6": "2026-09-19T07:46:51.682Z",
-      "check-event-3-catering-7": "2026-09-19T07:46:51.682Z",
-      "check-event-3-documents-1": "2026-09-19T07:46:51.682Z",
-      "check-event-3-documents-2": "2026-09-19T07:46:51.682Z",
-      "check-event-3-documents-3": "2026-09-19T07:46:51.682Z",
-      "check-event-3-documents-4": "2026-09-19T07:46:51.682Z",
-      "check-event-3-documents-5": "2026-09-19T07:46:51.682Z",
-      "check-event-3-documents-6": "2026-09-19T07:46:51.682Z",
-      "check-event-4-general-1": "2026-09-19T07:46:51.683Z",
-      "check-event-4-general-2": "2026-09-19T07:46:51.683Z",
-      "check-event-4-general-3": "2026-09-19T07:46:51.683Z",
-      "check-event-4-general-4": "2026-09-19T07:46:51.683Z",
-      "check-event-4-general-5": "2026-09-19T07:46:51.683Z",
-      "check-event-4-general-6": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-1": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-2": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-3": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-4": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-5": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-6": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-7": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-8": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-9": "2026-09-19T07:46:51.683Z",
-      "check-event-4-venue-10": "2026-09-19T07:46:51.683Z",
-      "check-event-4-catering-1": "2026-09-19T07:46:51.683Z",
-      "check-event-4-catering-2": "2026-09-19T07:46:51.683Z",
-      "check-event-4-catering-3": "2026-09-19T07:46:51.683Z",
-      "check-event-4-catering-4": "2026-09-19T07:46:51.683Z",
-      "check-event-4-catering-5": "2026-09-19T07:46:51.683Z",
-      "check-event-4-catering-6": "2026-09-19T07:46:51.683Z",
-      "check-event-4-catering-7": "2026-09-19T07:46:51.683Z",
-      "check-event-4-equipment-1": "2026-09-19T07:46:51.683Z",
-      "check-event-4-equipment-2": "2026-09-19T07:46:51.683Z",
-      "check-event-4-equipment-3": "2026-09-19T07:46:51.683Z",
-      "check-event-4-equipment-4": "2026-09-19T07:46:51.683Z",
-      "check-event-4-equipment-5": "2026-09-19T07:46:51.683Z",
-      "check-event-4-equipment-6": "2026-09-19T07:46:51.683Z",
-      "check-event-4-equipment-7": "2026-09-19T07:46:51.683Z",
-      "check-event-4-logistics-1": "2026-09-19T07:46:51.683Z",
-      "check-event-4-logistics-2": "2026-09-19T07:46:51.683Z",
-      "check-event-4-logistics-3": "2026-09-19T07:46:51.683Z",
-      "check-event-4-logistics-4": "2026-09-19T07:46:51.683Z",
-      "check-event-4-logistics-5": "2026-09-19T07:46:51.683Z",
-      "check-event-4-logistics-6": "2026-09-19T07:46:51.683Z",
-      "check-event-4-documents-1": "2026-09-19T07:46:51.683Z",
-      "check-event-4-documents-2": "2026-09-19T07:46:51.683Z",
-      "check-event-4-documents-3": "2026-09-19T07:46:51.683Z",
-      "check-event-4-documents-4": "2026-09-19T07:46:51.683Z",
-      "check-event-4-documents-5": "2026-09-19T07:46:51.683Z",
-      "check-event-4-documents-6": "2026-09-19T07:46:51.683Z"
+      "check-event-1-general-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-general-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-general-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-general-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-general-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-general-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-8": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-9": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-venue-10": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-catering-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-catering-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-catering-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-catering-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-catering-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-catering-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-catering-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-equipment-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-equipment-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-equipment-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-equipment-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-equipment-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-equipment-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-equipment-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-logistics-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-logistics-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-logistics-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-logistics-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-logistics-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-logistics-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-accommodation-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-accommodation-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-accommodation-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-accommodation-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-accommodation-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-accommodation-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-accommodation-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-documents-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-documents-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-documents-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-documents-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-documents-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-1-documents-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-general-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-general-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-general-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-general-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-general-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-general-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-8": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-9": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-venue-10": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-catering-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-catering-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-catering-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-catering-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-catering-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-catering-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-catering-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-equipment-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-equipment-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-equipment-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-equipment-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-equipment-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-equipment-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-equipment-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-documents-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-documents-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-documents-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-documents-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-documents-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-2-documents-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-general-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-general-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-general-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-general-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-general-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-general-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-8": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-9": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-venue-10": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-catering-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-catering-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-catering-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-catering-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-catering-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-catering-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-catering-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-equipment-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-equipment-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-equipment-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-equipment-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-equipment-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-equipment-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-equipment-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-documents-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-documents-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-documents-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-documents-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-documents-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-3-documents-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-general-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-general-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-general-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-general-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-general-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-general-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-8": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-9": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-venue-10": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-catering-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-catering-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-catering-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-catering-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-catering-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-catering-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-catering-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-equipment-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-equipment-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-equipment-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-equipment-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-equipment-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-equipment-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-equipment-7": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-logistics-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-logistics-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-logistics-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-logistics-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-logistics-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-logistics-6": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-documents-1": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-documents-2": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-documents-3": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-documents-4": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-documents-5": "2026-09-25T07:31:13.6736941Z",
+      "check-event-4-documents-6": "2026-09-25T07:31:13.6736941Z"
     },
     "questions": {
-      "question-1": "2026-09-19T07:46:51.683Z",
-      "question-2": "2026-09-19T07:46:51.683Z",
-      "question-3": "2026-09-19T07:46:51.683Z",
-      "question-4": "2026-09-19T07:46:51.683Z"
+      "question-1": "2026-09-25T07:31:13.6736941Z",
+      "question-2": "2026-09-25T07:31:13.6736941Z",
+      "question-3": "2026-09-25T07:31:13.6736941Z",
+      "question-4": "2026-09-25T07:31:13.6736941Z"
     },
     "contractors": {
-      "contractor-1": "2026-09-18T00:00:00.000Z",
-      "contractor-2": "2026-06-16T00:00:00.000Z",
-      "contractor-3": "2026-09-07T00:00:00.000Z"
+      "contractor-1": "2026-09-25T07:31:13.6736941Z",
+      "contractor-2": "2026-09-25T07:31:13.6736941Z",
+      "contractor-3": "2026-09-25T07:31:13.6736941Z"
     },
     "templates": {
-      "template-1": "2026-09-19T07:46:51.683Z",
-      "template-2": "2026-09-19T07:46:51.683Z",
-      "template-3": "2026-09-19T07:46:51.683Z",
-      "template-4": "2026-09-19T07:46:51.683Z",
-      "template-5": "2026-09-19T07:46:51.683Z",
-      "template-6": "2026-09-19T07:46:51.683Z",
-      "template-7": "2026-09-19T07:46:51.683Z",
-      "template-8": "2026-09-19T07:46:51.683Z",
-      "template-9": "2026-09-19T07:46:51.683Z",
-      "template-10": "2026-09-19T07:46:51.683Z"
+      "template-1": "2026-09-25T07:31:13.6736941Z",
+      "template-2": "2026-09-25T07:31:13.6736941Z",
+      "template-3": "2026-09-25T07:31:13.6736941Z",
+      "template-4": "2026-09-25T07:31:13.6736941Z",
+      "template-5": "2026-09-25T07:31:13.6736941Z",
+      "template-6": "2026-09-25T07:31:13.6736941Z",
+      "template-7": "2026-09-25T07:31:13.6736941Z",
+      "template-8": "2026-09-25T07:31:13.6736941Z",
+      "template-9": "2026-09-25T07:31:13.6736941Z",
+      "template-10": "2026-09-25T07:31:13.6736941Z"
     },
     "budgets": {
-      "event-1": "2026-09-19T07:46:51.683Z",
-      "event-2": "2026-09-19T07:46:51.683Z",
-      "event-3": "2026-09-19T07:46:51.683Z",
-      "event-4": "2026-09-19T07:46:51.683Z"
+      "event-1": "2026-09-25T07:31:13.6736941Z",
+      "event-2": "2026-09-25T07:31:13.6736941Z",
+      "event-3": "2026-09-25T07:31:13.6736941Z",
+      "event-4": "2026-09-25T07:31:13.6736941Z"
     }
   },
   "tombstones": {
