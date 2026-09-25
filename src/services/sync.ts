@@ -284,6 +284,11 @@ function hasSharedRecords(snapshot: SyncEnvelope) {
   return SHARED_COLLECTIONS.some((collection) => snapshot.data[collection].length > 0) || SHARED_COLLECTIONS.some((collection) => snapshot.tombstones[collection].length > 0)
 }
 
+function safeSyncError(error: unknown) {
+  if (error instanceof Error && /^GitHub API: HTTP \d{3}$/.test(error.message)) return `Онлайн-сохранение не удалось (${error.message}). Локальные данные сохранены.`
+  return 'Онлайн-сохранение не удалось. Локальные данные сохранены.'
+}
+
 function encodeBase64(value: string) {
   const bytes = new TextEncoder().encode(value)
   let binary = ''
@@ -519,7 +524,7 @@ export class EventFlowSyncEngine {
       if (error instanceof SyncConflictError) meta.autosavePaused = true
       meta.dirty = true
       writeSyncMeta(this.options.storage, meta)
-      this.update({ status: 'error', dirty: true, error: error instanceof SyncConflictError ? 'Конфликт не удалось разрешить. Автосохранение приостановлено.' : 'Онлайн-сохранение не удалось. Локальные данные сохранены.' })
+      this.update({ status: 'error', dirty: true, error: error instanceof SyncConflictError ? 'Конфликт не удалось разрешить. Автосохранение приостановлено.' : safeSyncError(error) })
       return false
     }
     return false
