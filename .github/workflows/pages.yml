@@ -3,6 +3,8 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - data/eventflow-data.json
   workflow_dispatch:
 
 permissions:

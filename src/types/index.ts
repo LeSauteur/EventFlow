@@ -153,6 +153,7 @@ export interface BackupPayload {
     budgets: EventBudget[]
     activities: Activity[]
     tasks: Task[]
+    risks?: Risk[]
     settings: AppSettings
   }
 }
