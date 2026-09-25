@@ -65,6 +65,9 @@ const presetItems: Record<ChecklistCategory, PresetItem[]> = {
 const typeCategories: Record<string, ChecklistCategory[]> = {
   Ужин: ['general', 'venue', 'catering', 'documents'],
   Обед: ['general', 'venue', 'catering', 'documents'],
+  Логистика: ['general', 'logistics', 'documents'],
+  Трансфер: ['general', 'logistics', 'documents'],
+  Кейтеринг: ['general', 'catering', 'documents'],
   Конференция: ['general', 'venue', 'catering', 'equipment', 'documents'],
   Тимбилдинг: ['general', 'venue', 'catering', 'equipment', 'logistics', 'documents'],
   Проживание: ['general', 'accommodation', 'logistics', 'documents'],
