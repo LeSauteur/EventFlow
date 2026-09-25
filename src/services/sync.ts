@@ -286,7 +286,13 @@ function hasSharedRecords(snapshot: SyncEnvelope) {
 
 function safeSyncError(error: unknown) {
   if (error instanceof Error && /^GitHub API: HTTP \d{3}$/.test(error.message)) return `Онлайн-сохранение не удалось (${error.message}). Локальные данные сохранены.`
-  return 'Онлайн-сохранение не удалось. Локальные данные сохранены.'
+  const detail = error instanceof Error ? `${error.name}: ${error.message}` : String(error)
+  const redacted = detail
+    .replace(/github_pat_[A-Za-z0-9_]+/gi, '[token hidden]')
+    .replace(/ghp_[A-Za-z0-9]+/gi, '[token hidden]')
+    .replace(/Bearer\s+\S+/gi, 'Bearer [token hidden]')
+    .slice(0, 180)
+  return `Онлайн-сохранение не удалось (${redacted}). Локальные данные сохранены.`
 }
 
 function encodeBase64(value: string) {
@@ -321,7 +327,7 @@ export class GitHubContentsClient implements SyncClient {
     path = 'data/eventflow-data.json',
   ) {
     this.tokenProvider = tokenProvider
-    this.fetchFn = fetchFn
+    this.fetchFn = fetchFn.bind(globalThis)
     this.owner = owner
     this.repo = repo
     this.path = path

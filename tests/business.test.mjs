@@ -5,7 +5,7 @@ import { calculateChecklistProgress, createChecklistForEvent } from '../src/conf
 import { calculateEventRisks } from '../src/config/riskRules.ts'
 import { calculateBudget } from '../src/services/budget.ts'
 import { createBackup, ensureSeedData, importBackup, loadEvents, saveEvents, SCHEMA_VERSION, STORAGE_KEYS, validateBackup } from '../src/services/storage.ts'
-import { EventFlowSyncEngine, markDeleted, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SyncConflictError, SYNC_DIRTY_THRESHOLD, SYNC_META_KEY, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
+import { EventFlowSyncEngine, GitHubContentsClient, markDeleted, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SyncConflictError, SYNC_DIRTY_THRESHOLD, SYNC_META_KEY, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
 import { checkTemplateCoverage, renderTemplate } from '../src/services/templateEngine.ts'
 import { getDeadlineState, toDateKey, addDays } from '../src/utils/dates.ts'
 import { calculateDashboard } from '../src/services/dashboard.ts'
@@ -323,4 +323,17 @@ test('sync metadata and session token never enter backups or shared JSON', () =>
     assert.doesNotMatch(value, /eventflow\.githubToken/)
     assert.doesNotMatch(value, /eventflow\.syncMeta/)
   }
+})
+
+test('GitHub client binds browser fetch correctly', async () => {
+  let receivedThis
+  const encoded = btoa(JSON.stringify({ events: [] }))
+  function browserLikeFetch() {
+    receivedThis = this
+    return Promise.resolve(new Response(JSON.stringify({ sha: 'sha', content: encoded }), { status: 200, headers: { 'Content-Type': 'application/json' } }))
+  }
+  const client = new GitHubContentsClient(() => null, browserLikeFetch)
+  const file = await client.get()
+  assert.equal(receivedThis, globalThis)
+  assert.equal(file.sha, 'sha')
 })
