@@ -156,7 +156,11 @@ export function readSyncMeta(storage: Storage): SyncMeta {
 
 export function writeSyncMeta(storage: Storage, meta: SyncMeta) {
   storage.setItem(SYNC_META_KEY, JSON.stringify(meta))
-  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('eventflow-sync-meta'))
+  if (typeof window !== 'undefined') {
+    const notify = () => window.dispatchEvent(new CustomEvent('eventflow-sync-meta'))
+    if (typeof queueMicrotask === 'function') queueMicrotask(notify)
+    else window.setTimeout(notify, 0)
+  }
 }
 
 export function initializeSyncState(hadLocalData: boolean, storage: Storage = window.localStorage) {
@@ -427,7 +431,8 @@ export class EventFlowSyncEngine {
       const meta = readSyncMeta(this.options.storage)
       if (meta.dirty && !meta.autosavePaused && this.options.sessionStorage.getItem(SYNC_TOKEN_KEY)) void this.syncNow(false)
     }, SYNC_INTERVAL_MS)
-    await this.loadOnline()
+    if (this.options.sessionStorage.getItem(SYNC_TOKEN_KEY)) await this.loadOnline()
+    else this.refreshFromMeta()
   }
 
   stop() {

@@ -4,13 +4,16 @@ import test from 'node:test'
 import { calculateChecklistProgress, createChecklistForEvent } from '../src/config/checklistPresets.ts'
 import { calculateEventRisks } from '../src/config/riskRules.ts'
 import { calculateBudget } from '../src/services/budget.ts'
-import { createBackup, ensureSeedData, importBackup, loadEvents, saveEvents, SCHEMA_VERSION, STORAGE_KEYS, validateBackup } from '../src/services/storage.ts'
+import { createBackup, deleteEventWorkspace, ensureSeedData, importBackup, loadEvents, saveEvents, SCHEMA_VERSION, STORAGE_KEYS, validateBackup } from '../src/services/storage.ts'
 import { EventFlowSyncEngine, GitHubContentsClient, markDeleted, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SyncConflictError, SYNC_DIRTY_THRESHOLD, SYNC_META_KEY, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
 import { checkTemplateCoverage, renderTemplate } from '../src/services/templateEngine.ts'
 import { getDeadlineState, toDateKey, addDays } from '../src/utils/dates.ts'
 import { calculateDashboard } from '../src/services/dashboard.ts'
 import { APPLICATION_ROUTES } from '../src/data/navigation.ts'
 import { parseQuickCapture } from '../src/services/quickCapture.ts'
+import { COMMON_CHECKLIST_TITLES, createNotebookEvent, createServiceInstance, SERVICE_PRESETS } from '../src/config/servicePresets.ts'
+import { importedOneNoteEvents } from '../src/data/importedOneNote.ts'
+import { eventMatchesSearch } from '../src/services/eventSearch.ts'
 
 class MemoryStorage {
   #data = new Map()
@@ -22,12 +25,19 @@ class MemoryStorage {
   setItem(key, value) { this.#data.set(String(key), String(value)) }
 }
 
-test('storage seeds an empty browser store and preserves created events', () => {
+function makeTestEvent(id = 'test-event') {
+  return createNotebookEvent({ id, title: 'Тестовое мероприятие', dateFrom: '2026-10-10', dateTo: '2026-10-11', city: 'Москва', createdAt: '2026-09-20T10:00:00.000Z', updatedAt: '2026-09-20T10:00:00.000Z' })
+}
+
+test('storage seeds the complete OneNote import and preserves created events', () => {
   const storage = new MemoryStorage()
   const seeded = ensureSeedData(storage)
   assert.equal(storage.getItem(STORAGE_KEYS.schemaVersion), SCHEMA_VERSION)
-  assert.ok(seeded.events.length >= 4)
-  const created = { ...seeded.events[0], id: 'created-event', title: 'Созданное мероприятие' }
+  assert.equal(seeded.events.length, 18)
+  assert.deepEqual(new Set(seeded.events.map((event) => event.stage)), new Set(['WORKING', 'PO', 'PROCESSING', 'ARCHIVE']))
+  assert.ok(seeded.events.some((event) => event.id === 'onenote-kurgan-2026-10-05'))
+  assert.ok(seeded.events.some((event) => event.id === 'onenote-ztn9c53z8sc-b'))
+  const created = { ...makeTestEvent('created-event'), title: 'Созданное мероприятие' }
   saveEvents([created, ...seeded.events], storage)
   assert.equal(loadEvents(storage)[0].id, 'created-event')
   assert.equal(ensureSeedData(storage).events[0].id, 'created-event')
@@ -54,15 +64,38 @@ test('new service event types receive focused checklist presets', () => {
   assert.equal(logistics.some((item) => item.category === 'catering'), false)
 })
 
-test('new event form keeps guests and budget optional and exposes the requested types', () => {
+test('new event form is budget-free and creates services from presets', () => {
   const source = readFileSync(new URL('../src/pages/NewEventPage.tsx', import.meta.url), 'utf8')
-  const eventTypes = source.match(/const eventTypes = \[(.*?)\]/s)?.[1] ?? ''
-  for (const type of ['Логистика', 'Трансфер', 'Кейтеринг']) assert.match(eventTypes, new RegExp(type))
-  assert.doesNotMatch(eventTypes, /Ужин|Обед/)
-  assert.doesNotMatch(source, /<input required type="number" min="1"/)
-  assert.doesNotMatch(source, /<input required type="number" min="0"/)
-  assert.match(source, /guests: Number\(form\.guests\)/)
-  assert.match(source, /budget: Number\(form\.budget\)/)
+  assert.match(source, /SERVICE_PRESETS/)
+  assert.match(source, /createServiceInstance/)
+  assert.match(source, /Инициатор \/ контакт/)
+  assert.match(source, /Количество участников/)
+  assert.doesNotMatch(source, /Бюджет|budget/i)
+  for (const title of ['Проживание', 'Трансфер', 'Кейтеринг / питание', 'Конференц-зал / площадка', 'Оборудование', 'Авиабилеты', 'ЖД билеты', 'Виза', 'Сопровождение / координатор']) {
+    assert.ok(SERVICE_PRESETS.some((preset) => preset.title === title), `missing preset ${title}`)
+  }
+})
+
+test('cross-stage search finds all event fields and requires every keyword', () => {
+  const contactMatch = importedOneNoteEvents.filter((event) => eventMatchesSearch(event, 'vs@conferent.ru'))
+  assert.deepEqual(contactMatch.map((event) => event.id), ['onenote-p3nd7q6zyvl'])
+
+  const providerAndChecklistMatch = importedOneNoteEvents.filter((event) => eventMatchesSearch(event, 'Рэдиссон предложение'))
+  assert.deepEqual(providerAndChecklistMatch.map((event) => event.id), ['onenote-hmn2t8fzl72'])
+
+  const timelineMatch = importedOneNoteEvents.filter((event) => eventMatchesSearch(event, 'Марии финального списка'))
+  assert.deepEqual(timelineMatch.map((event) => event.id), ['onenote-hmn2t8fzl72'])
+
+  assert.equal(importedOneNoteEvents.some((event) => eventMatchesSearch(event, 'Рэдиссон Курган')), false)
+})
+
+test('notebook event has the common workflow and independent service checklists', () => {
+  const event = createNotebookEvent({ id: 'notebook-event', title: 'Тест', initiator: 'Анна Лапшина', dateFrom: '2026-10-05', dateTo: '2026-10-06' })
+  event.services = [createServiceInstance(event.id, 'accommodation'), createServiceInstance(event.id, 'transfer')]
+  assert.deepEqual(event.commonChecklist.map((item) => item.title), COMMON_CHECKLIST_TITLES)
+  assert.equal(event.initiator, 'Анна Лапшина')
+  assert.equal(event.services.length, 2)
+  assert.notDeepEqual(event.services[0].checklist.map((item) => item.title), event.services[1].checklist.map((item) => item.title))
 })
 
 test('deadline engine distinguishes today, tomorrow and overdue', () => {
@@ -106,8 +139,7 @@ test('backup validates, exports and imports without accepting malformed data', (
   assert.equal(validateBackup({ format: 'eventflow-backup', data: {} }), false)
   const target = new MemoryStorage()
   ensureSeedData(target)
-  const targetData = ensureSeedData(target)
-  saveEvents([{ ...targetData.events[0], id: 'target-only' }, ...targetData.events], target)
+  saveEvents([makeTestEvent('target-only')], target)
   const imported = importBackup(backup, target)
   assert.equal(imported.events.length, backup.data.events.length + 1)
   assert.equal(imported.templates.length, backup.data.templates.length)
@@ -118,29 +150,75 @@ test('backup validates, exports and imports without accepting malformed data', (
 test('event edits persist through the storage layer', () => {
   const storage = new MemoryStorage()
   const data = ensureSeedData(storage)
-  const edited = { ...data.events[0], city: 'Новый город', guests: 77 }
-  saveEvents(data.events.map((event) => event.id === edited.id ? edited : event), storage)
+  const edited = { ...makeTestEvent('edited-event'), city: 'Новый город', guests: 77 }
+  saveEvents([edited, ...data.events], storage)
   const loaded = loadEvents(storage).find((event) => event.id === edited.id)
   assert.equal(loaded.city, 'Новый город')
   assert.equal(loaded.guests, 77)
 })
 
-test('dashboard aggregates attention items from checklist and questions', () => {
+test('deleting an event removes every related record and records sync tombstones', () => {
+  const storage = new MemoryStorage()
+  const seeded = ensureSeedData(storage)
+  const event = makeTestEvent('delete-me')
+  const related = {
+    ...seeded,
+    events: [event, ...seeded.events],
+    tasks: [{ id: 'task-delete', eventId: event.id, eventName: event.title, title: 'Тест', deadline: '2026-10-01', status: 'Новая', priority: 'Высокий' }, ...seeded.tasks],
+    activities: [{ id: 'activity-delete', eventId: event.id, type: 'event', title: 'Тест', description: '', timestamp: '2026-09-29T10:00:00.000Z' }, ...seeded.activities],
+    budgets: [{ eventId: event.id, clientLimit: 0, baseCost: 0, venue: 0, catering: 0, equipment: 0, accommodation: 0, transfer: 0, other: 0, serviceFeePercent: 0, commissionPercent: 0, vatPercent: 0, comment: '', updatedAt: '' }, ...seeded.budgets],
+  }
+  const next = deleteEventWorkspace(event.id, related, storage, '2026-09-29T10:05:00.000Z')
+  assert.equal(next.events.some((item) => item.id === event.id), false)
+  assert.equal(next.tasks.some((item) => item.eventId === event.id), false)
+  assert.equal(next.activities.some((item) => item.eventId === event.id), false)
+  assert.equal(next.budgets.some((item) => item.eventId === event.id), false)
+  const meta = readSyncMeta(storage)
+  assert.ok(meta.tombstones.events.some((item) => item.id === event.id))
+  assert.ok(meta.tombstones.tasks.some((item) => item.id === 'task-delete'))
+  assert.ok(meta.tombstones.activities.some((item) => item.id === 'activity-delete'))
+  assert.ok(meta.tombstones.budgets.some((item) => item.id === event.id))
+})
+
+test('notebook workflow fields and service completion persist locally', () => {
+  const storage = new MemoryStorage()
+  const data = ensureSeedData(storage)
+  const event = createNotebookEvent({ id: 'workflow-event', title: 'Рабочее событие', initiator: 'Анастасия', dateFrom: '2026-10-10', dateTo: '2026-10-11' })
+  const service = createServiceInstance(event.id, 'catering')
+  service.checklist[0] = { ...service.checklist[0], completed: true, completedAt: '2026-09-29T10:00:00.000Z' }
+  event.services = [service]
+  event.workTourNumbers = ['HNM2T8FZL72', 'ZTN9C53Z8SC']
+  event.waitingItems = [{ id: 'waiting-1', text: 'Подтверждение меню', completed: false, createdAt: '2026-09-29T10:00:00.000Z' }]
+  event.nextStep = 'Получить PO'
+  event.timeline = [{ id: 'timeline-1', eventId: event.id, text: 'Направила смету', timestamp: '2026-09-29T10:05:00.000Z', source: 'user' }]
+  saveEvents([event, ...data.events], storage)
+  const loaded = loadEvents(storage).find((item) => item.id === event.id)
+  assert.deepEqual(loaded.workTourNumbers, ['HNM2T8FZL72', 'ZTN9C53Z8SC'])
+  assert.equal(loaded.waitingItems[0].text, 'Подтверждение меню')
+  assert.equal(loaded.nextStep, 'Получить PO')
+  assert.equal(loaded.timeline[0].text, 'Направила смету')
+  assert.equal(loaded.services[0].checklist[0].completed, true)
+})
+
+test('imported notebook workspace has no legacy dashboard attention or risks', () => {
   const storage = new MemoryStorage()
   const data = ensureSeedData(storage)
   const dashboard = calculateDashboard(data)
   assert.equal(dashboard.stats.activeEvents, data.events.length)
-  assert.ok(dashboard.attention.some((item) => item.source === 'question'))
-  assert.ok(dashboard.risks.length > 0)
+  assert.equal(dashboard.attention.length, 0)
+  assert.equal(dashboard.risks.length, 0)
 })
 
-test('all working routes are declared', () => {
-  for (const route of ['/', '/events', '/events/new', '/events/:id', '/contractors', '/templates', '/budget', '/questions', '/settings', '/search']) {
+test('notebook routes are declared and CRM routes are hidden', () => {
+  for (const route of ['/', '/events', '/events/new', '/events/:id', '/templates', '/settings']) {
     assert.ok(APPLICATION_ROUTES.includes(route), `missing route ${route}`)
   }
+  for (const route of ['/contractors', '/budget', '/questions', '/search']) assert.equal(APPLICATION_ROUTES.includes(route), false)
+  const app = readFileSync(new URL('../src/App.tsx', import.meta.url), 'utf8')
+  assert.doesNotMatch(app, /BudgetPage|ContractorsPage|QuestionsPage/)
 })
 
-test('schema migration preserves existing user entities', () => {
+test('schema 6 replaces the previous workspace with the OneNote import and records tombstones', () => {
   const storage = new MemoryStorage()
   storage.setItem(STORAGE_KEYS.schemaVersion, '2')
   const customEvent = { id: 'user-event', title: 'Личное мероприятие', client: 'Клиент', city: 'Тула', date: '2026-11-01', guests: 12, budget: 90000, type: 'Ужин', status: 'В работе', progress: 0 }
@@ -148,10 +226,12 @@ test('schema migration preserves existing user entities', () => {
   storage.setItem(STORAGE_KEYS.events, JSON.stringify([customEvent]))
   storage.setItem(STORAGE_KEYS.questions, JSON.stringify([customQuestion]))
   const migrated = ensureSeedData(storage)
-  assert.equal(migrated.events[0].id, 'user-event')
-  assert.equal(migrated.questions[0].id, 'user-question')
-  assert.ok(migrated.checklistItems.some((item) => item.eventId === 'user-event'))
-  assert.ok(migrated.budgets.some((item) => item.eventId === 'user-event'))
+  assert.equal(migrated.events.length, importedOneNoteEvents.length)
+  assert.ok(migrated.events.every((event) => event.id.startsWith('onenote-')))
+  assert.equal(migrated.questions.length, 0)
+  const meta = readSyncMeta(storage)
+  assert.ok(meta.tombstones.events.some((item) => item.id === 'user-event'))
+  assert.ok(meta.tombstones.questions.some((item) => item.id === 'user-question'))
 })
 
 test('quick capture parser proposes money and task actions without applying them', () => {
@@ -177,7 +257,8 @@ test('GitHub Pages deployment uses the repository base and reload-safe hash rout
 function createSyncHarness({ client, now = () => new Date('2026-09-25T12:00:00.000Z'), setIntervalFn, clearIntervalFn } = {}) {
   const storage = new MemoryStorage()
   const sessionStorage = new MemoryStorage()
-  let data = ensureSeedData(storage)
+  let data = { ...ensureSeedData(storage), events: [makeTestEvent('sync-event')] }
+  saveEvents(data.events, storage)
   sessionStorage.setItem(SYNC_TOKEN_KEY, 'test-token-kept-outside-snapshots')
   const fallbackSnapshot = snapshotFromLocal(data, readSyncMeta(storage), now().toISOString())
   const syncClient = client ?? {
@@ -200,13 +281,14 @@ function createSyncHarness({ client, now = () => new Date('2026-09-25T12:00:00.0
 test('local mutations are immediately persisted and enter the dirty queue', () => {
   const storage = new MemoryStorage()
   const data = ensureSeedData(storage)
-  const edited = { ...data.events[0], title: 'Локально сохранено' }
-  saveEvents(data.events.map((event) => event.id === edited.id ? edited : event), storage)
+  const dirtyBefore = readSyncMeta(storage).dirtyCount
+  const edited = { ...makeTestEvent('local-event'), title: 'Локально сохранено' }
+  saveEvents([edited, ...data.events], storage)
   markSyncDirty({ events: [edited.id] }, storage, '2026-09-25T10:00:00.000Z')
   assert.equal(loadEvents(storage).find((event) => event.id === edited.id)?.title, 'Локально сохранено')
   const meta = readSyncMeta(storage)
   assert.equal(meta.dirty, true)
-  assert.equal(meta.dirtyCount, 1)
+  assert.equal(meta.dirtyCount, dirtyBefore + 1)
   assert.equal(meta.recordVersions.events[edited.id], '2026-09-25T10:00:00.000Z')
 })
 
@@ -295,7 +377,7 @@ test('newer record version wins during conflict merge', () => {
 
 test('a tombstone prevents deleted records from being resurrected', () => {
   const storage = new MemoryStorage()
-  const data = ensureSeedData(storage)
+  const data = { ...ensureSeedData(storage), events: [makeTestEvent('deleted-event')] }
   const id = data.events[0].id
   markDeleted('events', id, storage, '2026-09-25T11:00:00.000Z')
   const local = snapshotFromLocal({ ...data, events: data.events.filter((event) => event.id !== id) }, readSyncMeta(storage), '2026-09-25T11:01:00.000Z')
@@ -318,7 +400,7 @@ test('409 is retried once and a second conflict pauses autosave', async () => {
   assert.equal(harness.engine.getState().status, 'error')
 })
 
-test('legacy online JSON and legacy localStorage are migrated without data loss', () => {
+test('legacy online JSON stays readable while old local examples are replaced by the OneNote import', () => {
   const legacyOnline = normalizeSnapshot({ events: [{ id: 'legacy-online', title: 'Old JSON' }], tasks: [] }, '2020-01-01T00:00:00.000Z')
   assert.equal(legacyOnline.version, 1)
   assert.equal(legacyOnline.data.events[0].id, 'legacy-online')
@@ -327,7 +409,8 @@ test('legacy online JSON and legacy localStorage are migrated without data loss'
   const storage = new MemoryStorage()
   storage.setItem(STORAGE_KEYS.schemaVersion, '2')
   storage.setItem(STORAGE_KEYS.events, JSON.stringify([{ id: 'legacy-local', title: 'Old localStorage' }]))
-  assert.equal(ensureSeedData(storage).events[0].id, 'legacy-local')
+  assert.equal(ensureSeedData(storage).events.length, importedOneNoteEvents.length)
+  assert.ok(readSyncMeta(storage).tombstones.events.some((item) => item.id === 'legacy-local'))
 })
 
 test('sync metadata and session token never enter backups or shared JSON', () => {

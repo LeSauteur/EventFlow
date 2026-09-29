@@ -1,54 +1,12 @@
-import { createChecklistForEvent } from '../config/checklistPresets.ts'
-import type { AppSettings, Contractor, EventBudget, MessageTemplate, OpenQuestion } from '../types/index.ts'
-import { addDays, toDateKey } from '../utils/dates.ts'
-import { seedEvents } from './seed.ts'
+import type { AppSettings, ChecklistItem, Contractor, EventBudget, MessageTemplate, OpenQuestion } from '../types/index.ts'
 
-const now = new Date()
-const today = toDateKey(now)
-const yesterday = toDateKey(addDays(now, -1))
-const tomorrow = toDateKey(addDays(now, 1))
+export const seedChecklistItems: ChecklistItem[] = []
 
-export const seedChecklistItems = seedEvents.flatMap((event, eventIndex) => {
-  const base = createChecklistForEvent(event.id, event.type)
-  const doneThreshold = [0.7, 0.45, 0.3, 0.6][eventIndex] ?? 0.2
-  const doneCount = Math.round(base.length * doneThreshold)
-  return base.map((item, index) => {
-    if (index < doneCount) return { ...item, status: 'done' as const, completedAt: new Date().toISOString() }
-    if (index === doneCount) return { ...item, status: 'overdue' as const, deadline: yesterday }
-    if (index === doneCount + 1) return { ...item, status: 'waiting' as const, deadline: tomorrow }
-    return item
-  })
-})
+export const seedQuestions: OpenQuestion[] = []
 
-export const seedQuestions: OpenQuestion[] = [
-  { id: 'question-1', eventId: 'event-1', title: 'Подтвердить финальное меню и стоимость', description: 'Нужна финальная версия меню с учётом сезонности.', responsibleParty: 'Ресторан', deadline: today, priority: 'critical', status: 'waiting_external', createdAt: new Date().toISOString(), resolvedAt: null },
-  { id: 'question-2', eventId: 'event-1', title: 'Уточнить условия отмены', description: 'Нет письменного подтверждения условий отмены.', responsibleParty: 'Площадка', deadline: tomorrow, priority: 'high', status: 'open', createdAt: new Date().toISOString(), resolvedAt: null },
-  { id: 'question-3', eventId: 'event-2', title: 'Подтверждение цен на алкоголь', description: 'Цены на сайте не подтверждены.', responsibleParty: 'Площадка', deadline: yesterday, priority: 'high', status: 'waiting_external', createdAt: new Date().toISOString(), resolvedAt: null },
-  { id: 'question-4', eventId: 'event-3', title: 'Согласовать рассадку', description: 'Требуется финальная схема рассадки от клиента.', responsibleParty: 'Клиент', deadline: tomorrow, priority: 'high', status: 'waiting_client', createdAt: new Date().toISOString(), resolvedAt: null },
-]
+export const seedContractors: Contractor[] = []
 
-export const seedContractors: Contractor[] = [
-  { id: 'contractor-1', name: 'Ресторан «Вино и Мясо»', type: 'Ресторан', city: 'Ростов-на-Дону', contactPerson: 'Иван Кузнецов', phone: '+7 928 123-45-67', email: 'i.kuznetsov@vinomiaso.ru', legalEntity: 'ООО «Вино и Мясо»', vatInfo: 'НДС 20%', serviceFee: '10%', paymentTerms: '50% предоплата, остаток за 3 дня', cancellationTerms: 'Без штрафа за 14 дней', notes: '', lastVerifiedAt: yesterday },
-  { id: 'contractor-2', name: 'Radisson Blu', type: 'Отель', city: 'Москва', contactPerson: 'Дмитрий Волков', phone: '+7 863 555-12-34', email: 'd.volkov@radisson.com', legalEntity: 'ООО «Отель Сервис»', vatInfo: 'НДС 20%', serviceFee: '0%', paymentTerms: 'По счёту, 100% предоплата', cancellationTerms: 'По условиям договора', notes: '', lastVerifiedAt: toDateKey(addDays(now, -95)) },
-  { id: 'contractor-3', name: 'Южный Трансфер', type: 'Трансфер', city: 'Сочи', contactPerson: 'Олег Панов', phone: '+7 918 777-42-18', email: 'booking@south-transfer.ru', legalEntity: 'ИП Панов О.В.', vatInfo: 'Без НДС', serviceFee: 'Включён', paymentTerms: 'Оплата после оказания услуг', cancellationTerms: 'За 48 часов без штрафа', notes: '', lastVerifiedAt: toDateKey(addDays(now, -12)) },
-]
-
-export const seedBudgets: EventBudget[] = seedEvents.map((event, index) => ({
-  eventId: event.id,
-  clientLimit: event.budget,
-  baseCost: index === 0 ? 0 : Math.round(event.budget * .05),
-  venue: Math.round(event.budget * .22),
-  catering: Math.round(event.budget * .46),
-  equipment: Math.round(event.budget * .08),
-  accommodation: event.type === 'Проживание' ? Math.round(event.budget * .35) : 0,
-  transfer: Math.round(event.budget * .05),
-  other: Math.round(event.budget * .03),
-  serviceFeePercent: 10,
-  commissionPercent: 0,
-  vatPercent: 20,
-  comment: '',
-  updatedAt: new Date().toISOString(),
-}))
+export const seedBudgets: EventBudget[] = []
 
 export const seedTemplates: MessageTemplate[] = [
   { id: 'template-1', name: 'Первичный запрос площадке', category: 'Работа с площадками', subject: 'Запрос коммерческого предложения на {{event.date}}', body: 'Здравствуйте!\n\nПланируем мероприятие в городе {{event.city}} на {{event.date}} для {{event.guests}} гостей. Просим направить стоимость и актуальные условия.\n\nПожалуйста, уточните:\n— стоимость аренды и срок действия цен;\n— ставку НДС;\n— сервисный сбор или комиссию;\n— условия оплаты;\n— условия отмены;\n— доступность площадки.\n\nБудем благодарны за ответ до {{deadline}}.\n\nС уважением,\nАнастасия\nEventFlow', requiredTopics: ['price', 'vat', 'serviceFee', 'payment', 'priceValidity', 'cancellation', 'deadline'], custom: false, updatedAt: new Date().toISOString() },

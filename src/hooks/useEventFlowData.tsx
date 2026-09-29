@@ -1,6 +1,6 @@
 import { createContext, type ReactNode, useContext, useMemo, useState } from 'react'
 import { calculateChecklistProgress, createChecklistForEvent } from '../config/checklistPresets.ts'
-import { ensureSeedData, saveActivities, saveBudgets, saveChecklistItems, saveContractors, saveEvents, saveQuestions, saveSettings, saveTemplates, STORAGE_KEYS, type EventFlowData } from '../services/storage.ts'
+import { deleteEventWorkspace, ensureSeedData, saveActivities, saveBudgets, saveChecklistItems, saveContractors, saveEvents, saveQuestions, saveSettings, saveTemplates, STORAGE_KEYS, type EventFlowData } from '../services/storage.ts'
 import { initializeSyncState, markSyncDirty } from '../services/sync.ts'
 import type { Activity, AppSettings, ChecklistItem, Contractor, Event, EventBudget, MessageTemplate, OpenQuestion } from '../types/index.ts'
 
@@ -9,6 +9,7 @@ type ActivityInput = Omit<Activity, 'id' | 'timestamp'>
 interface EventFlowContextValue extends EventFlowData {
   addEvent: (event: Event) => void
   updateEvent: (event: Event) => void
+  deleteEvent: (eventId: string) => void
   updateChecklistItem: (item: ChecklistItem) => void
   addChecklistItem: (item: ChecklistItem) => void
   addQuestion: (question: OpenQuestion) => void
@@ -44,24 +45,21 @@ export function EventFlowProvider({ children }: { children: ReactNode }) {
       const now = new Date().toISOString()
       const nextEvent = { ...event, createdAt: event.createdAt ?? now, updatedAt: now }
       const events = [nextEvent, ...current.events]
-      const checklistItems = [...createChecklistForEvent(event.id, event.type, now), ...current.checklistItems]
-      const budgets = [{ eventId: event.id, clientLimit: event.budget, baseCost: 0, venue: 0, catering: 0, equipment: 0, accommodation: 0, transfer: 0, other: 0, serviceFeePercent: 0, commissionPercent: 0, vatPercent: 0, comment: '', updatedAt: now }, ...current.budgets]
       const activity = makeActivity({ eventId: event.id, type: 'event', title: 'Создано мероприятие', description: event.title })
-      const activities = [activity, ...current.activities]
-      saveEvents(events); saveChecklistItems(checklistItems); saveBudgets(budgets); saveActivities(activities)
-      markSyncDirty({ events: [event.id], checklistItems: checklistItems.filter((item) => item.eventId === event.id).map((item) => item.id), budgets: [event.id], activities: [activity.id] }, undefined, now)
-      return { ...current, events, checklistItems, budgets, activities }
-    }),
-    updateEvent: (event) => setData((current) => {
-      const now = new Date().toISOString()
-      const nextEvent = { ...event, updatedAt: now }
-      const events = current.events.map((item) => item.id === event.id ? nextEvent : item)
-      const activity = makeActivity({ eventId: event.id, type: 'event', title: 'Обновлены данные мероприятия', description: event.title })
       const activities = [activity, ...current.activities]
       saveEvents(events); saveActivities(activities)
       markSyncDirty({ events: [event.id], activities: [activity.id] }, undefined, now)
       return { ...current, events, activities }
     }),
+    updateEvent: (event) => setData((current) => {
+      const now = new Date().toISOString()
+      const nextEvent = { ...event, updatedAt: now }
+      const events = current.events.map((item) => item.id === event.id ? nextEvent : item)
+      saveEvents(events)
+      markSyncDirty({ events: [event.id] }, undefined, now)
+      return { ...current, events }
+    }),
+    deleteEvent: (eventId) => setData((current) => deleteEventWorkspace(eventId, current)),
     updateChecklistItem: (item) => setData((current) => {
       const now = new Date().toISOString()
       const updated = { ...item, updatedAt: now, completedAt: item.status === 'done' ? item.completedAt ?? now : null }

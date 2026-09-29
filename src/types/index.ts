@@ -1,4 +1,5 @@
-export type EventStatus = 'В работе' | 'Согласование' | 'В подготовке'
+export type EventStage = 'WORKING' | 'PO' | 'PROCESSING' | 'ARCHIVE'
+export type EventStatus = 'В работе' | 'PO' | 'Процессинг' | 'Архив' | 'Согласование' | 'В подготовке'
 export type TaskStatus = 'Просрочено' | 'Сегодня' | 'Ожидаем'
 export type RiskSeverity = 'Высокий' | 'Средний'
 export type ChecklistCategory = 'general' | 'venue' | 'catering' | 'equipment' | 'logistics' | 'accommodation' | 'documents'
@@ -6,6 +7,58 @@ export type ChecklistStatus = 'todo' | 'in_progress' | 'waiting' | 'done' | 'ove
 export type Priority = 'low' | 'normal' | 'high' | 'critical'
 export type QuestionStatus = 'open' | 'waiting_external' | 'waiting_client' | 'resolved'
 export type ContractorType = 'Отель' | 'Ресторан' | 'Площадка' | 'Трансфер' | 'Кейтеринг' | 'Оборудование' | 'Подрядчик' | 'Другое'
+
+export type ServiceType =
+  | 'accommodation'
+  | 'transfer'
+  | 'logistics'
+  | 'catering'
+  | 'venue'
+  | 'equipment'
+  | 'flights'
+  | 'rail'
+  | 'visa'
+  | 'coordination'
+  | 'direct'
+  | 'event'
+  | 'custom'
+
+export interface WorkChecklistItem {
+  id: string
+  title: string
+  completed: boolean
+  completedAt?: string | null
+  notes?: string
+}
+
+export interface ServiceInstance {
+  id: string
+  eventId: string
+  type: ServiceType
+  title: string
+  providerName: string
+  providerContact: string
+  checklist: WorkChecklistItem[]
+  notes: string
+  collapsed?: boolean
+}
+
+export interface WaitingItem {
+  id: string
+  text: string
+  completed: boolean
+  createdAt: string
+  completedAt?: string | null
+}
+
+export interface TimelineEntry {
+  id: string
+  eventId: string
+  text: string
+  timestamp: string
+  source?: 'user' | 'system'
+  relatedEntityId?: string
+}
 
 export interface Event {
   id: string
@@ -21,6 +74,20 @@ export interface Event {
   contractorId?: string
   createdAt?: string
   updatedAt?: string
+  /** Notebook workflow fields. Legacy fields above remain for safe migration and old backups. */
+  dateFrom: string
+  dateTo: string
+  sector: string
+  company: string
+  initiator: string
+  participants: number
+  stage: EventStage
+  services: ServiceInstance[]
+  commonChecklist: WorkChecklistItem[]
+  workTourNumbers: string[]
+  waitingItems: WaitingItem[]
+  nextStep: string
+  timeline: TimelineEntry[]
 }
 
 export interface ChecklistItem {

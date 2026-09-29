@@ -1,6 +1,7 @@
 import { seedBudgets, seedChecklistItems, seedContractors, seedQuestions, seedSettings, seedTemplates } from '../data/extendedSeed.ts'
 import { seedActivities, seedEvents, seedRisks, seedTasks } from '../data/seed.ts'
-import { createChecklistForEvent } from '../config/checklistPresets.ts'
+import { createNotebookEvent, createServiceInstance, inferServiceTypes } from '../config/servicePresets.ts'
+import { markDeleted, markSyncDirty, type SharedCollection } from './sync.ts'
 import type { Activity, AppSettings, BackupPayload, ChecklistItem, Contractor, Event, EventBudget, MessageTemplate, OpenQuestion, Risk, Task } from '../types/index.ts'
 
 export const STORAGE_KEYS = {
@@ -17,7 +18,9 @@ export const STORAGE_KEYS = {
   settings: 'eventflow.settings',
 } as const
 
-export const SCHEMA_VERSION = '3'
+export const SCHEMA_VERSION = '6'
+
+const WORKSPACE_COLLECTIONS: SharedCollection[] = ['events', 'tasks', 'risks', 'activities', 'checklistItems', 'questions', 'contractors', 'budgets']
 
 export interface EventFlowData {
   events: Event[]
@@ -53,6 +56,20 @@ function read<T>(storage: Storage, key: string, fallback: T): T {
 }
 function write<T>(storage: Storage, key: string, value: T) { storage.setItem(key, JSON.stringify(value)) }
 
+function markSeedDataForSync(storage: Storage, timestamp: string) {
+  markSyncDirty({
+    events: seedData.events.map((item) => item.id),
+    tasks: seedData.tasks.map((item) => item.id),
+    risks: seedData.risks.map((item) => item.id),
+    activities: seedData.activities.map((item) => item.id),
+    checklistItems: seedData.checklistItems.map((item) => item.id),
+    questions: seedData.questions.map((item) => item.id),
+    contractors: seedData.contractors.map((item) => item.id),
+    templates: seedData.templates.map((item) => item.id),
+    budgets: seedData.budgets.map((item) => item.eventId),
+  }, storage, timestamp)
+}
+
 export function saveAll(data: EventFlowData, storage: Storage = window.localStorage) {
   write(storage, STORAGE_KEYS.events, data.events)
   write(storage, STORAGE_KEYS.tasks, data.tasks)
@@ -67,20 +84,55 @@ export function saveAll(data: EventFlowData, storage: Storage = window.localStor
   storage.setItem(STORAGE_KEYS.schemaVersion, SCHEMA_VERSION)
 }
 
+export function deleteEventWorkspace(eventId: string, data: EventFlowData, storage: Storage = window.localStorage, timestamp = new Date().toISOString()) {
+  const removed = {
+    events: data.events.filter((item) => item.id === eventId),
+    tasks: data.tasks.filter((item) => item.eventId === eventId),
+    risks: data.risks.filter((item) => item.eventId === eventId),
+    activities: data.activities.filter((item) => item.eventId === eventId),
+    checklistItems: data.checklistItems.filter((item) => item.eventId === eventId),
+    questions: data.questions.filter((item) => item.eventId === eventId),
+    budgets: data.budgets.filter((item) => item.eventId === eventId),
+  }
+  const next: EventFlowData = {
+    ...data,
+    events: data.events.filter((item) => item.id !== eventId),
+    tasks: data.tasks.filter((item) => item.eventId !== eventId),
+    risks: data.risks.filter((item) => item.eventId !== eventId),
+    activities: data.activities.filter((item) => item.eventId !== eventId),
+    checklistItems: data.checklistItems.filter((item) => item.eventId !== eventId),
+    questions: data.questions.filter((item) => item.eventId !== eventId),
+    budgets: data.budgets.filter((item) => item.eventId !== eventId),
+  }
+  saveAll(next, storage)
+  for (const event of removed.events) markDeleted('events', event.id, storage, timestamp)
+  for (const task of removed.tasks) markDeleted('tasks', task.id, storage, timestamp)
+  for (const risk of removed.risks) markDeleted('risks', risk.id, storage, timestamp)
+  for (const activity of removed.activities) markDeleted('activities', activity.id, storage, timestamp)
+  for (const item of removed.checklistItems) markDeleted('checklistItems', item.id, storage, timestamp)
+  for (const question of removed.questions) markDeleted('questions', question.id, storage, timestamp)
+  for (const budget of removed.budgets) markDeleted('budgets', budget.eventId, storage, timestamp)
+  return next
+}
+
 export function ensureSeedData(storage: Storage = window.localStorage): EventFlowData {
   const version = storage.getItem(STORAGE_KEYS.schemaVersion)
-  if (!version) saveAll(seedData, storage)
+  if (!version) {
+    saveAll(seedData, storage)
+    markSeedDataForSync(storage, new Date().toISOString())
+  }
   else if (version !== SCHEMA_VERSION) {
     const existing = loadAll(storage)
-    const events = existing.events
-    const checklistItems = existing.checklistItems
-    const budgets = existing.budgets
-    for (const event of events) {
-      if (!checklistItems.some((item) => item.eventId === event.id)) checklistItems.push(...createChecklistForEvent(event.id, event.type))
-      if (!budgets.some((item) => item.eventId === event.id)) budgets.push({ eventId: event.id, clientLimit: event.budget, baseCost: 0, venue: 0, catering: 0, equipment: 0, accommodation: 0, transfer: 0, other: 0, serviceFeePercent: 0, commissionPercent: 0, vatPercent: 0, comment: '', updatedAt: new Date().toISOString() })
+    const timestamp = new Date().toISOString()
+    for (const collection of WORKSPACE_COLLECTIONS) {
+      for (const item of existing[collection]) {
+        const record = item as unknown as Record<string, unknown>
+        const id = String(collection === 'budgets' ? record.eventId ?? '' : record.id ?? '')
+        if (id) markDeleted(collection, id, storage, timestamp)
+      }
     }
-    const migrated: EventFlowData = { ...existing, events, checklistItems, budgets }
-    saveAll(migrated, storage)
+    saveAll(seedData, storage)
+    markSeedDataForSync(storage, timestamp)
   } else {
     for (const [name, key] of Object.entries(STORAGE_KEYS)) {
       if (name !== 'schemaVersion' && storage.getItem(key) === null) {
@@ -89,7 +141,22 @@ export function ensureSeedData(storage: Storage = window.localStorage): EventFlo
       }
     }
   }
-  return loadAll(storage)
+  const loaded = loadAll(storage)
+  const normalizedEvents = loaded.events.map((event) => migrateEvent(event))
+  if (JSON.stringify(normalizedEvents) !== JSON.stringify(loaded.events)) {
+    loaded.events = normalizedEvents
+    saveEvents(normalizedEvents, storage)
+  }
+  return loaded
+}
+
+export function migrateEvent(raw: Event): Event {
+  const event = createNotebookEvent(raw)
+  if (!event.services.length) {
+    const types = inferServiceTypes(`${raw.type ?? ''} ${raw.title ?? ''}`)
+    event.services = types.map((type) => createServiceInstance(event.id, type))
+  }
+  return event
 }
 
 export function loadAll(storage: Storage = window.localStorage): EventFlowData {
@@ -130,7 +197,7 @@ export function importBackup(backup: BackupPayload, storage: Storage = window.lo
   }
   saveAll({
     ...current,
-    events: mergeById(current.events, backup.data.events),
+    events: mergeById(current.events, backup.data.events).map(migrateEvent),
     tasks: mergeById(current.tasks, backup.data.tasks),
     risks: mergeById(current.risks, backup.data.risks ?? []),
     activities: mergeById(current.activities, backup.data.activities),
