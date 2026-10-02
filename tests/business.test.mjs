@@ -5,7 +5,7 @@ import { calculateChecklistProgress, createChecklistForEvent } from '../src/conf
 import { calculateEventRisks } from '../src/config/riskRules.ts'
 import { calculateBudget } from '../src/services/budget.ts'
 import { createBackup, deleteEventWorkspace, ensureSeedData, importBackup, loadEvents, saveEvents, SCHEMA_VERSION, STORAGE_KEYS, validateBackup } from '../src/services/storage.ts'
-import { EventFlowSyncEngine, GitHubContentsClient, markDeleted, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SyncConflictError, SYNC_DIRTY_THRESHOLD, SYNC_META_KEY, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
+import { EventFlowSyncEngine, GitHubContentsClient, initializeSyncState, markDeleted, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SyncConflictError, SYNC_DIRTY_THRESHOLD, SYNC_META_KEY, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
 import { checkTemplateCoverage, renderTemplate } from '../src/services/templateEngine.ts'
 import { getDeadlineState, toDateKey, addDays } from '../src/utils/dates.ts'
 import { calculateDashboard } from '../src/services/dashboard.ts'
@@ -398,6 +398,44 @@ test('409 is retried once and a second conflict pauses autosave', async () => {
   assert.equal(puts, 2)
   assert.equal(readSyncMeta(harness.storage).autosavePaused, true)
   assert.equal(harness.engine.getState().status, 'error')
+})
+
+test('a fresh browser without token loads the online copy on start', async () => {
+  const remoteEvent = { ...makeTestEvent('remote-only'), title: 'Создано на другом устройстве' }
+  const remote = snapshotFromLocal({ ...ensureSeedData(new MemoryStorage()), events: [remoteEvent] }, readSyncMeta(new MemoryStorage()), '2026-09-25T11:00:00.000Z')
+  let puts = 0
+  const harness = createSyncHarness({
+    client: { get: async () => ({ sha: 'sha-1', snapshot: remote }), put: async () => { puts += 1 } },
+    setIntervalFn: () => 1,
+    clearIntervalFn: () => {},
+  })
+  harness.sessionStorage.removeItem(SYNC_TOKEN_KEY)
+  await harness.engine.start()
+  assert.ok(harness.getData().events.some((event) => event.id === 'remote-only'))
+  assert.equal(puts, 0)
+  harness.engine.stop()
+})
+
+test('first start in a new browser takes the online copy instead of merging demo data', async () => {
+  const remoteEvent = { ...makeTestEvent('remote-only'), title: 'Онлайн-версия' }
+  const remote = snapshotFromLocal({ ...ensureSeedData(new MemoryStorage()), events: [remoteEvent] }, readSyncMeta(new MemoryStorage()), '2026-09-01T00:00:00.000Z')
+  const storage = new MemoryStorage()
+  let data = ensureSeedData(storage)
+  initializeSyncState(false, storage)
+  assert.equal(readSyncMeta(storage).preferRemoteOnFirstLoad, true)
+  const engine = new EventFlowSyncEngine({
+    storage,
+    sessionStorage: new MemoryStorage(),
+    getLocalData: () => data,
+    applySharedData: (shared) => { data = { ...data, ...structuredClone(shared) } },
+    client: { get: async () => ({ sha: 'sha-1', snapshot: remote }), put: async () => {} },
+    setIntervalFn: () => 1,
+    clearIntervalFn: () => {},
+  })
+  await engine.start()
+  assert.deepEqual(data.events.map((event) => event.id), ['remote-only'])
+  assert.equal(readSyncMeta(storage).dirty, false)
+  engine.stop()
 })
 
 test('legacy online JSON stays readable while old local examples are replaced by the OneNote import', () => {
