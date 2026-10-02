@@ -164,9 +164,11 @@ export function writeSyncMeta(storage: Storage, meta: SyncMeta) {
 }
 
 export function initializeSyncState(hadLocalData: boolean, storage: Storage = window.localStorage) {
-  if (storage.getItem(SYNC_META_KEY)) return readSyncMeta(storage)
+  if (hadLocalData && storage.getItem(SYNC_META_KEY)) return readSyncMeta(storage)
+  // В новом браузере meta уже создана посевом demo-данных, но онлайн-копия
+  // всё равно должна заменить их при первой загрузке, а не смешаться с ними.
   const meta = readSyncMeta(storage)
-  meta.preferRemoteOnFirstLoad = !hadLocalData
+  if (!meta.initialized) meta.preferRemoteOnFirstLoad = !hadLocalData
   writeSyncMeta(storage, meta)
   return meta
 }
@@ -431,8 +433,9 @@ export class EventFlowSyncEngine {
       const meta = readSyncMeta(this.options.storage)
       if (meta.dirty && !meta.autosavePaused && this.options.sessionStorage.getItem(SYNC_TOKEN_KEY)) void this.syncNow(false)
     }, SYNC_INTERVAL_MS)
-    if (this.options.sessionStorage.getItem(SYNC_TOKEN_KEY)) await this.loadOnline()
-    else this.refreshFromMeta()
+    // Репозиторий публичный: онлайн-копию можно прочитать и без token, поэтому
+    // новое устройство или окно инкогнито сразу получает актуальные данные.
+    await this.loadOnline()
   }
 
   stop() {
@@ -446,6 +449,7 @@ export class EventFlowSyncEngine {
     if (clean) this.options.sessionStorage.setItem(SYNC_TOKEN_KEY, clean)
     else this.options.sessionStorage.removeItem(SYNC_TOKEN_KEY)
     this.update({ hasToken: !!clean, error: null })
+    if (clean) void this.loadOnline()
   }
 
   clearToken() {
@@ -502,6 +506,13 @@ export class EventFlowSyncEngine {
     this.update({ status: 'syncing', error: null })
     let conflictCount = 0
     try {
+      const firstLoad = readSyncMeta(this.options.storage)
+      if (!firstLoad.initialized && firstLoad.preferRemoteOnFirstLoad) {
+        // Сначала забираем онлайн-копию, иначе demo-данные нового браузера уйдут в GitHub.
+        await this.loadOnline()
+        if (!readSyncMeta(this.options.storage).initialized) throw new Error('Не удалось загрузить онлайн-копию')
+        this.update({ status: 'syncing', error: null })
+      }
       while (conflictCount < 2) {
         const remote = await this.options.client.get()
         const meta = readSyncMeta(this.options.storage)

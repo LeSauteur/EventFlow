@@ -565,11 +565,17 @@ textarea, select { font: inherit; }
 .stage-nav button.active { color: #086ee1; background: #eaf3ff; font-weight: 750; }
 .stage-nav strong { min-width: 24px; padding: 3px 6px; border-radius: 999px; color: #7a879d; background: #eef2f6; font-size: .65rem; text-align: center; }
 .stage-nav button.active strong { color: #086ee1; background: #d5e9ff; }
-.notebook-save-state { display: grid; grid-template-columns: 7px minmax(0, 1fr); align-items: start; gap: 7px; margin-top: auto; padding: 14px 7px; color: #7a879b; border-bottom: 1px solid #edf0f4; font-size: .58rem; line-height: 1.4; }
+.notebook-save-state { display: grid; gap: 8px; margin-top: auto; padding: 14px 4px; color: #7a879b; border-bottom: 1px solid #edf0f4; font-size: .62rem; line-height: 1.4; }
+.notebook-save-state p { display: grid; grid-template-columns: 7px minmax(0, 1fr); align-items: start; gap: 7px; margin: 0; padding: 0 3px; }
 .notebook-save-state i { width: 7px; height: 7px; margin-top: 2px; border-radius: 50%; background: #18a874; }
 .notebook-save-state.dirty i, .notebook-save-state.syncing i { background: #e9a326; }
+.notebook-save-state.local i { background: #a8b3c4; }
 .notebook-save-state.error { color: #b04c59; }
 .notebook-save-state.error i { background: #df4052; }
+.notebook-save-state button, .notebook-save-state a { min-height: 34px; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 0 10px; color: var(--blue); border: 1px solid #cfe0f6; border-radius: 7px; background: #f4f8fd; font: inherit; font-size: .7rem; font-weight: 700; text-decoration: none; cursor: pointer; }
+.notebook-save-state button:hover, .notebook-save-state a:hover { border-color: var(--blue); }
+.notebook-save-state button.pending { color: #fff; border-color: var(--blue); background: var(--blue); box-shadow: 0 4px 11px rgba(8,119,249,.17); }
+.notebook-save-state button:disabled { cursor: progress; opacity: .7; }
 .notebook-secondary-nav { display: grid; gap: 3px; padding-top: 10px; }
 .notebook-secondary-nav a { min-height: 37px; display: flex; align-items: center; gap: 9px; padding: 0 9px; color: #66758d; border-radius: 7px; text-decoration: none; font-size: .72rem; }
 .notebook-secondary-nav a:hover { color: var(--blue); background: #f4f8fd; }
@@ -750,7 +756,8 @@ textarea, select { font: inherit; }
   .notebook-shell { display: block; }
   .notebook-nav, .event-index { position: static; width: 100%; height: auto; }
   .notebook-nav { padding: 12px; }
-  .notebook-brand, .notebook-secondary-nav, .notebook-save-state { display: none; }
+  .notebook-brand, .notebook-secondary-nav { display: none; }
+  .notebook-save-state { grid-template-columns: minmax(0, 1fr) auto; align-items: center; margin-top: 9px; padding: 0; border-bottom: 0; }
   .new-event-button { margin-bottom: 9px; }
   .stage-nav { grid-template-columns: repeat(4, 1fr); }
   .stage-nav button { padding: 0 6px; font-size: .66rem; }
