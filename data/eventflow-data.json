@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "updated_at": "2026-10-12T18:10:48.177Z",
+  "updated_at": "2026-10-12T18:11:44.920Z",
   "data": {
     "events": [
       {
         "id": "onenote-todo-2026-07-10",
-        "title": "TO-DO LIST 10 июля",
+        "title": "удалить",
         "client": "",
         "city": "",
         "date": "2026-07-10",
@@ -15,7 +15,7 @@
         "status": "В работе",
         "progress": 25,
         "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-09-29T18:00:00.000Z",
+        "updatedAt": "2026-10-12T18:11:23.937Z",
         "dateFrom": "2026-07-10",
         "dateTo": "2026-07-10",
         "sector": "TO-DO",
@@ -2555,7 +2555,7 @@
   },
   "record_versions": {
     "events": {
-      "onenote-todo-2026-07-10": "2026-10-02T12:06:52.226Z",
+      "onenote-todo-2026-07-10": "2026-10-12T18:11:23.937Z",
       "onenote-kurgan-2026-10-05": "2026-10-02T12:06:52.226Z",
       "onenote-lvn35b62shc": "2026-10-02T12:06:52.226Z",
       "onenote-p3nd7q6zyvl": "2026-10-02T12:06:52.226Z",
