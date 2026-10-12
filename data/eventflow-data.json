@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-12T18:14:09.595Z",
+  "updated_at": "2026-10-12T18:14:25.309Z",
   "data": {
     "events": [
       {
@@ -146,17 +146,17 @@
         "guests": 0,
         "budget": 0,
         "type": "Янсен",
-        "status": "PO",
+        "status": "Процессинг",
         "progress": 50,
         "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-09-29T18:00:00.000Z",
+        "updatedAt": "2026-10-12T18:14:10.808Z",
         "dateFrom": "2026-09-25",
         "dateTo": "2026-09-26",
         "sector": "Янсен",
         "company": "",
         "initiator": "",
         "participants": 0,
-        "stage": "PO",
+        "stage": "PROCESSING",
         "services": [
           {
             "id": "onenote-lvn35b62shc-service-1",
@@ -283,6 +283,13 @@
         ],
         "nextStep": "",
         "timeline": [
+          {
+            "id": "timeline-1791828850808-04cee71fbda668",
+            "eventId": "onenote-lvn35b62shc",
+            "text": "Стадия изменена: Процессинг",
+            "timestamp": "2026-10-12T18:14:10.808Z",
+            "source": "system"
+          },
           {
             "id": "onenote-lvn35b62shc-timeline-1",
             "eventId": "onenote-lvn35b62shc",
@@ -518,7 +525,7 @@
         "status": "PO",
         "progress": 33,
         "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-09-29T18:00:00.000Z",
+        "updatedAt": "2026-10-12T18:14:23.813Z",
         "dateFrom": "2026-10-14",
         "dateTo": "2026-10-14",
         "sector": "Янсен",
@@ -598,9 +605,7 @@
             "completedAt": null
           }
         ],
-        "workTourNumbers": [
-          "D7NBQTR35C3"
-        ],
+        "workTourNumbers": [],
         "waitingItems": [],
         "nextStep": "",
         "timeline": [
@@ -622,17 +627,17 @@
         "guests": 40,
         "budget": 0,
         "type": "Янсен",
-        "status": "PO",
+        "status": "Процессинг",
         "progress": 0,
         "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-09-29T18:00:00.000Z",
+        "updatedAt": "2026-10-12T18:14:15.075Z",
         "dateFrom": "2026-10-03",
         "dateTo": "2026-10-03",
         "sector": "Янсен",
         "company": "",
         "initiator": "Лысенко Ирина",
         "participants": 40,
-        "stage": "PO",
+        "stage": "PROCESSING",
         "services": [
           {
             "id": "onenote-z6nzvnqmcwc-service-1",
@@ -729,6 +734,13 @@
         "waitingItems": [],
         "nextStep": "",
         "timeline": [
+          {
+            "id": "timeline-1791828855075-f921e606f20428",
+            "eventId": "onenote-z6nzvnqmcwc",
+            "text": "Стадия изменена: Процессинг",
+            "timestamp": "2026-10-12T18:14:15.075Z",
+            "source": "system"
+          },
           {
             "id": "onenote-z6nzvnqmcwc-timeline-1",
             "eventId": "onenote-z6nzvnqmcwc",
@@ -2284,10 +2296,10 @@
   "record_versions": {
     "events": {
       "onenote-kurgan-2026-10-05": "2026-10-12T18:13:51.141Z",
-      "onenote-lvn35b62shc": "2026-10-02T12:06:52.226Z",
+      "onenote-lvn35b62shc": "2026-10-12T18:14:10.808Z",
       "onenote-p3nd7q6zyvl": "2026-10-12T18:14:06.924Z",
-      "onenote-d7nbqtr35c3": "2026-10-02T12:06:52.226Z",
-      "onenote-z6nzvnqmcwc": "2026-10-02T12:06:52.226Z",
+      "onenote-d7nbqtr35c3": "2026-10-12T18:14:23.813Z",
+      "onenote-z6nzvnqmcwc": "2026-10-12T18:14:15.075Z",
       "onenote-f5nyb9b9lxs": "2026-10-12T18:13:59.759Z",
       "onenote-xsnmq4w543n": "2026-10-02T12:06:52.226Z",
       "onenote-id-2643": "2026-10-02T12:06:52.226Z",
