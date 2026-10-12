@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-12T18:13:54.662Z",
+  "updated_at": "2026-10-12T18:14:09.595Z",
   "data": {
     "events": [
       {
@@ -301,17 +301,17 @@
         "guests": 40,
         "budget": 0,
         "type": "Янсен",
-        "status": "PO",
+        "status": "Процессинг",
         "progress": 69,
         "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-09-29T18:00:00.000Z",
+        "updatedAt": "2026-10-12T18:14:06.924Z",
         "dateFrom": "2026-09-19",
         "dateTo": "2026-09-19",
         "sector": "Янсен",
         "company": "Johnson & Johnson",
         "initiator": "Грибкова Анна",
         "participants": 40,
-        "stage": "PO",
+        "stage": "PROCESSING",
         "services": [
           {
             "id": "onenote-p3nd7q6zyvl-service-1",
@@ -490,6 +490,13 @@
         ],
         "nextStep": "PO",
         "timeline": [
+          {
+            "id": "timeline-1791828846924-75eb2f349ce628",
+            "eventId": "onenote-p3nd7q6zyvl",
+            "text": "Стадия изменена: Процессинг",
+            "timestamp": "2026-10-12T18:14:06.924Z",
+            "source": "system"
+          },
           {
             "id": "onenote-p3nd7q6zyvl-timeline-1",
             "eventId": "onenote-p3nd7q6zyvl",
@@ -740,17 +747,17 @@
         "guests": 60,
         "budget": 0,
         "type": "Янсен",
-        "status": "PO",
+        "status": "Процессинг",
         "progress": 33,
         "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-09-29T18:00:00.000Z",
+        "updatedAt": "2026-10-12T18:13:59.759Z",
         "dateFrom": "2026-09-15",
         "dateTo": "2026-09-18",
         "sector": "Янсен",
         "company": "Johnson & Johnson — Сотрудники",
         "initiator": "",
         "participants": 60,
-        "stage": "PO",
+        "stage": "PROCESSING",
         "services": [
           {
             "id": "onenote-f5nyb9b9lxs-service-1",
@@ -884,6 +891,13 @@
         "waitingItems": [],
         "nextStep": "",
         "timeline": [
+          {
+            "id": "timeline-1791828839758-6b2ce1d4222318",
+            "eventId": "onenote-f5nyb9b9lxs",
+            "text": "Стадия изменена: Процессинг",
+            "timestamp": "2026-10-12T18:13:59.758Z",
+            "source": "system"
+          },
           {
             "id": "onenote-f5nyb9b9lxs-timeline-1",
             "eventId": "onenote-f5nyb9b9lxs",
@@ -2271,10 +2285,10 @@
     "events": {
       "onenote-kurgan-2026-10-05": "2026-10-12T18:13:51.141Z",
       "onenote-lvn35b62shc": "2026-10-02T12:06:52.226Z",
-      "onenote-p3nd7q6zyvl": "2026-10-02T12:06:52.226Z",
+      "onenote-p3nd7q6zyvl": "2026-10-12T18:14:06.924Z",
       "onenote-d7nbqtr35c3": "2026-10-02T12:06:52.226Z",
       "onenote-z6nzvnqmcwc": "2026-10-02T12:06:52.226Z",
-      "onenote-f5nyb9b9lxs": "2026-10-02T12:06:52.226Z",
+      "onenote-f5nyb9b9lxs": "2026-10-12T18:13:59.759Z",
       "onenote-xsnmq4w543n": "2026-10-02T12:06:52.226Z",
       "onenote-id-2643": "2026-10-02T12:06:52.226Z",
       "onenote-archive-medtech-spb-10-11-june": "2026-10-02T12:06:52.226Z",
