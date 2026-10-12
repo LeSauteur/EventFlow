@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-12T18:11:44.920Z",
+  "updated_at": "2026-10-12T18:11:57.740Z",
   "data": {
     "events": [
       {
@@ -2400,6 +2400,66 @@
             "source": "system"
           }
         ]
+      },
+      {
+        "id": "event-1791828706087",
+        "title": "тестра",
+        "client": "",
+        "city": "попа",
+        "date": "5344-04-13",
+        "guests": 0,
+        "budget": 0,
+        "type": "Мероприятие",
+        "status": "В работе",
+        "progress": 0,
+        "createdAt": "2026-10-12T18:11:46.087Z",
+        "updatedAt": "2026-10-12T18:11:46.088Z",
+        "dateFrom": "5344-04-13",
+        "dateTo": "5344-04-13",
+        "sector": "",
+        "company": "",
+        "initiator": "",
+        "participants": 0,
+        "stage": "WORKING",
+        "services": [],
+        "commonChecklist": [
+          {
+            "id": "common-1791828706087-8a537e4f2ea69-0",
+            "title": "Смета предварительная направлена",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1791828706087-6cc7af107b5cc8-1",
+            "title": "PO получено",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1791828706087-d8cd78feeb362-2",
+            "title": "Смета в WORK",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1791828706087-e34922c8ec05-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          }
+        ],
+        "workTourNumbers": [],
+        "waitingItems": [],
+        "nextStep": "",
+        "timeline": [
+          {
+            "id": "timeline-1791828706088",
+            "eventId": "event-1791828706087",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-10-12T18:11:46.088Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -2420,6 +2480,14 @@
         "description": "тест2",
         "id": "activity-1790942891136-c07bc09d06d7b8",
         "timestamp": "2026-10-02T12:08:11.136Z"
+      },
+      {
+        "eventId": "event-1791828706087",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "тестра",
+        "id": "activity-1791828706088-84304eca27b5a8",
+        "timestamp": "2026-10-12T18:11:46.088Z"
       }
     ],
     "checklistItems": [],
@@ -2574,13 +2642,15 @@
       "onenote-hmn2t8fzl72": "2026-10-02T12:06:52.226Z",
       "onenote-jtnh3435nsh": "2026-10-02T12:06:52.226Z",
       "event-1790942862784": "2026-10-02T12:07:42.785Z",
-      "event-1790942891136": "2026-10-02T12:08:11.136Z"
+      "event-1790942891136": "2026-10-02T12:08:11.136Z",
+      "event-1791828706087": "2026-10-12T18:11:46.088Z"
     },
     "tasks": {},
     "risks": {},
     "activities": {
       "activity-1790942862785-17c9832f1b95b8": "2026-10-02T12:07:42.785Z",
-      "activity-1790942891136-c07bc09d06d7b8": "2026-10-02T12:08:11.136Z"
+      "activity-1790942891136-c07bc09d06d7b8": "2026-10-02T12:08:11.136Z",
+      "activity-1791828706088-84304eca27b5a8": "2026-10-12T18:11:46.088Z"
     },
     "checklistItems": {},
     "questions": {},
