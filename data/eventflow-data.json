@@ -1,164 +1,8 @@
 {
   "version": 1,
-  "updated_at": "2026-10-12T18:11:57.740Z",
+  "updated_at": "2026-10-12T18:13:10.100Z",
   "data": {
     "events": [
-      {
-        "id": "onenote-todo-2026-07-10",
-        "title": "удалить",
-        "client": "",
-        "city": "",
-        "date": "2026-07-10",
-        "guests": 0,
-        "budget": 0,
-        "type": "TO-DO",
-        "status": "В работе",
-        "progress": 25,
-        "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-10-12T18:11:23.937Z",
-        "dateFrom": "2026-07-10",
-        "dateTo": "2026-07-10",
-        "sector": "TO-DO",
-        "company": "",
-        "initiator": "",
-        "participants": 0,
-        "stage": "WORKING",
-        "services": [
-          {
-            "id": "onenote-todo-2026-07-10-service-1",
-            "eventId": "onenote-todo-2026-07-10",
-            "type": "custom",
-            "title": "1 сент_сотрудники",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [
-              {
-                "id": "onenote-todo-2026-07-10-service-1-1",
-                "title": "Кейтеринг выбор_меню",
-                "completed": false,
-                "completedAt": null
-              },
-              {
-                "id": "onenote-todo-2026-07-10-service-1-2",
-                "title": "Предв.смета",
-                "completed": true,
-                "completedAt": "2026-09-29T18:00:00.000Z"
-              }
-            ],
-            "notes": ""
-          },
-          {
-            "id": "onenote-todo-2026-07-10-service-2",
-            "eventId": "onenote-todo-2026-07-10",
-            "type": "custom",
-            "title": "13-17 сент Кенвью",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [
-              {
-                "id": "onenote-todo-2026-07-10-service-2-1",
-                "title": "Предложение",
-                "completed": true,
-                "completedAt": "2026-09-29T18:00:00.000Z"
-              }
-            ],
-            "notes": ""
-          },
-          {
-            "id": "onenote-todo-2026-07-10-service-3",
-            "eventId": "onenote-todo-2026-07-10",
-            "type": "custom",
-            "title": "3 окт Казань",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [
-              {
-                "id": "onenote-todo-2026-07-10-service-3-1",
-                "title": "Смета 1С",
-                "completed": false,
-                "completedAt": null
-              },
-              {
-                "id": "onenote-todo-2026-07-10-service-3-2",
-                "title": "Запросы поставщикам",
-                "completed": false,
-                "completedAt": null
-              }
-            ],
-            "notes": ""
-          },
-          {
-            "id": "onenote-todo-2026-07-10-service-4",
-            "eventId": "onenote-todo-2026-07-10",
-            "type": "custom",
-            "title": "13 авг Улан Удэ",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [
-              {
-                "id": "onenote-todo-2026-07-10-service-4-1",
-                "title": "Письмо",
-                "completed": false,
-                "completedAt": null
-              },
-              {
-                "id": "onenote-todo-2026-07-10-service-4-2",
-                "title": "Смета предв",
-                "completed": false,
-                "completedAt": null
-              }
-            ],
-            "notes": ""
-          },
-          {
-            "id": "onenote-todo-2026-07-10-service-5",
-            "eventId": "onenote-todo-2026-07-10",
-            "type": "custom",
-            "title": "12-13 авг",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [
-              {
-                "id": "onenote-todo-2026-07-10-service-5-1",
-                "title": "Меню",
-                "completed": false,
-                "completedAt": null
-              }
-            ],
-            "notes": ""
-          }
-        ],
-        "commonChecklist": [
-          {
-            "id": "common-1790942812316-54fadb26780fb-0",
-            "title": "Смета предварительная направлена",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942812316-d94f7a2cd00a48-1",
-            "title": "PO получено",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942812316-a080ca02fc24d-2",
-            "title": "Смета в WORK",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942812316-efc91ca830cee8-3",
-            "title": "Предварительный счёт",
-            "completed": false,
-            "completedAt": null
-          }
-        ],
-        "workTourNumbers": [],
-        "waitingItems": [],
-        "nextStep": "",
-        "timeline": []
-      },
       {
         "id": "onenote-kurgan-2026-10-05",
         "title": "05 окт Курган",
@@ -2280,216 +2124,11 @@
             "source": "user"
           }
         ]
-      },
-      {
-        "id": "event-1790942862784",
-        "title": "тест",
-        "client": "",
-        "city": "М",
-        "date": "2026-10-23",
-        "guests": 0,
-        "budget": 0,
-        "type": "Мероприятие",
-        "status": "В работе",
-        "progress": 0,
-        "createdAt": "2026-10-02T12:07:42.784Z",
-        "updatedAt": "2026-10-02T12:07:42.785Z",
-        "dateFrom": "2026-10-23",
-        "dateTo": "2026-10-23",
-        "sector": "",
-        "company": "",
-        "initiator": "",
-        "participants": 0,
-        "stage": "WORKING",
-        "services": [],
-        "commonChecklist": [
-          {
-            "id": "common-1790942862785-4dc69301d92df8-0",
-            "title": "Смета предварительная направлена",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942862785-b1962ffc62985-1",
-            "title": "PO получено",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942862785-e29b4b709b73f8-2",
-            "title": "Смета в WORK",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942862785-341606d2efbf88-3",
-            "title": "Предварительный счёт",
-            "completed": false,
-            "completedAt": null
-          }
-        ],
-        "workTourNumbers": [],
-        "waitingItems": [],
-        "nextStep": "",
-        "timeline": [
-          {
-            "id": "timeline-1790942862785",
-            "eventId": "event-1790942862784",
-            "text": "Создана рабочая страница мероприятия",
-            "timestamp": "2026-10-02T12:07:42.785Z",
-            "source": "system"
-          }
-        ]
-      },
-      {
-        "id": "event-1790942891136",
-        "title": "тест2",
-        "client": "",
-        "city": "нет",
-        "date": "2026-10-23",
-        "guests": 0,
-        "budget": 0,
-        "type": "Мероприятие",
-        "status": "В работе",
-        "progress": 0,
-        "createdAt": "2026-10-02T12:08:11.136Z",
-        "updatedAt": "2026-10-02T12:08:11.136Z",
-        "dateFrom": "2026-10-23",
-        "dateTo": "2026-10-23",
-        "sector": "",
-        "company": "",
-        "initiator": "",
-        "participants": 0,
-        "stage": "WORKING",
-        "services": [],
-        "commonChecklist": [
-          {
-            "id": "common-1790942891136-4a2bbd7d208f68-0",
-            "title": "Смета предварительная направлена",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942891136-5a73eb34af94-1",
-            "title": "PO получено",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942891136-4cb7cb70b07e08-2",
-            "title": "Смета в WORK",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1790942891136-35dc05b4f989c-3",
-            "title": "Предварительный счёт",
-            "completed": false,
-            "completedAt": null
-          }
-        ],
-        "workTourNumbers": [],
-        "waitingItems": [],
-        "nextStep": "",
-        "timeline": [
-          {
-            "id": "timeline-1790942891136",
-            "eventId": "event-1790942891136",
-            "text": "Создана рабочая страница мероприятия",
-            "timestamp": "2026-10-02T12:08:11.136Z",
-            "source": "system"
-          }
-        ]
-      },
-      {
-        "id": "event-1791828706087",
-        "title": "тестра",
-        "client": "",
-        "city": "попа",
-        "date": "5344-04-13",
-        "guests": 0,
-        "budget": 0,
-        "type": "Мероприятие",
-        "status": "В работе",
-        "progress": 0,
-        "createdAt": "2026-10-12T18:11:46.087Z",
-        "updatedAt": "2026-10-12T18:11:46.088Z",
-        "dateFrom": "5344-04-13",
-        "dateTo": "5344-04-13",
-        "sector": "",
-        "company": "",
-        "initiator": "",
-        "participants": 0,
-        "stage": "WORKING",
-        "services": [],
-        "commonChecklist": [
-          {
-            "id": "common-1791828706087-8a537e4f2ea69-0",
-            "title": "Смета предварительная направлена",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1791828706087-6cc7af107b5cc8-1",
-            "title": "PO получено",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1791828706087-d8cd78feeb362-2",
-            "title": "Смета в WORK",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "common-1791828706087-e34922c8ec05-3",
-            "title": "Предварительный счёт",
-            "completed": false,
-            "completedAt": null
-          }
-        ],
-        "workTourNumbers": [],
-        "waitingItems": [],
-        "nextStep": "",
-        "timeline": [
-          {
-            "id": "timeline-1791828706088",
-            "eventId": "event-1791828706087",
-            "text": "Создана рабочая страница мероприятия",
-            "timestamp": "2026-10-12T18:11:46.088Z",
-            "source": "system"
-          }
-        ]
       }
     ],
     "tasks": [],
     "risks": [],
-    "activities": [
-      {
-        "eventId": "event-1790942862784",
-        "type": "event",
-        "title": "Создано мероприятие",
-        "description": "тест",
-        "id": "activity-1790942862785-17c9832f1b95b8",
-        "timestamp": "2026-10-02T12:07:42.785Z"
-      },
-      {
-        "eventId": "event-1790942891136",
-        "type": "event",
-        "title": "Создано мероприятие",
-        "description": "тест2",
-        "id": "activity-1790942891136-c07bc09d06d7b8",
-        "timestamp": "2026-10-02T12:08:11.136Z"
-      },
-      {
-        "eventId": "event-1791828706087",
-        "type": "event",
-        "title": "Создано мероприятие",
-        "description": "тестра",
-        "id": "activity-1791828706088-84304eca27b5a8",
-        "timestamp": "2026-10-12T18:11:46.088Z"
-      }
-    ],
+    "activities": [],
     "checklistItems": [],
     "questions": [],
     "contractors": [],
@@ -2623,7 +2262,6 @@
   },
   "record_versions": {
     "events": {
-      "onenote-todo-2026-07-10": "2026-10-12T18:11:23.937Z",
       "onenote-kurgan-2026-10-05": "2026-10-02T12:06:52.226Z",
       "onenote-lvn35b62shc": "2026-10-02T12:06:52.226Z",
       "onenote-p3nd7q6zyvl": "2026-10-02T12:06:52.226Z",
@@ -2640,18 +2278,11 @@
       "onenote-ztn9c53z8sc-a": "2026-10-02T12:06:52.226Z",
       "onenote-ztn9c53z8sc-b": "2026-10-02T12:06:52.226Z",
       "onenote-hmn2t8fzl72": "2026-10-02T12:06:52.226Z",
-      "onenote-jtnh3435nsh": "2026-10-02T12:06:52.226Z",
-      "event-1790942862784": "2026-10-02T12:07:42.785Z",
-      "event-1790942891136": "2026-10-02T12:08:11.136Z",
-      "event-1791828706087": "2026-10-12T18:11:46.088Z"
+      "onenote-jtnh3435nsh": "2026-10-02T12:06:52.226Z"
     },
     "tasks": {},
     "risks": {},
-    "activities": {
-      "activity-1790942862785-17c9832f1b95b8": "2026-10-02T12:07:42.785Z",
-      "activity-1790942891136-c07bc09d06d7b8": "2026-10-02T12:08:11.136Z",
-      "activity-1791828706088-84304eca27b5a8": "2026-10-12T18:11:46.088Z"
-    },
+    "activities": {},
     "checklistItems": {},
     "questions": {},
     "contractors": {},
@@ -2694,6 +2325,22 @@
       {
         "id": "event-1790712563662",
         "deleted_at": "2026-09-29T20:22:35.440Z"
+      },
+      {
+        "id": "event-1791828706087",
+        "deleted_at": "2026-10-12T18:12:54.613Z"
+      },
+      {
+        "id": "event-1790942891136",
+        "deleted_at": "2026-10-12T18:12:59.696Z"
+      },
+      {
+        "id": "event-1790942862784",
+        "deleted_at": "2026-10-12T18:13:02.946Z"
+      },
+      {
+        "id": "onenote-todo-2026-07-10",
+        "deleted_at": "2026-10-12T18:13:07.880Z"
       }
     ],
     "tasks": [
@@ -2752,6 +2399,18 @@
       {
         "id": "activity-1790712563665-a397afaf985c38",
         "deleted_at": "2026-09-29T20:22:35.440Z"
+      },
+      {
+        "id": "activity-1791828706088-84304eca27b5a8",
+        "deleted_at": "2026-10-12T18:12:54.613Z"
+      },
+      {
+        "id": "activity-1790942891136-c07bc09d06d7b8",
+        "deleted_at": "2026-10-12T18:12:59.696Z"
+      },
+      {
+        "id": "activity-1790942862785-17c9832f1b95b8",
+        "deleted_at": "2026-10-12T18:13:02.946Z"
       }
     ],
     "checklistItems": [
