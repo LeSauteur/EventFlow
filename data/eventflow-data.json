@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-12T18:13:16.636Z",
+  "updated_at": "2026-10-12T18:13:54.662Z",
   "data": {
     "events": [
       {
@@ -12,17 +12,17 @@
         "guests": 1,
         "budget": 0,
         "type": "Медтех",
-        "status": "В работе",
+        "status": "Процессинг",
         "progress": 20,
         "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-09-29T18:00:00.000Z",
+        "updatedAt": "2026-10-12T18:13:51.141Z",
         "dateFrom": "2026-10-05",
         "dateTo": "2026-10-05",
         "sector": "Медтех",
         "company": "",
         "initiator": "Лапшина Анна",
         "participants": 1,
-        "stage": "WORKING",
+        "stage": "PROCESSING",
         "services": [
           {
             "id": "onenote-kurgan-2026-10-05-service-1",
@@ -121,6 +121,13 @@
         "waitingItems": [],
         "nextStep": "",
         "timeline": [
+          {
+            "id": "timeline-1791828831141-4451085e159838",
+            "eventId": "onenote-kurgan-2026-10-05",
+            "text": "Стадия изменена: Процессинг",
+            "timestamp": "2026-10-12T18:13:51.141Z",
+            "source": "system"
+          },
           {
             "id": "onenote-kurgan-2026-10-05-timeline-1",
             "eventId": "onenote-kurgan-2026-10-05",
@@ -2262,7 +2269,7 @@
   },
   "record_versions": {
     "events": {
-      "onenote-kurgan-2026-10-05": "2026-10-02T12:06:52.226Z",
+      "onenote-kurgan-2026-10-05": "2026-10-12T18:13:51.141Z",
       "onenote-lvn35b62shc": "2026-10-02T12:06:52.226Z",
       "onenote-p3nd7q6zyvl": "2026-10-02T12:06:52.226Z",
       "onenote-d7nbqtr35c3": "2026-10-02T12:06:52.226Z",
