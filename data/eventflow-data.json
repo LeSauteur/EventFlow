@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-12T18:14:25.309Z",
+  "updated_at": "2026-11-09T18:11:14.939Z",
   "data": {
     "events": [
       {
@@ -509,111 +509,6 @@
             "eventId": "onenote-p3nd7q6zyvl",
             "text": "Направлены на трансфер!",
             "timestamp": "2026-09-16T12:00:00.000Z",
-            "source": "user"
-          }
-        ]
-      },
-      {
-        "id": "onenote-d7nbqtr35c3",
-        "title": "14.10.26 D7NBQTR35C3 Москва логистика",
-        "client": "Johnson & Johnson",
-        "city": "Москва",
-        "date": "2026-10-14",
-        "guests": 4,
-        "budget": 0,
-        "type": "Янсен",
-        "status": "PO",
-        "progress": 33,
-        "createdAt": "2026-09-29T18:00:00.000Z",
-        "updatedAt": "2026-10-12T18:14:23.813Z",
-        "dateFrom": "2026-10-14",
-        "dateTo": "2026-10-14",
-        "sector": "Янсен",
-        "company": "Johnson & Johnson",
-        "initiator": "Овчарова Мария",
-        "participants": 4,
-        "stage": "PO",
-        "services": [
-          {
-            "id": "onenote-d7nbqtr35c3-service-1",
-            "eventId": "onenote-d7nbqtr35c3",
-            "type": "logistics",
-            "title": "Логистика",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [],
-            "notes": ""
-          },
-          {
-            "id": "onenote-d7nbqtr35c3-service-2",
-            "eventId": "onenote-d7nbqtr35c3",
-            "type": "accommodation",
-            "title": "Проживание Москва",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [],
-            "notes": ""
-          },
-          {
-            "id": "onenote-d7nbqtr35c3-service-3",
-            "eventId": "onenote-d7nbqtr35c3",
-            "type": "transfer",
-            "title": "Трансфер индивидуальный",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [],
-            "notes": ""
-          },
-          {
-            "id": "onenote-d7nbqtr35c3-service-4",
-            "eventId": "onenote-d7nbqtr35c3",
-            "type": "coordination",
-            "title": "Координатор на симпозиум",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [],
-            "notes": ""
-          },
-          {
-            "id": "onenote-d7nbqtr35c3-service-5",
-            "eventId": "onenote-d7nbqtr35c3",
-            "type": "direct",
-            "title": "Прямое взаимодействие ССЗ",
-            "providerName": "",
-            "providerContact": "",
-            "checklist": [],
-            "notes": ""
-          }
-        ],
-        "commonChecklist": [
-          {
-            "id": "onenote-d7nbqtr35c3-common-1",
-            "title": "PO",
-            "completed": false,
-            "completedAt": null
-          },
-          {
-            "id": "onenote-d7nbqtr35c3-common-2",
-            "title": "Смета предварительная",
-            "completed": true,
-            "completedAt": "2026-09-29T18:00:00.000Z"
-          },
-          {
-            "id": "onenote-d7nbqtr35c3-common-3",
-            "title": "1С WORK Смета",
-            "completed": false,
-            "completedAt": null
-          }
-        ],
-        "workTourNumbers": [],
-        "waitingItems": [],
-        "nextStep": "",
-        "timeline": [
-          {
-            "id": "onenote-d7nbqtr35c3-timeline-1",
-            "eventId": "onenote-d7nbqtr35c3",
-            "text": "Отправила смету — проживание и сопровождение",
-            "timestamp": "2026-07-07T12:00:00.000Z",
             "source": "user"
           }
         ]
@@ -2298,7 +2193,6 @@
       "onenote-kurgan-2026-10-05": "2026-10-12T18:13:51.141Z",
       "onenote-lvn35b62shc": "2026-10-12T18:14:10.808Z",
       "onenote-p3nd7q6zyvl": "2026-10-12T18:14:06.924Z",
-      "onenote-d7nbqtr35c3": "2026-10-12T18:14:23.813Z",
       "onenote-z6nzvnqmcwc": "2026-10-12T18:14:15.075Z",
       "onenote-f5nyb9b9lxs": "2026-10-12T18:13:59.759Z",
       "onenote-xsnmq4w543n": "2026-10-02T12:06:52.226Z",
@@ -2374,6 +2268,10 @@
       {
         "id": "onenote-todo-2026-07-10",
         "deleted_at": "2026-10-12T18:13:07.880Z"
+      },
+      {
+        "id": "onenote-d7nbqtr35c3",
+        "deleted_at": "2026-11-09T18:11:03.311Z"
       }
     ],
     "tasks": [
