@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-13T05:18:39.884Z",
+  "updated_at": "2026-11-13T05:18:55.426Z",
   "data": {
     "events": [
       {
@@ -2065,7 +2065,7 @@
         "status": "В работе",
         "progress": 0,
         "createdAt": "2026-11-13T05:18:36.578Z",
-        "updatedAt": "2026-11-13T05:18:36.579Z",
+        "updatedAt": "2026-11-13T05:18:43.202Z",
         "dateFrom": "2026-12-11",
         "dateTo": "2026-12-11",
         "sector": "",
@@ -2184,8 +2184,8 @@
           {
             "id": "common-1794547116578-f41b0b33db509-0",
             "title": "Смета предварительная направлена",
-            "completed": false,
-            "completedAt": null
+            "completed": true,
+            "completedAt": "2026-11-13T05:18:43.201Z"
           },
           {
             "id": "common-1794547116578-b0480f041a62d-1",
@@ -2196,8 +2196,8 @@
           {
             "id": "common-1794547116578-83eb4970a4cba8-2",
             "title": "Смета в WORK",
-            "completed": false,
-            "completedAt": null
+            "completed": true,
+            "completedAt": "2026-11-13T05:18:41.793Z"
           },
           {
             "id": "common-1794547116578-2a519135174f5-3",
@@ -2210,6 +2210,20 @@
         "waitingItems": [],
         "nextStep": "",
         "timeline": [
+          {
+            "id": "timeline-1794547123201-3266f7b413eb1",
+            "eventId": "event-1794547116578",
+            "text": "Смета предварительная направлена: готово",
+            "timestamp": "2026-11-13T05:18:43.201Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1794547121793-6dda42d9f4d15",
+            "eventId": "event-1794547116578",
+            "text": "Смета в WORK: готово",
+            "timestamp": "2026-11-13T05:18:41.793Z",
+            "source": "system"
+          },
           {
             "id": "timeline-1794547116578",
             "eventId": "event-1794547116578",
@@ -2381,7 +2395,7 @@
       "onenote-ztn9c53z8sc-b": "2026-10-02T12:06:52.226Z",
       "onenote-hmn2t8fzl72": "2026-10-02T12:06:52.226Z",
       "onenote-jtnh3435nsh": "2026-10-02T12:06:52.226Z",
-      "event-1794547116578": "2026-11-13T05:18:36.579Z"
+      "event-1794547116578": "2026-11-13T05:18:43.202Z"
     },
     "tasks": {},
     "risks": {},
