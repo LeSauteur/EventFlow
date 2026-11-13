@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-09T18:11:14.939Z",
+  "updated_at": "2026-11-13T05:18:39.884Z",
   "data": {
     "events": [
       {
@@ -2052,11 +2052,186 @@
             "source": "user"
           }
         ]
+      },
+      {
+        "id": "event-1794547116578",
+        "title": "Сотрудники_Медтех_Москва",
+        "client": "",
+        "city": "Москва",
+        "date": "2026-12-11",
+        "guests": 29,
+        "budget": 0,
+        "type": "Мероприятие",
+        "status": "В работе",
+        "progress": 0,
+        "createdAt": "2026-11-13T05:18:36.578Z",
+        "updatedAt": "2026-11-13T05:18:36.579Z",
+        "dateFrom": "2026-12-11",
+        "dateTo": "2026-12-11",
+        "sector": "",
+        "company": "",
+        "initiator": "Бочкова Мария",
+        "participants": 29,
+        "stage": "WORKING",
+        "services": [
+          {
+            "id": "service-1794547116578-c4bd56bc1197e",
+            "eventId": "event-1794547116578",
+            "type": "event",
+            "title": "Мероприятие",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-event-1794547116578-652b009981901-0",
+                "title": "Программа согласована",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-event-1794547116578-b4e971a6f7d1d-1",
+                "title": "Подтверждение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-event-1794547116578-c3acece7dce8-2",
+                "title": "Документы готовы",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          },
+          {
+            "id": "service-1794547116578-10043ffe7ea4b8",
+            "eventId": "event-1794547116578",
+            "type": "venue",
+            "title": "Конференц-зал / площадка",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-venue-1794547116578-630c99d2952998-0",
+                "title": "Запрос направлен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-venue-1794547116578-86959988e60b9-1",
+                "title": "Предложение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-venue-1794547116578-80048ea8f71168-2",
+                "title": "Подтверждение",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-venue-1794547116578-a38df6abc25b88-3",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          },
+          {
+            "id": "service-1794547116578-4d593dac20f02",
+            "eventId": "event-1794547116578",
+            "type": "catering",
+            "title": "Кейтеринг / питание",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-catering-1794547116578-9c7b47e11fdc8-0",
+                "title": "Запрос направлен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-catering-1794547116578-2a1f26b5f213f-1",
+                "title": "Меню получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-catering-1794547116578-5a6790967569d-2",
+                "title": "Меню направлено на согласование",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-catering-1794547116578-6856866fe48ad8-3",
+                "title": "Меню согласовано",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-catering-1794547116578-18d6b60b53329-4",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          }
+        ],
+        "commonChecklist": [
+          {
+            "id": "common-1794547116578-f41b0b33db509-0",
+            "title": "Смета предварительная направлена",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1794547116578-b0480f041a62d-1",
+            "title": "PO получено",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1794547116578-83eb4970a4cba8-2",
+            "title": "Смета в WORK",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1794547116578-2a519135174f5-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          }
+        ],
+        "workTourNumbers": [],
+        "waitingItems": [],
+        "nextStep": "",
+        "timeline": [
+          {
+            "id": "timeline-1794547116578",
+            "eventId": "event-1794547116578",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-13T05:18:36.578Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
     "risks": [],
-    "activities": [],
+    "activities": [
+      {
+        "eventId": "event-1794547116578",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "Сотрудники_Медтех_Москва",
+        "id": "activity-1794547116579-15ad5ab5dde638",
+        "timestamp": "2026-11-13T05:18:36.579Z"
+      }
+    ],
     "checklistItems": [],
     "questions": [],
     "contractors": [],
@@ -2205,11 +2380,14 @@
       "onenote-ztn9c53z8sc-a": "2026-10-02T12:06:52.226Z",
       "onenote-ztn9c53z8sc-b": "2026-10-02T12:06:52.226Z",
       "onenote-hmn2t8fzl72": "2026-10-02T12:06:52.226Z",
-      "onenote-jtnh3435nsh": "2026-10-02T12:06:52.226Z"
+      "onenote-jtnh3435nsh": "2026-10-02T12:06:52.226Z",
+      "event-1794547116578": "2026-11-13T05:18:36.579Z"
     },
     "tasks": {},
     "risks": {},
-    "activities": {},
+    "activities": {
+      "activity-1794547116579-15ad5ab5dde638": "2026-11-13T05:18:36.579Z"
+    },
     "checklistItems": {},
     "questions": {},
     "contractors": {},
