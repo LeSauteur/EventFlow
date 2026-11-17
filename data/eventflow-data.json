@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-17T11:16:24.522Z",
+  "updated_at": "2026-11-17T12:51:17.102Z",
   "data": {
     "events": [
       {
@@ -3458,7 +3458,7 @@
         "status": "В работе",
         "progress": 0,
         "createdAt": "2026-11-17T10:08:18.923Z",
-        "updatedAt": "2026-11-17T11:15:36.714Z",
+        "updatedAt": "2026-11-17T11:16:37.932Z",
         "dateFrom": "2026-11-27",
         "dateTo": "2026-11-27",
         "sector": "Янсен",
@@ -3585,8 +3585,8 @@
               {
                 "id": "service-rail-1794910098923-da4e29066273-4",
                 "title": "Билеты отправлены",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-17T11:16:37.932Z"
               }
             ]
           }
@@ -4039,6 +4039,138 @@
             "source": "system"
           }
         ]
+      },
+      {
+        "id": "event-1794919578755",
+        "title": "26 ноя Москва KFNXCZGML7C",
+        "client": "",
+        "city": "Москва",
+        "date": "2026-11-26",
+        "guests": 23,
+        "budget": 0,
+        "type": "Медтех",
+        "status": "В работе",
+        "progress": 0,
+        "createdAt": "2026-11-17T12:46:18.755Z",
+        "updatedAt": "2026-11-17T12:51:14.480Z",
+        "dateFrom": "2026-11-26",
+        "dateTo": "2026-11-26",
+        "sector": "Медтех",
+        "company": "",
+        "initiator": "Лапшина Анна",
+        "participants": 23,
+        "stage": "WORKING",
+        "services": [
+          {
+            "id": "service-1794919578755-bf12af2949d078",
+            "eventId": "event-1794919578755",
+            "type": "catering",
+            "title": "Кейтеринг / питание",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-catering-1794919578755-a339cee32e351-0",
+                "title": "Запрос направлен",
+                "completed": true,
+                "completedAt": "2026-11-17T12:51:13.190Z"
+              },
+              {
+                "id": "service-catering-1794919578755-cc559fafc92428-1",
+                "title": "Меню получено",
+                "completed": true,
+                "completedAt": "2026-11-17T12:51:13.769Z"
+              },
+              {
+                "id": "service-catering-1794919578755-3d782ae837eb3-2",
+                "title": "Меню направлено на согласование",
+                "completed": true,
+                "completedAt": "2026-11-17T12:51:14.480Z"
+              },
+              {
+                "id": "service-catering-1794919578755-329fcd78e614-3",
+                "title": "Меню согласовано",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-catering-1794919578755-467f061d4f487-4",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          }
+        ],
+        "commonChecklist": [
+          {
+            "id": "common-1794919578755-c5a0a153b6d52-0",
+            "title": "Смета предварительная направлена",
+            "completed": true,
+            "completedAt": "2026-11-17T12:46:25.358Z"
+          },
+          {
+            "id": "common-1794919578755-af913c036d409-1",
+            "title": "PO получено",
+            "completed": true,
+            "completedAt": "2026-11-17T12:51:09.360Z"
+          },
+          {
+            "id": "common-1794919578755-05e89e08101118-2",
+            "title": "Смета в WORK",
+            "completed": true,
+            "completedAt": "2026-11-17T12:51:10.191Z"
+          },
+          {
+            "id": "common-1794919578755-aa600f480d31-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          }
+        ],
+        "workTourNumbers": [
+          "RUS261126181"
+        ],
+        "waitingItems": [],
+        "nextStep": "",
+        "timeline": [
+          {
+            "id": "timeline-1794919870191-25ab0387ca6408",
+            "eventId": "event-1794919578755",
+            "text": "Смета в WORK: готово",
+            "timestamp": "2026-11-17T12:51:10.191Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1794919869360-5bea9ad6c08b38",
+            "eventId": "event-1794919578755",
+            "text": "PO получено: готово",
+            "timestamp": "2026-11-17T12:51:09.360Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1794919866901-2a32d1881c31e8",
+            "eventId": "event-1794919578755",
+            "text": "Добавлен номер тура RUS261126181",
+            "timestamp": "2026-11-17T12:51:06.901Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1794919585358-3d67f17962ec68",
+            "eventId": "event-1794919578755",
+            "text": "Смета предварительная направлена: готово",
+            "timestamp": "2026-11-17T12:46:25.358Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1794919578755",
+            "eventId": "event-1794919578755",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-17T12:46:18.755Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -4115,6 +4247,14 @@
         "description": "21 ноя Красноярск VVNZJBY26YZ",
         "id": "activity-1794911675874-ade07af5525f3",
         "timestamp": "2026-11-17T10:34:35.874Z"
+      },
+      {
+        "eventId": "event-1794919578755",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "26 ноя Москва KFNXCZGML7C",
+        "id": "activity-1794919578755-c7372d61500be",
+        "timestamp": "2026-11-17T12:46:18.755Z"
       }
     ],
     "checklistItems": [],
@@ -4273,8 +4413,9 @@
       "event-1794907902544": "2026-11-17T09:32:18.589Z",
       "event-1794907587508": "2026-11-17T09:29:45.810Z",
       "event-1794906841774": "2026-11-17T09:15:19.088Z",
-      "event-1794910098923": "2026-11-17T11:15:36.714Z",
-      "event-1794911675874": "2026-11-17T10:36:01.561Z"
+      "event-1794910098923": "2026-11-17T11:16:37.932Z",
+      "event-1794911675874": "2026-11-17T10:36:01.561Z",
+      "event-1794919578755": "2026-11-17T12:51:14.480Z"
     },
     "tasks": {},
     "risks": {},
@@ -4287,7 +4428,8 @@
       "activity-1794907587509-01eea5dac3e378": "2026-11-17T09:26:27.509Z",
       "activity-1794906841775-33478359e9af28": "2026-11-17T09:14:01.775Z",
       "activity-1794910098923-acd3475baa6698": "2026-11-17T10:08:18.923Z",
-      "activity-1794911675874-ade07af5525f3": "2026-11-17T10:34:35.874Z"
+      "activity-1794911675874-ade07af5525f3": "2026-11-17T10:34:35.874Z",
+      "activity-1794919578755-c7372d61500be": "2026-11-17T12:46:18.755Z"
     },
     "checklistItems": {},
     "questions": {},
