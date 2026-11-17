@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-17T10:06:23.709Z",
+  "updated_at": "2026-11-17T10:08:22.813Z",
   "data": {
     "events": [
       {
@@ -3466,6 +3466,184 @@
             "source": "system"
           }
         ]
+      },
+      {
+        "id": "event-1794910098923",
+        "title": "27 ноя Ярославль L7NV3G4QWDX",
+        "client": "",
+        "city": "Ярославль",
+        "date": "2026-11-27",
+        "guests": 20,
+        "budget": 0,
+        "type": "Янсен",
+        "status": "В работе",
+        "progress": 0,
+        "createdAt": "2026-11-17T10:08:18.923Z",
+        "updatedAt": "2026-11-17T10:08:18.923Z",
+        "dateFrom": "2026-11-27",
+        "dateTo": "2026-11-27",
+        "sector": "Янсен",
+        "company": "",
+        "initiator": "Мещерякова Элеонора",
+        "participants": 20,
+        "stage": "WORKING",
+        "services": [
+          {
+            "id": "service-1794910098923-566e9c0308c3f8",
+            "eventId": "event-1794910098923",
+            "type": "accommodation",
+            "title": "Проживание",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-accommodation-1794910098923-a0a66a9a54594-0",
+                "title": "Запрос направлен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1794910098923-0299c490bc35e8-1",
+                "title": "Предложение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1794910098923-de687308edec-2",
+                "title": "Подтверждение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1794910098923-6b631762b4cc6-3",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1794910098923-4b3db0738e835-4",
+                "title": "Ваучер получен / отправлен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          },
+          {
+            "id": "service-1794910098923-032e782458a15",
+            "eventId": "event-1794910098923",
+            "type": "venue",
+            "title": "Конференц-зал / площадка",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-venue-1794910098923-fbd14747f0d6b-0",
+                "title": "Запрос направлен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-venue-1794910098923-c0a96270090fc-1",
+                "title": "Предложение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-venue-1794910098923-b16f3e26ceff2-2",
+                "title": "Подтверждение",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-venue-1794910098923-eac7b40bbb42f-3",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          },
+          {
+            "id": "service-1794910098923-a907a0df619cd",
+            "eventId": "event-1794910098923",
+            "type": "rail",
+            "title": "ЖД билеты",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-rail-1794910098923-7cc8638b114c1-0",
+                "title": "Данные пассажиров получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1794910098923-56d71f0632fc48-1",
+                "title": "Варианты получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1794910098923-246844a6b033f-2",
+                "title": "Согласовано",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1794910098923-7b4984ab6f8ce-3",
+                "title": "Билеты оформлены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1794910098923-da4e29066273-4",
+                "title": "Билеты отправлены",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          }
+        ],
+        "commonChecklist": [
+          {
+            "id": "common-1794910098923-3d520a72f8bb28-0",
+            "title": "Смета предварительная направлена",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1794910098923-b67a9c4794d63-1",
+            "title": "PO получено",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1794910098923-946b7edb618cd8-2",
+            "title": "Смета в WORK",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1794910098923-e95dc63b5a5b9-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          }
+        ],
+        "workTourNumbers": [],
+        "waitingItems": [],
+        "nextStep": "",
+        "timeline": [
+          {
+            "id": "timeline-1794910098923",
+            "eventId": "event-1794910098923",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-17T10:08:18.923Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -3526,6 +3704,14 @@
         "description": "24-25 ноя Ульяновск  DGN4VF3V8MP",
         "id": "activity-1794906841775-33478359e9af28",
         "timestamp": "2026-11-17T09:14:01.775Z"
+      },
+      {
+        "eventId": "event-1794910098923",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "27 ноя Ярославль L7NV3G4QWDX",
+        "id": "activity-1794910098923-acd3475baa6698",
+        "timestamp": "2026-11-17T10:08:18.923Z"
       }
     ],
     "checklistItems": [],
@@ -3683,7 +3869,8 @@
       "event-1794904828746": "2026-11-17T08:41:05.383Z",
       "event-1794907902544": "2026-11-17T09:32:18.589Z",
       "event-1794907587508": "2026-11-17T09:29:45.810Z",
-      "event-1794906841774": "2026-11-17T09:15:19.088Z"
+      "event-1794906841774": "2026-11-17T09:15:19.088Z",
+      "event-1794910098923": "2026-11-17T10:08:18.923Z"
     },
     "tasks": {},
     "risks": {},
@@ -3694,7 +3881,8 @@
       "activity-1794904828747-9219598606c22": "2026-11-17T08:40:28.747Z",
       "activity-1794907902544-1b29a87f39667": "2026-11-17T09:31:42.544Z",
       "activity-1794907587509-01eea5dac3e378": "2026-11-17T09:26:27.509Z",
-      "activity-1794906841775-33478359e9af28": "2026-11-17T09:14:01.775Z"
+      "activity-1794906841775-33478359e9af28": "2026-11-17T09:14:01.775Z",
+      "activity-1794910098923-acd3475baa6698": "2026-11-17T10:08:18.923Z"
     },
     "checklistItems": {},
     "questions": {},
