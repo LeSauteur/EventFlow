@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-18T06:57:15.295Z",
+  "updated_at": "2026-11-18T17:08:07.123Z",
   "data": {
     "events": [
       {
@@ -3492,7 +3492,7 @@
         "status": "В работе",
         "progress": 0,
         "createdAt": "2026-11-17T10:08:18.923Z",
-        "updatedAt": "2026-11-17T11:16:37.932Z",
+        "updatedAt": "2026-11-18T08:28:42.787Z",
         "dateFrom": "2026-11-27",
         "dateTo": "2026-11-27",
         "sector": "Янсен",
@@ -3623,6 +3623,53 @@
                 "completedAt": "2026-11-17T11:16:37.932Z"
               }
             ]
+          },
+          {
+            "id": "service-1794990516745-bbe3052aaef138",
+            "eventId": "event-1794910098923",
+            "type": "transfer",
+            "title": "Трансфер",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-transfer-1794990516745-c9534b785f73e-0",
+                "title": "Данные пассажиров получены",
+                "completed": true,
+                "completedAt": "2026-11-18T08:28:42.096Z"
+              },
+              {
+                "id": "service-transfer-1794990516745-faa1b9de632bc8-1",
+                "title": "Запрос направлен",
+                "completed": true,
+                "completedAt": "2026-11-18T08:28:42.787Z"
+              },
+              {
+                "id": "service-transfer-1794990516745-c844d2d59548a-2",
+                "title": "Предложение / подтверждение",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1794990516745-3f8eb0fc0ae588-3",
+                "title": "ССЗ получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1794990516745-e317a12816dcf8-4",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1794990516745-4200293aad857-5",
+                "title": "Ваучер получен / отправлен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
           }
         ],
         "commonChecklist": [
@@ -3678,6 +3725,13 @@
         "nextStep": "Согласовать меню в отеле\nОбед для ССЗ",
         "timeline": [
           {
+            "id": "timeline-1794990516745-f0ae1fdc74f598",
+            "eventId": "event-1794910098923",
+            "text": "Добавлена услуга «Трансфер»",
+            "timestamp": "2026-11-18T08:28:36.745Z",
+            "source": "system"
+          },
+          {
             "id": "timeline-1794910119299-2cde84f3a62838",
             "eventId": "event-1794910098923",
             "text": "Добавлен номер тура RUS261127128",
@@ -3719,7 +3773,7 @@
         "status": "В работе",
         "progress": 0,
         "createdAt": "2026-11-17T10:34:35.874Z",
-        "updatedAt": "2026-11-18T06:57:13.042Z",
+        "updatedAt": "2026-11-18T08:00:57.405Z",
         "dateFrom": "2026-11-21",
         "dateTo": "2026-11-21",
         "sector": "Янсен",
@@ -3793,14 +3847,14 @@
               {
                 "id": "service-accommodation-1794911675874-60c6b7696a9eb8-2",
                 "title": "Подтверждение получено",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-18T06:58:20.643Z"
               },
               {
                 "id": "service-accommodation-1794911675874-9330313feeec48-3",
                 "title": "Счёт получен",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-18T06:58:21.822Z"
               },
               {
                 "id": "service-accommodation-1794911675874-212161e2d025d-4",
@@ -3817,7 +3871,7 @@
             "title": "Авиабилеты",
             "providerName": "",
             "providerContact": "",
-            "notes": "Родионов ожидаю билета Томск-Красноярск.",
+            "notes": "",
             "checklist": [
               {
                 "id": "service-flights-1794911675874-aa815510f865a-0",
@@ -3883,6 +3937,12 @@
                 "title": "Счёт получен",
                 "completed": true,
                 "completedAt": "2026-11-18T06:57:13.041Z"
+              },
+              {
+                "id": "service-task-1794985056545-61f650856cae38",
+                "title": "Счет передан в оплату",
+                "completed": true,
+                "completedAt": "2026-11-18T06:57:41.872Z"
               }
             ]
           },
@@ -3893,7 +3953,7 @@
             "title": "ССЗ / прямое взаимодействие",
             "providerName": "",
             "providerContact": "",
-            "notes": "",
+            "notes": "НДС 0%. \nУжин лимит - 3200 руб",
             "checklist": [
               {
                 "id": "service-direct-1794911675874-d1cd03b033ca6-0",
@@ -3910,6 +3970,30 @@
               {
                 "id": "service-direct-1794911675874-c4768b5d720b4-2",
                 "title": "Подтверждение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-task-1794985649838-2e4fff7bf9e69",
+                "title": "Питание Родионов 20,21.11",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-task-1794985658102-1d73a975b6e668",
+                "title": "Питание Бредер 20.11",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-task-1794985668617-f65ad9ed4e70c",
+                "title": "Питание Козлов 20.11",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-task-1794985678726-78b3f4bf96a0f8",
+                "title": "Счет за питание",
                 "completed": false,
                 "completedAt": null
               }
@@ -3947,6 +4031,12 @@
                 "title": "Счёт получен",
                 "completed": false,
                 "completedAt": null
+              },
+              {
+                "id": "service-task-1794985085343-ba4119050fa148",
+                "title": "Счет передан в оплату",
+                "completed": false,
+                "completedAt": null
               }
             ]
           },
@@ -3968,30 +4058,30 @@
               {
                 "id": "service-transfer-1794911675874-91e0f0a78b742-1",
                 "title": "Запрос направлен",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-18T07:56:32.872Z"
               },
               {
                 "id": "service-transfer-1794911675874-c4f376b658cd6-2",
-                "title": "Предложение / подтверждение",
+                "title": "Ваучеры получены",
                 "completed": false,
                 "completedAt": null
               },
               {
                 "id": "service-transfer-1794911675874-1394d6410d6b28-3",
-                "title": "ССЗ получено",
+                "title": "ССЗ направлены",
                 "completed": false,
                 "completedAt": null
               },
               {
-                "id": "service-transfer-1794911675874-86d2098feac5-4",
-                "title": "Счёт получен",
+                "id": "service-task-1794988607107-6a73760f9b32",
+                "title": "Трансфер Зуков",
                 "completed": false,
                 "completedAt": null
               },
               {
-                "id": "service-transfer-1794911675874-afec49eab9499-5",
-                "title": "Ваучер получен / отправлен",
+                "id": "service-task-1794988619091-7864ed0cb3122",
+                "title": "Трансфер Образ",
                 "completed": false,
                 "completedAt": null
               }
@@ -4027,7 +4117,14 @@
         "workTourNumbers": [
           "RUS261121062"
         ],
-        "waitingItems": [],
+        "waitingItems": [
+          {
+            "id": "waiting-1794988857405-addfe6c00b0e38",
+            "text": "Счет за проживание",
+            "completed": false,
+            "createdAt": "2026-11-18T08:00:57.405Z"
+          }
+        ],
         "nextStep": "",
         "timeline": [
           {
@@ -4447,8 +4544,8 @@
       "event-1794907902544": "2026-11-17T09:32:18.589Z",
       "event-1794907587508": "2026-11-17T09:29:45.810Z",
       "event-1794906841774": "2026-11-17T09:15:19.088Z",
-      "event-1794910098923": "2026-11-17T11:16:37.932Z",
-      "event-1794911675874": "2026-11-18T06:57:13.042Z",
+      "event-1794910098923": "2026-11-18T08:28:42.787Z",
+      "event-1794911675874": "2026-11-18T08:00:57.405Z",
       "event-1794919578755": "2026-11-17T12:51:14.480Z"
     },
     "tasks": {},
