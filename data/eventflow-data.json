@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-17T13:11:38.157Z",
+  "updated_at": "2026-11-18T06:39:36.683Z",
   "data": {
     "events": [
       {
@@ -2655,7 +2655,7 @@
         "status": "В работе",
         "progress": 0,
         "createdAt": "2026-11-17T08:40:28.746Z",
-        "updatedAt": "2026-11-17T13:11:37.273Z",
+        "updatedAt": "2026-11-17T13:21:58.942Z",
         "dateFrom": "2026-12-09",
         "dateTo": "2026-12-09",
         "sector": "Вистакон",
@@ -2671,7 +2671,7 @@
             "title": "Конференц-зал / площадка",
             "providerName": "Рэдиссон Пермь",
             "providerContact": "",
-            "notes": "",
+            "notes": "Зал Парма НДС 22%",
             "checklist": [
               {
                 "id": "service-venue-1794904828747-b6a5b879fc13e-0",
@@ -2716,8 +2716,8 @@
           {
             "id": "common-1794904828746-606d62ad9833e8-0",
             "title": "Смета предварительная направлена",
-            "completed": false,
-            "completedAt": null
+            "completed": true,
+            "completedAt": "2026-11-17T13:11:56.792Z"
           },
           {
             "id": "common-1794904828746-3920b7fec2d61-1",
@@ -2728,8 +2728,8 @@
           {
             "id": "common-1794904828746-3f8e9f4eb5b9-2",
             "title": "Смета в WORK",
-            "completed": false,
-            "completedAt": null
+            "completed": true,
+            "completedAt": "2026-11-17T13:11:58.696Z"
           },
           {
             "id": "common-1794904828746-7a2b611a7af128-3",
@@ -2739,9 +2739,43 @@
           }
         ],
         "workTourNumbers": [],
-        "waitingItems": [],
-        "nextStep": "",
+        "waitingItems": [
+          {
+            "id": "waiting-1794921139529-772ca0408e3738",
+            "text": "Подтверждение предв.сметы",
+            "completed": true,
+            "createdAt": "2026-11-17T13:12:19.529Z",
+            "completedAt": "2026-11-17T13:21:46.195Z"
+          },
+          {
+            "id": "waiting-1794921715276-09adf414e2bad8",
+            "text": "Меню выбранное",
+            "completed": false,
+            "createdAt": "2026-11-17T13:21:55.276Z"
+          },
+          {
+            "id": "waiting-1794921718942-0a7af4efd3e76",
+            "text": "PO",
+            "completed": false,
+            "createdAt": "2026-11-17T13:21:58.942Z"
+          }
+        ],
+        "nextStep": "Подтвердить отелю бронь",
         "timeline": [
+          {
+            "id": "timeline-1794921118696-390d35b55ecad",
+            "eventId": "event-1794904828746",
+            "text": "Смета в WORK: готово",
+            "timestamp": "2026-11-17T13:11:58.696Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1794921116792-a3a7e5bb354288",
+            "eventId": "event-1794904828746",
+            "text": "Смета предварительная направлена: готово",
+            "timestamp": "2026-11-17T13:11:56.792Z",
+            "source": "system"
+          },
           {
             "id": "timeline-1794904828747",
             "eventId": "event-1794904828746",
@@ -4409,7 +4443,7 @@
       "event-1794547116578": "2026-11-17T11:14:57.431Z",
       "event-1794812526742": "2026-11-16T07:27:21.481Z",
       "event-1794812186070": "2026-11-16T06:57:12.606Z",
-      "event-1794904828746": "2026-11-17T13:11:37.273Z",
+      "event-1794904828746": "2026-11-17T13:21:58.942Z",
       "event-1794907902544": "2026-11-17T09:32:18.589Z",
       "event-1794907587508": "2026-11-17T09:29:45.810Z",
       "event-1794906841774": "2026-11-17T09:15:19.088Z",
