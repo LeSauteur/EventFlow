@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-19T07:44:16.483Z",
+  "updated_at": "2026-11-19T07:44:32.323Z",
   "data": {
     "events": [
       {
@@ -3837,7 +3837,7 @@
         "status": "PO",
         "progress": 0,
         "createdAt": "2026-11-17T10:34:35.874Z",
-        "updatedAt": "2026-11-19T07:44:13.776Z",
+        "updatedAt": "2026-11-19T07:44:31.768Z",
         "dateFrom": "2026-11-21",
         "dateTo": "2026-11-21",
         "sector": "Янсен",
@@ -4040,26 +4040,26 @@
               {
                 "id": "service-direct-1794911675874-c4768b5d720b4-2",
                 "title": "Подтверждение получено",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T07:44:21.639Z"
               },
               {
                 "id": "service-task-1794985649838-2e4fff7bf9e69",
                 "title": "Питание Родионов 20,21.11",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T07:44:18.568Z"
               },
               {
                 "id": "service-task-1794985658102-1d73a975b6e668",
                 "title": "Питание Бредер 20.11",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T07:44:19.302Z"
               },
               {
                 "id": "service-task-1794985668617-f65ad9ed4e70c",
                 "title": "Питание Козлов 20.11",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T07:44:20.085Z"
               },
               {
                 "id": "service-task-1794985678726-78b3f4bf96a0f8",
@@ -4134,20 +4134,20 @@
               {
                 "id": "service-transfer-1794911675874-c4f376b658cd6-2",
                 "title": "Ваучеры получены",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T07:44:29.920Z"
               },
               {
                 "id": "service-transfer-1794911675874-1394d6410d6b28-3",
                 "title": "ССЗ направлены",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T07:44:30.885Z"
               },
               {
                 "id": "service-task-1794988607107-6a73760f9b32",
                 "title": "Трансфер Зуков",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T07:44:31.768Z"
               },
               {
                 "id": "service-task-1794988619091-7864ed0cb3122",
@@ -4872,7 +4872,7 @@
       "event-1794907587508": "2026-11-18T17:09:06.263Z",
       "event-1794906841774": "2026-11-18T18:28:52.026Z",
       "event-1794910098923": "2026-11-18T08:28:42.787Z",
-      "event-1794911675874": "2026-11-19T07:44:13.776Z",
+      "event-1794911675874": "2026-11-19T07:44:31.768Z",
       "event-1794919578755": "2026-11-18T17:11:52.316Z",
       "event-1795026590553": "2026-11-18T18:31:29.042Z"
     },
