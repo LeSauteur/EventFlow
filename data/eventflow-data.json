@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-19T18:58:14.450Z",
+  "updated_at": "2026-11-19T19:27:29.590Z",
   "data": {
     "events": [
       {
@@ -4636,6 +4636,196 @@
             "source": "system"
           }
         ]
+      },
+      {
+        "id": "event-1795116448471",
+        "title": "18-19 дек Красноярск K2NDGQ7BTND",
+        "client": "",
+        "city": "Красноярск",
+        "date": "2026-12-18",
+        "guests": 1,
+        "budget": 0,
+        "type": "Янсен",
+        "status": "В работе",
+        "progress": 0,
+        "createdAt": "2026-11-19T19:27:28.471Z",
+        "updatedAt": "2026-11-19T19:27:28.471Z",
+        "dateFrom": "2026-12-18",
+        "dateTo": "2026-12-19",
+        "sector": "Янсен",
+        "company": "",
+        "initiator": "Ирина Егорова",
+        "participants": 1,
+        "stage": "WORKING",
+        "services": [
+          {
+            "id": "service-1795116448471-0b456c16131a1",
+            "eventId": "event-1795116448471",
+            "type": "accommodation",
+            "title": "Проживание",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-accommodation-1795116448471-666e1a7efeb9d-0",
+                "title": "Запрос направлен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1795116448471-670251e8c50e3-1",
+                "title": "Предложение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1795116448471-cb884d666823e-2",
+                "title": "Подтверждение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1795116448471-4d264128c0c808-3",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-accommodation-1795116448471-275e14ab7f4048-4",
+                "title": "Ваучер получен / отправлен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          },
+          {
+            "id": "service-1795116448471-e773bbe578165",
+            "eventId": "event-1795116448471",
+            "type": "flights",
+            "title": "Авиабилеты",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-flights-1795116448471-ed63cc2575c9b8-0",
+                "title": "Данные пассажиров получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-flights-1795116448471-6d874caf627368-1",
+                "title": "Варианты получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-flights-1795116448471-332bcf45f1256-2",
+                "title": "Согласовано",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-flights-1795116448471-9b9cd0a36f66c8-3",
+                "title": "Билеты оформлены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-flights-1795116448471-19f3e91b06c7d-4",
+                "title": "Билеты / ваучеры отправлены",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          },
+          {
+            "id": "service-1795116448471-e1e9c5d72a2cf",
+            "eventId": "event-1795116448471",
+            "type": "transfer",
+            "title": "Трансфер",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-transfer-1795116448471-175a72ded72c98-0",
+                "title": "Данные пассажиров получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795116448471-376e59fc0bfc8-1",
+                "title": "Запрос направлен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795116448471-21c92ffe6ef1f8-2",
+                "title": "Предложение / подтверждение",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795116448471-b1526d71ffc88-3",
+                "title": "ССЗ получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795116448471-65f3679cf53be8-4",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795116448471-734c247a67509-5",
+                "title": "Ваучер получен / отправлен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          }
+        ],
+        "commonChecklist": [
+          {
+            "id": "common-1795116448471-50fb34a0e5fcf8-0",
+            "title": "Смета предварительная направлена",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1795116448471-0f13c7eb0b2ce-1",
+            "title": "PO получено",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1795116448471-6418a6f3ffe1-2",
+            "title": "Смета в WORK",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1795116448471-64579e21bcd568-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          }
+        ],
+        "workTourNumbers": [],
+        "waitingItems": [],
+        "nextStep": "",
+        "timeline": [
+          {
+            "id": "timeline-1795116448471",
+            "eventId": "event-1795116448471",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-19T19:27:28.471Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -4728,6 +4918,14 @@
         "description": "25 ноя Череповец ZCN6F7LLPV6",
         "id": "activity-1795026590554-e995b701aeff68",
         "timestamp": "2026-11-18T18:29:50.554Z"
+      },
+      {
+        "eventId": "event-1795116448471",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "18-19 дек Красноярск K2NDGQ7BTND",
+        "id": "activity-1795116448471-bf61c2e40e28c8",
+        "timestamp": "2026-11-19T19:27:28.471Z"
       }
     ],
     "checklistItems": [],
@@ -4889,7 +5087,8 @@
       "event-1794910098923": "2026-11-18T08:28:42.787Z",
       "event-1794911675874": "2026-11-19T10:46:50.734Z",
       "event-1794919578755": "2026-11-19T18:58:09.227Z",
-      "event-1795026590553": "2026-11-19T17:23:17.672Z"
+      "event-1795026590553": "2026-11-19T17:23:17.672Z",
+      "event-1795116448471": "2026-11-19T19:27:28.471Z"
     },
     "tasks": {},
     "risks": {},
@@ -4904,7 +5103,8 @@
       "activity-1794910098923-acd3475baa6698": "2026-11-17T10:08:18.923Z",
       "activity-1794911675874-ade07af5525f3": "2026-11-17T10:34:35.874Z",
       "activity-1794919578755-c7372d61500be": "2026-11-17T12:46:18.755Z",
-      "activity-1795026590554-e995b701aeff68": "2026-11-18T18:29:50.554Z"
+      "activity-1795026590554-e995b701aeff68": "2026-11-18T18:29:50.554Z",
+      "activity-1795116448471-bf61c2e40e28c8": "2026-11-19T19:27:28.471Z"
     },
     "checklistItems": {},
     "questions": {},
