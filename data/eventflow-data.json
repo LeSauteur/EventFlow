@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-19T10:47:00.020Z",
+  "updated_at": "2026-11-19T16:42:14.374Z",
   "data": {
     "events": [
       {
@@ -4400,7 +4400,7 @@
         "status": "PO",
         "progress": 0,
         "createdAt": "2026-11-18T18:29:50.553Z",
-        "updatedAt": "2026-11-18T18:31:29.042Z",
+        "updatedAt": "2026-11-19T16:42:12.667Z",
         "dateFrom": "2026-11-25",
         "dateTo": "2026-11-25",
         "sector": "Янсен",
@@ -4439,8 +4439,8 @@
               {
                 "id": "service-catering-1795026590553-0d77819dc304a-3",
                 "title": "Меню согласовано",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T16:42:09.867Z"
               },
               {
                 "id": "service-catering-1795026590553-47936f6f498f08-4",
@@ -4480,14 +4480,14 @@
               {
                 "id": "service-flights-1795026590553-e2d05123e49a58-3",
                 "title": "Билеты оформлены",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T16:42:12.084Z"
               },
               {
                 "id": "service-flights-1795026590553-15b1cdd434535-4",
                 "title": "Билеты / ваучеры отправлены",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-19T16:42:12.667Z"
               }
             ]
           },
@@ -4566,14 +4566,16 @@
           {
             "id": "waiting-1795026599969-91ecc8c48041a8",
             "text": "Согласованное меню",
-            "completed": false,
-            "createdAt": "2026-11-18T18:29:59.969Z"
+            "completed": true,
+            "createdAt": "2026-11-18T18:29:59.969Z",
+            "completedAt": "2026-11-19T16:42:03.052Z"
           },
           {
             "id": "waiting-1795026610840-b16db9ed4507d",
             "text": "данные паспорта ссз",
-            "completed": false,
-            "createdAt": "2026-11-18T18:30:10.840Z"
+            "completed": true,
+            "createdAt": "2026-11-18T18:30:10.840Z",
+            "completedAt": "2026-11-19T16:42:04.201Z"
           }
         ],
         "nextStep": "",
@@ -4874,7 +4876,7 @@
       "event-1794910098923": "2026-11-18T08:28:42.787Z",
       "event-1794911675874": "2026-11-19T10:46:50.734Z",
       "event-1794919578755": "2026-11-18T17:11:52.316Z",
-      "event-1795026590553": "2026-11-18T18:31:29.042Z"
+      "event-1795026590553": "2026-11-19T16:42:12.667Z"
     },
     "tasks": {},
     "risks": {},
