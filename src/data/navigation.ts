@@ -1,9 +1,12 @@
 import type { LucideIcon } from 'lucide-react'
-import { CalendarDays, FileText, Settings } from 'lucide-react'
+import { CalendarDays, FileText, Settings, Inbox, House } from 'lucide-react'
 
 export interface NavigationItem { to: string; label: string; icon: LucideIcon; end?: boolean }
 
 export const navigationItems: NavigationItem[] = [
+  { to: '/today', label: 'Сегодня', icon: House },
+  { to: '/calendar', label: 'Календарь', icon: CalendarDays },
+  { to: '/flood', label: 'Флуд', icon: Inbox },
   { to: '/events', label: 'Мероприятия', icon: CalendarDays, end: true },
   { to: '/templates', label: 'Шаблоны', icon: FileText },
   { to: '/settings', label: 'Настройки', icon: Settings },

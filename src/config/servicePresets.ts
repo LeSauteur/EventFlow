@@ -50,7 +50,7 @@ export function createServiceInstance(eventId: string, type: ServiceType, custom
   return {
     id: makeId('service'), eventId, type,
     title: customTitle?.trim() || preset.title,
-    providerName: '', providerContact: '', notes: '',
+    providerName: '', providerContact: '', notes: '', updatedAt: new Date().toISOString(),
     checklist: createWorkChecklist(preset.checklist, `service-${type}`),
   }
 }
@@ -61,6 +61,7 @@ export function createNotebookEvent(input: Partial<Event> & Pick<Event, 'id' | '
   const dateTo = input.dateTo || dateFrom
   const stage = input.stage ?? statusToStage(input.status)
   return {
+    ...input,
     id: input.id,
     title: input.title,
     client: input.client ?? input.company ?? '',
@@ -82,7 +83,7 @@ export function createNotebookEvent(input: Partial<Event> & Pick<Event, 'id' | '
     participants: Number(input.participants ?? input.guests ?? 0),
     stage,
     services: Array.isArray(input.services) ? input.services : [],
-    commonChecklist: Array.isArray(input.commonChecklist) && input.commonChecklist.length ? input.commonChecklist : createWorkChecklist(COMMON_CHECKLIST_TITLES, 'common'),
+    commonChecklist: Array.isArray(input.commonChecklist) ? input.commonChecklist : createWorkChecklist(COMMON_CHECKLIST_TITLES, 'common'),
     workTourNumbers: Array.isArray(input.workTourNumbers) ? input.workTourNumbers : [],
     waitingItems: Array.isArray(input.waitingItems) ? input.waitingItems : [],
     nextStep: input.nextStep ?? '',

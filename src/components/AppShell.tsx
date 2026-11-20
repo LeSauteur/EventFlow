@@ -1,4 +1,4 @@
-import { CalendarPlus, ChevronRight, CloudUpload, FileText, Search, Settings } from 'lucide-react'
+import { CalendarDays, CalendarPlus, ChevronRight, CloudUpload, FileText, House, Inbox, Pin, Search, Settings } from 'lucide-react'
 import { type ReactNode, useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { STAGES } from '../config/servicePresets.ts'
@@ -25,11 +25,11 @@ function syncLabel(sync: ReturnType<typeof useSync>) {
   if (!sync.hasToken) return 'Изменения только на этом устройстве'
   if (sync.dirty) return 'Есть несохранённые изменения'
   if (sync.lastOnlineSync) return `Сохранено в GitHub · ${new Intl.DateTimeFormat('ru-RU', { hour: '2-digit', minute: '2-digit' }).format(new Date(sync.lastOnlineSync))}`
-  return 'Сохранено в GitHub'
+  return 'Token подключён · ожидаем синхронизацию'
 }
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const { events } = useEventFlowData()
+  const { events, updateEvent, floodEntries } = useEventFlowData()
   const sync = useSync()
   const { showToast } = useToast()
   const location = useLocation()
@@ -40,11 +40,12 @@ export function AppShell({ children }: { children: ReactNode }) {
   const selectedEvent = events.find((event) => event.id === eventId)
 
   useEffect(() => { if (selectedEvent) setStage(selectedEvent.stage) }, [selectedEvent?.id, selectedEvent?.stage])
+  useEffect(() => { window.scrollTo(0, 0) }, [location.pathname])
 
   const searching = query.trim().length > 0
   const visibleEvents = useMemo(() => events
     .filter((event) => searching ? eventMatchesSearch(event, query) : event.stage === stage)
-    .sort((a, b) => (a.dateFrom || a.date).localeCompare(b.dateFrom || b.date)), [events, query, searching, stage])
+    .sort((a, b) => Number(!!b.pinned) - Number(!!a.pinned) || (a.dateFrom || a.date).localeCompare(b.dateFrom || b.date)), [events, query, searching, stage])
 
   const saveOnline = async () => {
     // Поле в фокусе сохраняется при потере фокуса — снимаем его до отправки.
@@ -61,9 +62,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     navigate(first ? `/events/${first.id}` : '/events')
   }
 
-  return <div className="notebook-shell">
+  return <div className={`notebook-shell ${location.pathname.startsWith('/events') ? '' : 'planning-shell'}`}>
     <aside className="notebook-nav">
       <div className="notebook-brand"><Brand /><span>рабочий блокнот</span></div>
+      <nav className="planning-main-nav" aria-label="Рабочие разделы"><Link to="/today"><House size={18} />Сегодня</Link><Link to="/calendar"><CalendarDays size={18} />Календарь</Link><Link to="/flood"><Inbox size={18} />Флуд <b>{floodEntries.filter((e) => e.status === 'new').length}</b></Link></nav>
       <Link className="new-event-button" to="/events/new"><CalendarPlus size={18} />Новое мероприятие</Link>
       <nav className="stage-nav" aria-label="Стадии мероприятий">
         {STAGES.map((item) => <button key={item.value} className={stage === item.value ? 'active' : ''} onClick={() => chooseStage(item.value)}><span>{item.label}</span><strong>{events.filter((event) => event.stage === item.value).length}</strong></button>)}
@@ -85,7 +87,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <label className="event-index-search"><Search size={16} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Любое слово или контакт" aria-label="Сквозной поиск" /></label>
       <div className="event-index-list">
         {visibleEvents.map((event) => <Link key={event.id} to={`/events/${event.id}`} className={event.id === eventId ? 'active' : ''}>
-          <span className="event-index-date">{eventDate(event)}</span>
+          <span className="event-index-date">{event.pinned ? '📌 ' : ''}{eventDate(event)}</span>
           <span><strong>{event.title}</strong><small>{searching && <b className="event-index-stage">{STAGES.find((item) => item.value === event.stage)?.label}</b>}{event.city}{event.initiator ? ` · ${event.initiator}` : ''}</small></span>
           <ChevronRight size={15} />
         </Link>)}

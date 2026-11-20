@@ -2,7 +2,7 @@ import { seedBudgets, seedChecklistItems, seedContractors, seedQuestions, seedSe
 import { seedActivities, seedEvents, seedRisks, seedTasks } from '../data/seed.ts'
 import { createNotebookEvent, createServiceInstance, inferServiceTypes } from '../config/servicePresets.ts'
 import { markDeleted, markSyncDirty, type SharedCollection } from './sync.ts'
-import type { Activity, AppSettings, BackupPayload, ChecklistItem, Contractor, Event, EventBudget, MessageTemplate, OpenQuestion, Risk, Task } from '../types/index.ts'
+import type { Activity, AppSettings, BackupPayload, ChecklistItem, Contractor, Event, EventBudget, FloodEntry, MessageTemplate, OpenQuestion, Risk, Task } from '../types/index.ts'
 
 export const STORAGE_KEYS = {
   schemaVersion: 'eventflow.schemaVersion',
@@ -16,11 +16,11 @@ export const STORAGE_KEYS = {
   templates: 'eventflow.templates',
   budgets: 'eventflow.budgets',
   settings: 'eventflow.settings',
+  floodEntries: 'eventflow.floodEntries',
 } as const
 
-export const SCHEMA_VERSION = '6'
-
-const WORKSPACE_COLLECTIONS: SharedCollection[] = ['events', 'tasks', 'risks', 'activities', 'checklistItems', 'questions', 'contractors', 'budgets']
+export const SCHEMA_VERSION = '7'
+export const MIGRATION_BACKUP_KEY = 'eventflow.backup.before-schema-7'
 
 export interface EventFlowData {
   events: Event[]
@@ -33,6 +33,7 @@ export interface EventFlowData {
   templates: MessageTemplate[]
   budgets: EventBudget[]
   settings: AppSettings
+  floodEntries: FloodEntry[]
 }
 
 const seedData: EventFlowData = {
@@ -46,6 +47,7 @@ const seedData: EventFlowData = {
   templates: seedTemplates,
   budgets: seedBudgets,
   settings: seedSettings,
+  floodEntries: [],
 }
 
 function clone<T>(value: T): T { return JSON.parse(JSON.stringify(value)) as T }
@@ -81,6 +83,7 @@ export function saveAll(data: EventFlowData, storage: Storage = window.localStor
   write(storage, STORAGE_KEYS.templates, data.templates)
   write(storage, STORAGE_KEYS.budgets, data.budgets)
   write(storage, STORAGE_KEYS.settings, data.settings)
+  write(storage, STORAGE_KEYS.floodEntries, data.floodEntries ?? [])
   storage.setItem(STORAGE_KEYS.schemaVersion, SCHEMA_VERSION)
 }
 
@@ -103,6 +106,7 @@ export function deleteEventWorkspace(eventId: string, data: EventFlowData, stora
     checklistItems: data.checklistItems.filter((item) => item.eventId !== eventId),
     questions: data.questions.filter((item) => item.eventId !== eventId),
     budgets: data.budgets.filter((item) => item.eventId !== eventId),
+    floodEntries: data.floodEntries.map((item) => item.eventId === eventId ? { ...item, eventId: null, updatedAt: timestamp } : item),
   }
   saveAll(next, storage)
   for (const event of removed.events) markDeleted('events', event.id, storage, timestamp)
@@ -112,6 +116,8 @@ export function deleteEventWorkspace(eventId: string, data: EventFlowData, stora
   for (const item of removed.checklistItems) markDeleted('checklistItems', item.id, storage, timestamp)
   for (const question of removed.questions) markDeleted('questions', question.id, storage, timestamp)
   for (const budget of removed.budgets) markDeleted('budgets', budget.eventId, storage, timestamp)
+  const detached = next.floodEntries.filter((item, index) => item !== data.floodEntries[index])
+  if (detached.length) markSyncDirty({ floodEntries: detached.map((item) => item.id) }, storage, timestamp)
   return next
 }
 
@@ -122,17 +128,10 @@ export function ensureSeedData(storage: Storage = window.localStorage): EventFlo
     markSeedDataForSync(storage, new Date().toISOString())
   }
   else if (version !== SCHEMA_VERSION) {
+    // Write-ahead backup must succeed BEFORE touching any existing record.
+    if (!storage.getItem(MIGRATION_BACKUP_KEY)) storage.setItem(MIGRATION_BACKUP_KEY, JSON.stringify({ schemaVersion: version, savedAt: new Date().toISOString(), records: Object.fromEntries(Object.values(STORAGE_KEYS).map((key) => [key, storage.getItem(key)])) }))
     const existing = loadAll(storage)
-    const timestamp = new Date().toISOString()
-    for (const collection of WORKSPACE_COLLECTIONS) {
-      for (const item of existing[collection]) {
-        const record = item as unknown as Record<string, unknown>
-        const id = String(collection === 'budgets' ? record.eventId ?? '' : record.id ?? '')
-        if (id) markDeleted(collection, id, storage, timestamp)
-      }
-    }
-    saveAll(seedData, storage)
-    markSeedDataForSync(storage, timestamp)
+    saveAll({ ...existing, events: existing.events.map(migrateEvent) }, storage)
   } else {
     for (const [name, key] of Object.entries(STORAGE_KEYS)) {
       if (name !== 'schemaVersion' && storage.getItem(key) === null) {
@@ -152,7 +151,7 @@ export function ensureSeedData(storage: Storage = window.localStorage): EventFlo
 
 export function migrateEvent(raw: Event): Event {
   const event = createNotebookEvent(raw)
-  if (!event.services.length) {
+  if (!Array.isArray(raw.services)) {
     const types = inferServiceTypes(`${raw.type ?? ''} ${raw.title ?? ''}`)
     event.services = types.map((type) => createServiceInstance(event.id, type))
   }
@@ -164,6 +163,7 @@ export function loadAll(storage: Storage = window.localStorage): EventFlowData {
     events: loadEvents(storage), tasks: loadTasks(storage), risks: loadRisks(storage), activities: loadActivities(storage),
     checklistItems: loadChecklistItems(storage), questions: loadQuestions(storage), contractors: loadContractors(storage),
     templates: loadTemplates(storage), budgets: loadBudgets(storage), settings: loadSettings(storage),
+    floodEntries: read<FloodEntry[]>(storage, STORAGE_KEYS.floodEntries, []),
   }
 }
 
@@ -171,7 +171,7 @@ export function resetToDemo(storage: Storage = window.localStorage) { saveAll(se
 
 export function createBackup(storage: Storage = window.localStorage): BackupPayload {
   const data = loadAll(storage)
-  return { format: 'eventflow-backup', schemaVersion: SCHEMA_VERSION, exportedAt: new Date().toISOString(), data: { events: data.events, checklistItems: data.checklistItems, questions: data.questions, contractors: data.contractors, templates: data.templates, budgets: data.budgets, activities: data.activities, tasks: data.tasks, risks: data.risks, settings: data.settings } }
+  return { format: 'eventflow-backup', schemaVersion: SCHEMA_VERSION, exportedAt: new Date().toISOString(), data: { ...data } }
 }
 
 export function validateBackup(value: unknown): value is BackupPayload {
@@ -179,7 +179,7 @@ export function validateBackup(value: unknown): value is BackupPayload {
   const backup = value as Partial<BackupPayload>
   if (backup.format !== 'eventflow-backup' || !backup.data || typeof backup.data !== 'object') return false
   const data = backup.data as Partial<BackupPayload['data']>
-  return ['events', 'checklistItems', 'questions', 'contractors', 'templates', 'budgets', 'activities', 'tasks'].every((key) => Array.isArray(data[key as keyof typeof data])) && !!data.settings && typeof data.settings === 'object'
+  return ['events', 'checklistItems', 'questions', 'contractors', 'templates', 'budgets', 'activities', 'tasks'].every((key) => Array.isArray(data[key as keyof typeof data])) && (data.floodEntries === undefined || Array.isArray(data.floodEntries)) && !!data.settings && typeof data.settings === 'object'
 }
 
 export function importBackup(backup: BackupPayload, storage: Storage = window.localStorage) {
@@ -207,6 +207,7 @@ export function importBackup(backup: BackupPayload, storage: Storage = window.lo
     templates: mergeById(current.templates, backup.data.templates),
     budgets: mergeBudgets(current.budgets, backup.data.budgets),
     settings: { ...current.settings, ...clone(backup.data.settings) },
+    floodEntries: mergeById(current.floodEntries, backup.data.floodEntries ?? []),
   }, storage)
   return loadAll(storage)
 }

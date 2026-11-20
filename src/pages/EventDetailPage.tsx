@@ -1,6 +1,10 @@
 import { Archive, Check, ChevronDown, CirclePlus, Clock3, History, Plus, Trash2, UserRound, X } from 'lucide-react'
-import { type FormEvent, useMemo, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { type FormEvent, useEffect, useMemo, useState } from 'react'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { taskKey, taskRegistry } from '../services/taskRegistry.ts'
+import { RegistryTaskRow } from '../components/RegistryTaskRow.tsx'
+import { TaskComposer } from '../components/TaskComposer.tsx'
+import { FloodPanel } from '../components/FloodPanel.tsx'
 import { createServiceInstance, SERVICE_PRESETS, serviceProviderLabel, stageToStatus, STAGES } from '../config/servicePresets.ts'
 import { useEventFlowData } from '../hooks/useEventFlowData.tsx'
 import type { Event, ServiceInstance, ServiceType, TimelineEntry, WorkChecklistItem } from '../types/index.ts'
@@ -20,7 +24,10 @@ function formatTimelineDate(value: string) {
 
 export function EventDetailPage() {
   const { id } = useParams<{ id: string }>()
-  const { events, updateEvent, deleteEvent } = useEventFlowData()
+  const data = useEventFlowData()
+  const { events, updateEvent, deleteEvent } = data
+  const location = useLocation()
+  const registry = taskRegistry(data)
   const navigate = useNavigate()
   const event = events.find((item) => item.id === id)
   const [tourDraft, setTourDraft] = useState('')
@@ -30,10 +37,21 @@ export function EventDetailPage() {
   const [customServiceTitle, setCustomServiceTitle] = useState('')
   const [taskDrafts, setTaskDrafts] = useState<Record<string, string>>({})
   const [showAllTimeline, setShowAllTimeline] = useState(false)
+  const [view, setView] = useState<'work' | 'flood'>('work')
+  useEffect(() => {
+    setView('work')
+    const key = new URLSearchParams(location.search).get('task')
+    if (key) requestAnimationFrame(() => {
+      const element = document.querySelector(`[data-task-key="${CSS.escape(key)}"]`)
+      let parent = element?.parentElement
+      while (parent) { if (parent instanceof HTMLDetailsElement) parent.open = true; parent = parent.parentElement }
+      element?.scrollIntoView({ block: 'center' })
+    })
+  }, [id, location.search])
 
   const completion = useMemo(() => {
     if (!event) return { done: 0, total: 0, percent: 0 }
-    const all = [...event.commonChecklist, ...event.services.flatMap((service) => service.checklist)]
+    const all = [...event.commonChecklist, ...event.services.flatMap((service) => service.checklist)].filter((item) => item.taskStatus !== 'cancelled')
     const done = all.filter((item) => item.completed).length
     return { done, total: all.length, percent: all.length ? Math.round(done / all.length * 100) : 0 }
   }, [event])
@@ -76,10 +94,10 @@ export function EventDetailPage() {
     save({ ...event, waitingItems: [...event.waitingItems, { id: uid('waiting'), text, completed: false, createdAt: new Date().toISOString() }] })
   }
 
-  const updateService = (service: ServiceInstance) => save({ ...event, services: event.services.map((item) => item.id === service.id ? service : item) })
+  const updateService = (service: ServiceInstance) => save({ ...event, services: event.services.map((item) => item.id === service.id ? { ...service, updatedAt: new Date().toISOString() } : item) })
   const removeService = (service: ServiceInstance) => {
     if (!window.confirm(`Удалить блок «${service.title}» из этого мероприятия?`)) return
-    save({ ...event, services: event.services.filter((item) => item.id !== service.id) }, `Удалена услуга «${service.title}»`)
+    save({ ...event, services: event.services.filter((item) => item.id !== service.id), removedServices: { ...event.removedServices, [service.id]: new Date().toISOString() } }, `Удалена услуга «${service.title}»`)
   }
 
   const addService = (e: FormEvent) => {
@@ -96,7 +114,7 @@ export function EventDetailPage() {
     const title = (taskDrafts[service.id] ?? '').trim()
     if (!title) return
     setTaskDrafts((current) => ({ ...current, [service.id]: '' }))
-    updateService({ ...service, checklist: [...service.checklist, { id: uid('service-task'), title, completed: false, completedAt: null }] })
+    updateService({ ...service, checklist: [...service.checklist, { id: uid('service-task'), title, completed: false, completedAt: null, updatedAt: new Date().toISOString() }] })
   }
 
   const addTimeline = (e: FormEvent) => {
@@ -115,6 +133,8 @@ export function EventDetailPage() {
   }
 
   return <main className="event-page">
+    <div className="event-planning-nav"><button aria-pressed={view === 'work'} onClick={() => setView('work')}>Работа</button><button aria-pressed={view === 'flood'} onClick={() => setView('flood')}>Флуд · {data.floodEntries.filter((entry) => entry.eventId === id && entry.status === 'new').length}</button><button aria-pressed={!!event.pinned} onClick={() => updateEvent({ ...event, pinned: !event.pinned })}>{event.pinned ? 'Открепить' : 'Закрепить'}</button></div>
+    {view === 'flood' ? <><h1>{event.title} · Флуд</h1><FloodPanel eventId={event.id} /></> : <>
     <header className="event-page-header">
       <div><p>{formatEventDate(event)}</p><input className="event-title-input" key={`${event.id}-title`} defaultValue={event.title} onBlur={(e) => e.target.value.trim() && patchPassport('title', e.target.value.trim())} aria-label="Название мероприятия" /></div>
       <div className="event-header-actions"><div className="stage-and-progress"><label><span>Стадия</span><select value={event.stage} onChange={(e) => { const stage = e.target.value as Event['stage']; save({ ...event, stage, status: stageToStatus(stage) }, `Стадия изменена: ${STAGES.find((item) => item.value === stage)?.label}`) }}>{STAGES.map((item) => <option value={item.value} key={item.value}>{item.label}</option>)}</select></label><div className="event-progress"><span><strong>{completion.percent}%</strong> · {completion.done} из {completion.total}</span><i><b style={{ width: `${completion.percent}%` }} /></i></div></div><button className="delete-event-button" onClick={removeEvent} aria-label="Удалить мероприятие"><Trash2 size={16} />Удалить</button></div>
@@ -136,15 +156,15 @@ export function EventDetailPage() {
 
     <div className="focus-grid">
       <section className="focus-block waiting-block"><div className="section-kicker"><Clock3 size={17} /><h2>Жду</h2></div>
-        <div className="waiting-list">{event.waitingItems.map((item) => <div className={item.completed ? 'done' : ''} key={item.id}><button className={`notebook-checkbox ${item.completed ? 'checked' : ''}`} onClick={() => save({ ...event, waitingItems: event.waitingItems.map((entry) => entry.id === item.id ? { ...entry, completed: !entry.completed, completedAt: !entry.completed ? new Date().toISOString() : null } : entry) })}>{item.completed && <Check size={13} />}</button><span>{item.text}</span><button className="quiet-icon" onClick={() => save({ ...event, waitingItems: event.waitingItems.filter((entry) => entry.id !== item.id) })} aria-label="Удалить"><X size={15} /></button></div>)}</div>
+        <div className="waiting-registry">{registry.filter((task) => task.eventId === event.id && task.source === 'waiting').map((task) => <RegistryTaskRow key={task.key} task={task} context={false} />)}</div>
         <form className="inline-add" onSubmit={addWaiting}><input value={waitingDraft} onChange={(e) => setWaitingDraft(e.target.value)} placeholder="Добавить ожидание…" /><button aria-label="Добавить"><Plus size={17} /></button></form>
       </section>
-      <section className="focus-block next-step-block"><div className="section-kicker"><CirclePlus size={17} /><h2>Следующий шаг</h2></div><p>Одна главная текущая задача. Напишите её свободным текстом — поле сохранится автоматически, когда вы перейдёте в другое место.</p><textarea key={`${event.id}-next`} defaultValue={event.nextStep} onBlur={(e) => save({ ...event, nextStep: e.target.value })} placeholder="Например: получить PO" /></section>
+      <section className="focus-block next-step-block"><div className="section-kicker"><CirclePlus size={17} /><h2>Следующий шаг</h2></div><p>Одна главная текущая задача. Напишите её свободным текстом — поле сохранится автоматически, когда вы перейдёте в другое место.</p><textarea key={`${event.id}-next`} defaultValue={event.nextStep} onBlur={(e) => { if (e.target.value !== event.nextStep) save({ ...event, nextStep: e.target.value, nextStepTask: { ...event.nextStepTask, taskStatus: 'todo', updatedAt: new Date().toISOString() } }) }} placeholder="Например: получить PO" /></section>
     </div>
 
     <section className="common-section">
       <div className="section-kicker"><Check size={17} /><h2>Общее</h2></div>
-      <div className="common-list">{event.commonChecklist.map((item, index) => <div className={item.completed ? 'done' : ''} key={item.id}><button className={`notebook-checkbox ${item.completed ? 'checked' : ''}`} onClick={() => toggleCommon(index)}>{item.completed && <Check size={13} />}</button><input defaultValue={item.title} onBlur={(e) => save({ ...event, commonChecklist: event.commonChecklist.map((entry) => entry.id === item.id ? { ...entry, title: e.target.value } : entry) })} aria-label="Название этапа" />{item.title === 'Смета в WORK' && <span className="work-badge">WORK</span>}</div>)}</div>
+      <div className="common-registry">{registry.filter((task) => task.eventId === event.id && task.source === 'common').map((task) => <RegistryTaskRow key={task.key} task={task} context={false} />)}</div>
       <div className="tour-numbers"><strong>Номера туров WORK</strong><div>{event.workTourNumbers.map((number) => <span key={number}>{number}<button onClick={() => save({ ...event, workTourNumbers: event.workTourNumbers.filter((item) => item !== number) })}><X size={13} /></button></span>)}</div><form className="inline-add" onSubmit={addTour}><input value={tourDraft} onChange={(e) => setTourDraft(e.target.value)} placeholder="Номер тура" /><button><Plus size={17} />Добавить номер</button></form></div>
     </section>
 
@@ -160,6 +180,8 @@ export function EventDetailPage() {
       <div className="timeline-list">{event.timeline.slice(0, showAllTimeline ? undefined : 8).map((entry) => <article key={entry.id}><time>{formatTimelineDate(entry.timestamp)}</time><div><p>{entry.text}</p>{entry.source === 'system' && <span>системная запись</span>}</div></article>)}</div>
       {event.timeline.length > 8 && <button className="show-more" onClick={() => setShowAllTimeline((value) => !value)}>{showAllTimeline ? 'Свернуть' : `Показать все записи (${event.timeline.length})`}</button>}
     </section>
+    <section className="planning-card"><h2>Задачи и следующий шаг</h2><TaskComposer eventId={event.id} />{registry.filter((task) => task.eventId === event.id && ['checklist', 'question', 'legacy', 'next'].includes(task.source)).map((task) => <RegistryTaskRow key={task.key} task={task} context={false} />)}</section>
+    </>}
   </main>
 }
 
@@ -168,6 +190,7 @@ function NotebookField({ label, value, type = 'text', placeholder, onCommit }: {
 }
 
 function ServiceBlock({ service, taskDraft, setTaskDraft, onChange, onRemove, onAddTask }: { service: ServiceInstance; taskDraft: string; setTaskDraft: (value: string) => void; onChange: (service: ServiceInstance) => void; onRemove: () => void; onAddTask: (event: FormEvent) => void }) {
+  const registry = taskRegistry(useEventFlowData())
   const done = service.checklist.filter((item) => item.completed).length
   const finished = service.checklist.length > 0 && done === service.checklist.length
   const updateTask = (task: WorkChecklistItem) => onChange({ ...service, checklist: service.checklist.map((item) => item.id === task.id ? task : item) })
@@ -175,7 +198,7 @@ function ServiceBlock({ service, taskDraft, setTaskDraft, onChange, onRemove, on
     <summary><span><ChevronDown size={17} /><span><strong>{service.title}</strong><small>{service.providerName || serviceProviderLabel(service.type)}</small></span></span><span><b>{done}/{service.checklist.length}</b><i><em style={{ width: `${service.checklist.length ? done / service.checklist.length * 100 : 0}%` }} /></i></span></summary>
     <div className="service-content">
       <div className="service-fields"><NotebookField label={serviceProviderLabel(service.type)} value={service.providerName} placeholder="Добавить" onCommit={(value) => onChange({ ...service, providerName: value })} /><NotebookField label="Контакт" value={service.providerContact} placeholder="Телефон, email или ФИО" onCommit={(value) => onChange({ ...service, providerContact: value })} /></div>
-      <div className="service-checklist">{service.checklist.map((task) => <div className={task.completed ? 'done' : ''} key={task.id}><button className={`notebook-checkbox ${task.completed ? 'checked' : ''}`} onClick={() => updateTask({ ...task, completed: !task.completed, completedAt: !task.completed ? new Date().toISOString() : null })}>{task.completed && <Check size={13} />}</button><input defaultValue={task.title} onBlur={(e) => updateTask({ ...task, title: e.target.value })} /><button className="quiet-icon" onClick={() => onChange({ ...service, checklist: service.checklist.filter((item) => item.id !== task.id) })} aria-label="Удалить пункт"><X size={14} /></button></div>)}</div>
+      <div className="service-registry">{registry.filter((task) => task.source === 'service' && task.serviceId === service.id && task.eventId === service.eventId).map((task) => <RegistryTaskRow key={task.key} task={task} context={false} />)}</div>
       <form className="inline-add service-task-add" onSubmit={onAddTask}><input value={taskDraft} onChange={(e) => setTaskDraft(e.target.value)} placeholder="Добавить свой пункт…" /><button><Plus size={16} />Добавить</button></form>
       <label className="service-notes"><span>Комментарий</span><textarea key={service.notes} defaultValue={service.notes} onBlur={(e) => onChange({ ...service, notes: e.target.value })} placeholder="Свободная рабочая заметка" /></label>
       <button className="remove-service" onClick={onRemove}><Trash2 size={15} />Удалить услугу</button>

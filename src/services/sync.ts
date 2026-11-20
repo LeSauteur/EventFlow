@@ -15,6 +15,7 @@ export const SHARED_COLLECTIONS = [
   'contractors',
   'templates',
   'budgets',
+  'floodEntries',
 ] as const
 
 export type SharedCollection = typeof SHARED_COLLECTIONS[number]
@@ -76,7 +77,7 @@ export interface SyncEngineOptions {
 }
 
 const EMPTY_ARRAYS: SharedData = {
-  events: [], tasks: [], risks: [], activities: [], checklistItems: [], questions: [], contractors: [], templates: [], budgets: [],
+  events: [], tasks: [], risks: [], activities: [], checklistItems: [], questions: [], contractors: [], templates: [], budgets: [], floodEntries: [],
 }
 
 function emptyVersions(): RecordVersions {
@@ -249,6 +250,34 @@ function laterTimestamp(left?: string, right?: string) {
   return (left ?? '') >= (right ?? '') ? left : right
 }
 
+/** Merge independent nested tasks by their own versions, not the parent's last edit. */
+function mergeEventWorkspaces(left: Record<string, unknown>, right: Record<string, unknown>, leftVersion: string, rightVersion: string) {
+  const [older, newer] = leftVersion >= rightVersion ? [right, left] : [left, right]
+  const stamp = (item: Record<string, unknown>) => String(item.updatedAt ?? item.createdAt ?? '')
+  const mergeList = (first: unknown, second: unknown, services = false): Record<string, unknown>[] => {
+    const map = new Map<string, Record<string, unknown>>()
+    for (const raw of [...(Array.isArray(first) ? first : []), ...(Array.isArray(second) ? second : [])]) {
+      if (!isRecord(raw) || !raw.id) continue
+      const id = String(raw.id), previous = map.get(id)
+      if (!previous) { map.set(id, raw); continue }
+      const preferred = stamp(raw) >= stamp(previous) ? raw : previous
+      map.set(id, services ? { ...preferred, checklist: mergeList(previous.checklist, raw.checklist) } : preferred)
+    }
+    return [...map.values()]
+  }
+  const result = { ...older, ...newer }
+  for (const key of ['commonChecklist', 'waitingItems', 'timeline']) if (Array.isArray(older[key]) || Array.isArray(newer[key])) result[key] = mergeList(older[key], newer[key])
+  if (Array.isArray(result.timeline)) result.timeline.sort((a, b) => String(b.timestamp ?? '').localeCompare(String(a.timestamp ?? '')))
+  const removed = { ...(isRecord(older.removedServices) ? older.removedServices : {}) }
+  for (const [id, at] of Object.entries(isRecord(newer.removedServices) ? newer.removedServices : {})) if (String(at) > String(removed[id] ?? '')) removed[id] = at
+  if (Object.keys(removed).length) result.removedServices = removed
+  if (Array.isArray(older.services) || Array.isArray(newer.services)) result.services = mergeList(older.services, newer.services, true).filter((s) => !removed[String(s.id)] || stamp(s) > String(removed[String(s.id)]))
+  const oldNext = isRecord(older.nextStepTask) ? older.nextStepTask : {}
+  const newNext = isRecord(newer.nextStepTask) ? newer.nextStepTask : {}
+  if (stamp(oldNext) > stamp(newNext)) { result.nextStep = older.nextStep; result.nextStepTask = older.nextStepTask }
+  return result
+}
+
 export function mergeSnapshots(local: SyncEnvelope, remote: SyncEnvelope, timestamp = new Date().toISOString()): SyncEnvelope {
   const data = clone(EMPTY_ARRAYS)
   const versions = emptyVersions()
@@ -259,6 +288,10 @@ export function mergeSnapshots(local: SyncEnvelope, remote: SyncEnvelope, timest
     for (const item of local.data[collection] as unknown as Record<string, unknown>[]) {
       const id = entityId(collection, item)
       const existing = candidates.get(id)
+      if (existing && collection === 'events') {
+        candidates.set(id, mergeEventWorkspaces(item, existing, local.record_versions.events[id] ?? '', remote.record_versions.events[id] ?? ''))
+        continue
+      }
       if (!existing || (local.record_versions[collection][id] ?? '') >= (remote.record_versions[collection][id] ?? '')) candidates.set(id, item)
     }
     const deleted = new Map<string, string>()
@@ -385,6 +418,7 @@ export class EventFlowSyncEngine {
   private state: SyncViewState
   private listeners = new Set<(state: SyncViewState) => void>()
   private interval: ReturnType<typeof setInterval> | null = null
+  private focusListener = () => { if (typeof document === 'undefined' || document.visibilityState === 'visible') void this.loadOnline() }
   private inFlight: Promise<boolean> | null = null
   private readonly now: () => Date
   private readonly setIntervalFn: NonNullable<SyncEngineOptions['setIntervalFn']>
@@ -429,6 +463,7 @@ export class EventFlowSyncEngine {
 
   async start() {
     if (typeof window !== 'undefined') window.addEventListener('eventflow-sync-meta', this.metaListener)
+    if (typeof window !== 'undefined') window.addEventListener('focus', this.focusListener)
     this.interval = this.setIntervalFn(() => {
       const meta = readSyncMeta(this.options.storage)
       if (meta.dirty && !meta.autosavePaused && this.options.sessionStorage.getItem(SYNC_TOKEN_KEY)) void this.syncNow(false)
@@ -442,6 +477,7 @@ export class EventFlowSyncEngine {
     if (this.interval) this.clearIntervalFn(this.interval)
     this.interval = null
     if (typeof window !== 'undefined') window.removeEventListener('eventflow-sync-meta', this.metaListener)
+    if (typeof window !== 'undefined') window.removeEventListener('focus', this.focusListener)
   }
 
   setToken(token: string) {
@@ -458,6 +494,7 @@ export class EventFlowSyncEngine {
   }
 
   async loadOnline() {
+    const startingRevision = readSyncMeta(this.options.storage).revision
     try {
       const remote = await this.options.client.get()
       const meta = readSyncMeta(this.options.storage)
@@ -470,7 +507,7 @@ export class EventFlowSyncEngine {
       }
       const timestamp = this.now().toISOString()
       const local = snapshotFromLocal(this.options.getLocalData(), meta, timestamp)
-      const useRemote = !meta.initialized && meta.preferRemoteOnFirstLoad && hasSharedRecords(remote.snapshot)
+      const useRemote = !meta.initialized && meta.preferRemoteOnFirstLoad && meta.revision === startingRevision && hasSharedRecords(remote.snapshot)
       const merged = useRemote ? remote.snapshot : mergeSnapshots(local, remote.snapshot, timestamp)
       this.options.applySharedData(merged.data)
       meta.recordVersions = merged.record_versions
@@ -482,8 +519,9 @@ export class EventFlowSyncEngine {
       meta.dirtyCount = meta.dirty ? Math.max(1, meta.dirtyCount) : 0
       writeSyncMeta(this.options.storage, meta)
       this.update({ status: meta.dirty ? 'dirty' : 'online', dirty: meta.dirty, lastOnlineSync: meta.lastOnlineSync, error: null })
-    } catch {
+    } catch (error) {
       this.refreshFromMeta()
+      this.update({ status: 'error', error: safeSyncError(error) })
     }
   }
 
