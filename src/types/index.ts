@@ -241,6 +241,7 @@ export interface AppSettings {
   lastBackupAt: string | null
   timeZone?: string
   savedTaskFilters?: SavedTaskFilter[]
+  calendarTimeZone?: string
 }
 
 export interface BackupPayload {

@@ -77,6 +77,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           : <Link to="/settings"><CloudUpload size={15} />Подключить GitHub</Link>}
       </div>
       <div className="notebook-secondary-nav">
+        <a href={`${import.meta.env.BASE_URL}guide/`} target="_blank" rel="noreferrer"><FileText size={17} />Инструкция со скриншотами</a>
         <Link to="/templates"><FileText size={17} />Шаблоны сообщений</Link>
         <Link to="/settings"><Settings size={17} />Настройки и данные</Link>
       </div>

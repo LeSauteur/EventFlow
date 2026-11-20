@@ -76,6 +76,12 @@ test('date-only deadlines expire at local day end; timestamps keep the actual in
   assert.equal(zonedDateTime('2026-03-08T02:30', 'America/New_York'), null)
 })
 
+test('changing calendar display timezone does not reinterpret task deadlines', () => {
+  const data = fixture(), task = taskRegistry(data)[0]
+  const changed = { ...data, settings: { ...data.settings, calendarTimeZone: 'Asia/Vladivostok' } }
+  assert.equal(taskRegistry(changed)[0].timeZone, task.timeZone)
+})
+
 test('migration is backed up, idempotent and preserves data, empty lists and new metadata', () => {
   const storage = new MemoryStorage(), data = fixture()
   data.events[0].services = []; data.events[0].commonChecklist = []; data.events[0].pinned = true

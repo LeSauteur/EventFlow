@@ -21,8 +21,8 @@ const data = { events: [event], tasks: [], risks: [], activities: [], checklistI
 let remote = { version: 1, updated_at: now, data: { ...data }, record_versions: {}, tombstones: {} }, puts = 0
 const browser = await chromium.launch({ headless: true, ...(process.env.EVENTFLOW_CHROME_PATH ? { executablePath: process.env.EVENTFLOW_CHROME_PATH } : {}) })
 const contexts = []
-async function context(viewport = { width: 1440, height: 1000 }, seed = true) {
-  const ctx = await browser.newContext({ viewport, timezoneId: 'America/Los_Angeles' })
+async function context(viewport = { width: process.env.EVENTFLOW_GUIDE_SHOTS ? 1100 : 1440, height: 1000 }, seed = true) {
+  const ctx = await browser.newContext({ viewport, timezoneId: process.env.EVENTFLOW_GUIDE_SHOTS ? 'Europe/Moscow' : 'America/Los_Angeles' })
   contexts.push(ctx)
   await ctx.route('https://api.github.com/**', async (route) => {
     assert.match(route.request().url(), /repos\/LeSauteur\/EventFlow\/contents\/data\/eventflow-data\.json/)
@@ -33,6 +33,9 @@ async function context(viewport = { width: 1440, height: 1000 }, seed = true) {
     } else await route.fulfill({ json: { sha: `qa-${puts}`, content: Buffer.from(JSON.stringify(remote)).toString('base64') } })
   })
   if (seed) await ctx.addInitScript(({ data, now }) => {
+    // A browser network-error document has an opaque origin; it is not the app.
+    if (!['http:', 'https:'].includes(location.protocol)) return
+    try { void localStorage.length } catch { return }
     if (localStorage.getItem('qa-initialized')) return
     localStorage.setItem('qa-initialized', 'true')
     for (const [key, value] of Object.entries(data)) localStorage.setItem(`eventflow.${key}`, JSON.stringify(value))
@@ -46,8 +49,24 @@ async function context(viewport = { width: 1440, height: 1000 }, seed = true) {
   page.on('dialog', (d) => d.accept())
   return { ctx, page, errors }
 }
-const go = async (page, path) => { await page.goto(`${base}#${path}`); await page.waitForSelector('.planning-page, .event-page, .settings-page, .new-event-page, .templates-page'); await page.waitForTimeout(250) }
-const screenshot = async (page, name) => { if (!name.startsWith('03-')) await page.evaluate(() => window.scrollTo(0, 0)); await page.screenshot({ path: `${directory}/${name}.png`, fullPage: false }) }
+const go = async (page, path) => {
+  for (let attempt = 0; ; attempt++) {
+    try { await page.goto(`${base}#${path}`); break }
+    catch (error) { if (attempt >= 2 || !/ERR_CONNECTION|ERR_TIMED_OUT/.test(String(error))) throw error; await page.waitForTimeout(600) }
+  }
+  await page.waitForSelector('.planning-page, .event-page, .settings-page, .new-event-page, .templates-page')
+  await page.waitForTimeout(250)
+}
+const screenshot = async (page, name) => {
+  if (process.env.EVENTFLOW_GUIDE_SHOTS) {
+    while (await page.locator('.toast button').count()) await page.locator('.toast button').last().click()
+    await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur())
+  }
+  if (!name.startsWith('03-')) await page.evaluate(() => window.scrollTo(0, 0))
+  const focus = process.env.EVENTFLOW_GUIDE_SHOTS && ({ '02-event-workspace': '.passport-section', '03-task-details': '.registry-task:has(.registry-details)', '04-calendar-month': '.planning-card:has(.planning-calendar-grid)', '06-flood-inbox': '.flood-entry:last-child', '08-settings-sync': '.sync-settings-card', '09-new-event': '.notebook-form-section:first-child', '10-templates': '.template-editor-card', '11-service-block': '.services-section', '12-backup': '.settings-card:last-child' })[name]
+  if (focus) await page.locator(focus).screenshot({ path: `${directory}/${name}.png` })
+  else await page.screenshot({ path: `${directory}/${name}.png`, fullPage: false })
+}
 const row = (page, key) => page.locator(`[data-task-key="${key}"]`)
 const { page, ctx, errors } = await context()
 try {
@@ -69,6 +88,7 @@ try {
   await screenshot(page, '01-today-desktop')
   await go(page, `/events/qa-event?task=${encodeURIComponent(key)}`)
   assert.equal(await row(page, key).getByLabel('Важность', { exact: true }).inputValue(), 'critical')
+  if (process.env.EVENTFLOW_GUIDE_SHOTS) await screenshot(page, '11-service-block')
   await row(page, key).getByLabel('Статус задачи', { exact: true }).selectOption('done')
   await page.getByRole('button', { name: 'Закрепить', exact: true }).click()
   await screenshot(page, '02-event-workspace')
@@ -123,6 +143,7 @@ try {
   assert.equal(remote.data.floodEntries.length, 2)
   await go(page, '/settings')
   await screenshot(page, '08-settings-sync')
+  if (process.env.EVENTFLOW_GUIDE_SHOTS) await screenshot(page, '12-backup')
   await go(page, '/events/new')
   await screenshot(page, '09-new-event')
   await go(page, '/templates')
