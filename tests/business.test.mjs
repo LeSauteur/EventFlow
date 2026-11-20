@@ -218,7 +218,7 @@ test('notebook routes are declared and CRM routes are hidden', () => {
   assert.doesNotMatch(app, /BudgetPage|ContractorsPage|QuestionsPage/)
 })
 
-test('schema 6 replaces the previous workspace with the OneNote import and records tombstones', () => {
+test('schema migration preserves previous workspace and does not create deletion tombstones', () => {
   const storage = new MemoryStorage()
   storage.setItem(STORAGE_KEYS.schemaVersion, '2')
   const customEvent = { id: 'user-event', title: 'Личное мероприятие', client: 'Клиент', city: 'Тула', date: '2026-11-01', guests: 12, budget: 90000, type: 'Ужин', status: 'В работе', progress: 0 }
@@ -226,12 +226,12 @@ test('schema 6 replaces the previous workspace with the OneNote import and recor
   storage.setItem(STORAGE_KEYS.events, JSON.stringify([customEvent]))
   storage.setItem(STORAGE_KEYS.questions, JSON.stringify([customQuestion]))
   const migrated = ensureSeedData(storage)
-  assert.equal(migrated.events.length, importedOneNoteEvents.length)
-  assert.ok(migrated.events.every((event) => event.id.startsWith('onenote-')))
-  assert.equal(migrated.questions.length, 0)
+  assert.equal(migrated.events.length, 1)
+  assert.equal(migrated.events[0].id, 'user-event')
+  assert.equal(migrated.questions.length, 1)
   const meta = readSyncMeta(storage)
-  assert.ok(meta.tombstones.events.some((item) => item.id === 'user-event'))
-  assert.ok(meta.tombstones.questions.some((item) => item.id === 'user-question'))
+  assert.equal(meta.tombstones.events.length, 0)
+  assert.equal(meta.tombstones.questions.length, 0)
 })
 
 test('quick capture parser proposes money and task actions without applying them', () => {
@@ -438,7 +438,7 @@ test('first start in a new browser takes the online copy instead of merging demo
   engine.stop()
 })
 
-test('legacy online JSON stays readable while old local examples are replaced by the OneNote import', () => {
+test('legacy online JSON and old local records stay readable', () => {
   const legacyOnline = normalizeSnapshot({ events: [{ id: 'legacy-online', title: 'Old JSON' }], tasks: [] }, '2020-01-01T00:00:00.000Z')
   assert.equal(legacyOnline.version, 1)
   assert.equal(legacyOnline.data.events[0].id, 'legacy-online')
@@ -447,8 +447,8 @@ test('legacy online JSON stays readable while old local examples are replaced by
   const storage = new MemoryStorage()
   storage.setItem(STORAGE_KEYS.schemaVersion, '2')
   storage.setItem(STORAGE_KEYS.events, JSON.stringify([{ id: 'legacy-local', title: 'Old localStorage' }]))
-  assert.equal(ensureSeedData(storage).events.length, importedOneNoteEvents.length)
-  assert.ok(readSyncMeta(storage).tombstones.events.some((item) => item.id === 'legacy-local'))
+  assert.equal(ensureSeedData(storage).events[0].id, 'legacy-local')
+  assert.equal(readSyncMeta(storage).tombstones.events.length, 0)
 })
 
 test('sync metadata and session token never enter backups or shared JSON', () => {

@@ -1,8 +1,9 @@
 import { createContext, type ReactNode, useContext, useMemo, useState } from 'react'
 import { calculateChecklistProgress, createChecklistForEvent } from '../config/checklistPresets.ts'
-import { deleteEventWorkspace, ensureSeedData, saveActivities, saveBudgets, saveChecklistItems, saveContractors, saveEvents, saveQuestions, saveSettings, saveTemplates, STORAGE_KEYS, type EventFlowData } from '../services/storage.ts'
+import { deleteEventWorkspace, ensureSeedData, saveAll, saveActivities, saveBudgets, saveChecklistItems, saveContractors, saveEvents, saveQuestions, saveSettings, saveTemplates, STORAGE_KEYS, type EventFlowData } from '../services/storage.ts'
+import { patchRegistryTask, taskRegistry, type TaskPatch } from '../services/taskRegistry.ts'
 import { initializeSyncState, markSyncDirty } from '../services/sync.ts'
-import type { Activity, AppSettings, ChecklistItem, Contractor, Event, EventBudget, MessageTemplate, OpenQuestion } from '../types/index.ts'
+import type { Activity, AppSettings, ChecklistItem, Contractor, Event, EventBudget, FloodEntry, MessageTemplate, OpenQuestion } from '../types/index.ts'
 
 type ActivityInput = Omit<Activity, 'id' | 'timestamp'>
 
@@ -21,6 +22,8 @@ interface EventFlowContextValue extends EventFlowData {
   updateSettings: (settings: AppSettings) => void
   logActivity: (activity: ActivityInput) => void
   reloadData: () => void
+  updateTask: (key: string, patch: TaskPatch) => void
+  saveFloodEntries: (entries: FloodEntry[]) => void
 }
 
 const EventFlowContext = createContext<EventFlowContextValue | null>(null)
@@ -41,6 +44,29 @@ export function EventFlowProvider({ children }: { children: ReactNode }) {
   const value = useMemo<EventFlowContextValue>(() => ({
     ...data,
     reloadData,
+    updateTask: (key, patch) => setData((current) => {
+      const now = new Date().toISOString()
+      const task = taskRegistry(current).find((item) => item.key === key)
+      let next = patchRegistryTask(current, key, patch, now)
+      if (task && patch.status && patch.status !== task.status && task.eventId) {
+        const labels = { todo: 'к выполнению', in_progress: 'в работе', waiting: 'жду ответа', done: 'готово', cancelled: 'отменено' }
+        next = { ...next, events: next.events.map((event) => event.id !== task.eventId ? event : { ...event, updatedAt: now, timeline: [{ id: crypto.randomUUID(), eventId: event.id, text: `${task.title}: ${labels[patch.status!]}`, timestamp: now, source: 'system', relatedEntityId: task.sourceId }, ...event.timeline] }) }
+      }
+      const changes: Parameters<typeof markSyncDirty>[0] = {}
+      for (const collection of ['events', 'checklistItems', 'questions', 'tasks'] as const) {
+        const before = new Map(current[collection].map((item) => [item.id, item]))
+        changes[collection] = next[collection].filter((item) => before.get(item.id) !== item).map((item) => item.id)
+      }
+      saveAll(next); markSyncDirty(changes, undefined, now)
+      return next
+    }),
+    saveFloodEntries: (entries) => setData((current) => {
+      const merged = new Map(current.floodEntries.map((item) => [item.id, item]))
+      for (const item of entries) merged.set(item.id, item)
+      const next = { ...current, floodEntries: [...merged.values()] }
+      saveAll(next); markSyncDirty({ floodEntries: entries.map((item) => item.id) })
+      return next
+    }),
     addEvent: (event) => setData((current) => {
       const now = new Date().toISOString()
       const nextEvent = { ...event, createdAt: event.createdAt ?? now, updatedAt: now }

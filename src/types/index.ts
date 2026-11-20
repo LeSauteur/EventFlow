@@ -23,7 +23,33 @@ export type ServiceType =
   | 'event'
   | 'custom'
 
-export interface WorkChecklistItem {
+export type WorkTaskStatus = 'todo' | 'in_progress' | 'waiting' | 'done' | 'cancelled'
+export interface TaskFields {
+  priority?: Priority
+  manualHot?: boolean
+  deadline?: string | null
+  reminderAt?: string | null
+  timeZone?: string
+  tags?: string[]
+  taskStatus?: WorkTaskStatus
+  waitingFor?: string
+  waitingSince?: string
+  updatedAt?: string
+}
+
+export interface FloodEntry {
+  id: string
+  text: string
+  eventId: string | null
+  status: 'new' | 'processed' | 'archive' | 'deleted'
+  previousStatus?: 'new' | 'processed' | 'archive'
+  createdAt: string
+  updatedAt: string
+}
+
+export interface SavedTaskFilter { id: string; name: string; query: string; tag: string; priority: string; eventId: string; includeClosed: boolean }
+
+export interface WorkChecklistItem extends TaskFields {
   id: string
   title: string
   completed: boolean
@@ -41,9 +67,10 @@ export interface ServiceInstance {
   checklist: WorkChecklistItem[]
   notes: string
   collapsed?: boolean
+  updatedAt?: string
 }
 
-export interface WaitingItem {
+export interface WaitingItem extends TaskFields {
   id: string
   text: string
   completed: boolean
@@ -88,9 +115,14 @@ export interface Event {
   waitingItems: WaitingItem[]
   nextStep: string
   timeline: TimelineEntry[]
+  pinned?: boolean
+  tags?: string[]
+  timeZone?: string
+  nextStepTask?: TaskFields
+  removedServices?: Record<string, string>
 }
 
-export interface ChecklistItem {
+export interface ChecklistItem extends TaskFields {
   id: string
   eventId: string
   category: ChecklistCategory
@@ -105,7 +137,7 @@ export interface ChecklistItem {
   updatedAt: string
 }
 
-export interface OpenQuestion {
+export interface OpenQuestion extends TaskFields {
   id: string
   eventId: string
   title: string
@@ -126,6 +158,8 @@ export interface Task {
   deadline: string
   status: TaskStatus
   priority: 'Критичный' | 'Высокий'
+  details?: TaskFields
+  sourceKey?: string
 }
 
 export interface Risk {
@@ -205,6 +239,8 @@ export interface AppSettings {
   workdayEnd: string
   dateFormat: 'DD.MM.YYYY' | 'D MMM YYYY'
   lastBackupAt: string | null
+  timeZone?: string
+  savedTaskFilters?: SavedTaskFilter[]
 }
 
 export interface BackupPayload {
@@ -222,6 +258,7 @@ export interface BackupPayload {
     tasks: Task[]
     risks?: Risk[]
     settings: AppSettings
+    floodEntries?: FloodEntry[]
   }
 }
 

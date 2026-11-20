@@ -1,0 +1,121 @@
+.planning-page { padding: 30px; max-width: 1500px; margin: 0 auto; min-width: 0; }
+.planning-heading { display: flex; justify-content: space-between; align-items: start; gap: 20px; margin-bottom: 24px; }
+.planning-heading h1 { margin: 6px 0; font-size: clamp(1.8rem, 3vw, 2.5rem); }
+.planning-heading p { margin: 8px 0; color: #607294; line-height: 1.5; }
+.planning-eyebrow { color: #5877a6; font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.planning-links, .flood-actions { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.planning-page a, .registry-task a { color: #126bd0; }
+.planning-card { padding: 18px; margin: 14px 0; border: 1px solid #dce6f2; background: white; border-radius: 14px; min-width: 0; }
+.planning-card h2 { margin: 0 0 14px; font-size: 18px; }
+.planning-page input, .planning-page select, .registry-task input, .registry-task select, .flood-panel input, .flood-panel select, .flood-panel textarea, .flood-composer textarea { font: inherit; max-width: 100%; min-width: 0; }
+.planning-page label, .registry-task label, .flood-panel label { min-width: 0; }
+.planning-page input:not([type=checkbox]), .planning-page select, .registry-quick-controls input, .registry-task select, .registry-details input, .flood-filters input, .flood-filters select, .flood-entry select { width: 100%; border: 1px solid #cbd9e9; border-radius: 8px; padding: 9px 10px; color: #23395d; background: white; min-height: 38px; }
+.planning-page button, .flood-panel button, .flood-composer button, .event-planning-nav button { font: inherit; border: 1px solid #cedced; border-radius: 8px; background: #f5f9ff; color: #245c9e; padding: 8px 11px; min-height: 38px; cursor: pointer; }
+.planning-page .primary-button, .flood-panel .primary-button { background: #0877f9; color: white; }
+.planning-page button:disabled, .flood-panel button:disabled { opacity: .45; cursor: default; }
+.planning-main-nav { display: grid; gap: 6px; margin: 15px 0; }
+.planning-main-nav a { display: flex; align-items: center; gap: 10px; color: #244e7f; text-decoration: none; padding: 9px; border-radius: 8px; background: #f2f7fe; }
+.planning-main-nav b { margin-left: auto; font-size: 12px; }
+.notebook-shell.planning-shell { grid-template-columns: 188px minmax(0, 1fr); }
+.planning-shell .event-index { display: none; }
+.notebook-save-state.online p { color: #087d54; }
+.notebook-save-state.online p i { background: #0b9d6d; box-shadow: 0 0 0 3px #dcf7eb; }
+.notebook-nav { overflow-y: auto; }
+.pinned-events a { display: inline-block; padding: 7px 12px 7px 0; }
+.planning-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.planning-stats a { display: grid; gap: 8px; padding: 15px; border: 1px solid #dee7f3; border-radius: 12px; background: white; text-decoration: none; font-size: 13px; color: #50617e; }
+.planning-stats strong { font-size: 27px; color: #15365d; }
+.planning-stats a:first-child { background: #fff2ed; border-color: #f4d7c7; }
+.planning-filters, .calendar-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; }
+.planning-filters > label, .calendar-controls > label { flex: 1 1 140px; display: grid; gap: 6px; font-size: 12px; color: #52698b; }
+.planning-checkbox { display: inline-flex !important; align-items: center; gap: 8px; font-size: 13px; }
+.planning-checkbox input { width: 17px; height: 17px; }
+.saved-filters { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+.saved-filters > input { flex: 1 1 160px; width: auto !important; }
+.saved-filters span { display: inline-flex; }
+.planning-empty { color: #74839c; font-size: 13px; line-height: 1.6; }
+.task-bucket { scroll-margin-top: 15px; }
+.task-bucket > header { display: flex; justify-content: space-between; }
+.registry-task { border-top: 1px solid #e6edf5; padding: 14px 0; min-width: 0; }
+.registry-task-main { display: grid; grid-template-columns: 26px minmax(0, 1fr) 36px 36px; gap: 9px; align-items: start; }
+.registry-task-content { min-width: 0; }
+.registry-title { width: 100%; background: transparent !important; border: 0 !important; border-radius: 0 !important; color: #213b61; padding: 1px 0 !important; min-height: 25px !important; font: 600 14px/1.4 inherit; text-overflow: ellipsis; }
+.registry-title { font: inherit; font-size: 14px; line-height: 1.5; field-sizing: content; resize: vertical; overflow-wrap: anywhere; max-width: 100%; }
+.registry-task-content small { display: block; font-size: 11px; color: #76849d; line-height: 1.5; margin-top: 4px; }
+.registry-task button { width: auto; padding: 7px; border: 1px solid #d3e0ee; border-radius: 7px; display: grid; place-items: center; background: #f7faff; color: #557399; min-height: 34px; }
+.registry-task .registry-check { width: 24px; height: 24px; min-height: 24px; padding: 0; margin-top: 2px; background: white; }
+.registry-check.checked { color: white; border-color: #0b976b; background: #0b976b; }
+.registry-hot.active { color: #bd3c18; border-color: #f0c1a9; background: #fff0e8; }
+.registry-task.is-closed .registry-title { color: #7f8a9c; text-decoration: line-through; }
+.registry-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.registry-badges span { padding: 3px 6px; font-size: 11px; border-radius: 6px; color: #546d92; background: #edf3fb; }
+.registry-badges .badge-hot, .registry-badges .badge-overdue { color: #a93424; background: #fff0e9; }
+.registry-badges .badge-today { color: #805800; background: #fff4d6; }
+.registry-quick-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin: 10px 0 0 35px; }
+.registry-quick-controls label, .registry-details label { display: grid; gap: 4px; font-size: 11px; color: #647b9c; }
+.registry-quick-controls input, .registry-quick-controls select { font-size: 12px; padding: 7px; }
+.registry-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0 0 35px; padding: 12px; background: #f5f8fc; border-radius: 9px; }
+.task-composer { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.task-composer input, .task-composer select { flex: 1 1 150px; width: auto !important; border: 1px solid #cbd9e9; border-radius: 8px; padding: 9px; min-width: 0; font: inherit; }
+.event-planning-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.event-planning-nav button[aria-pressed=true], .planning-segments button[aria-pressed=true] { color: white; background: #1b6ac4; border-color: #1b6ac4; }
+.event-page .registry-title { font-size: 14px; }
+.event-page .registry-details { margin-left: 0; }
+.calendar-controls .planning-segments { display: flex; flex-wrap: wrap; gap: 5px; }
+.calendar-kinds { display: flex; flex-wrap: wrap; gap: 16px; width: 100%; font-size: 13px; }
+.calendar-kinds label { display: flex; align-items: center; gap: 6px; }
+.calendar-kinds i, .planning-calendar-grid i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #4082dc; flex: 0 0 auto; }
+.calendar-kinds i.cal-deadline, .cal-deadline i { background: #df7c35; }
+.calendar-kinds i.cal-reminder, .cal-reminder i { background: #9473ce; }
+.calendar-period { display: flex; align-items: center; gap: 9px; margin-bottom: 15px; }
+.calendar-period h2 { flex: 1; margin: 0; text-align: center; font-size: 17px; }
+.planning-calendar-grid, .planning-weekdays { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.planning-weekdays { text-align: center; color: #7a89a1; margin-bottom: 8px; font-size: 12px; }
+.planning-calendar-grid > button { min-height: 105px; text-align: left; align-self: stretch; min-width: 0; padding: 8px; background: #fafcff; }
+.planning-calendar-grid > button.selected { border: 2px solid #3776c2; }
+.planning-calendar-grid > button.is-today > strong { color: white; background: #126bd0; padding: 3px 6px; border-radius: 7px; }
+.planning-calendar-grid button span { font-size: 10px; display: flex; gap: 3px; align-items: center; overflow: hidden; margin-top: 6px; }
+.planning-calendar-grid b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.calendar-agenda { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 10px; }
+.calendar-agenda-item { display: grid; gap: 6px; padding: 13px 0; border-top: 1px solid #e6edf5; }
+.calendar-agenda-item > span { color: #607895; font-size: 11px; }
+.calendar-agenda-item.cal-deadline > span { color: #a85819; }
+.calendar-agenda-item.cal-reminder > span { color: #7d4ab9; }
+.calendar-agenda-item > button { text-align: left; font-size: 14px; background: #f5f8fc; overflow-wrap: anywhere; }
+.calendar-agenda-item small { color: #6f809c; }
+.flood-composer { margin: 14px 0; padding: 16px; border: 1px solid #cbdff6; background: #f7faff; border-radius: 13px; min-width: 0; }
+.flood-composer label { display: grid; gap: 10px; }
+.flood-composer textarea, .flood-entry textarea, .flood-panel textarea { width: 100%; min-height: 160px; resize: vertical; padding: 12px; border: 1px solid #cbd9ea; border-radius: 9px; color: #243a5b; background: white; font: 14px/1.6 inherit; white-space: pre-wrap; }
+.flood-composer .flood-actions { margin-top: 9px; }
+.flood-composer small { color: #6f82a0; font-size: 11px; }
+.flood-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.flood-filters > input, .flood-filters > select { flex: 1 1 170px; width: auto; }
+.flood-entry header { margin-bottom: 10px; color: #6f8098; font-size: 12px; }
+.flood-entry .flood-actions > label:not(.planning-checkbox) { display: grid; gap: 4px; flex: 1 1 170px; font-size: 11px; color: #687e9b; }
+.flood-entry footer { justify-content: flex-start; margin-top: 12px; }
+@media (max-width: 1100px) { .planning-page { padding: 22px 16px; } .planning-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } .planning-calendar-grid > button { min-height: 70px; } .planning-calendar-grid b { display: none; } }
+@media (max-width: 760px) {
+  .planning-page { padding: 18px 12px 30px; width: 100%; }
+  .planning-heading { flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .planning-card { padding: 13px; }
+  .planning-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .planning-stats a { padding: 12px; }
+  .planning-stats a:last-child { grid-column: 1 / -1; }
+  .registry-quick-controls { margin-left: 0; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .registry-quick-controls label:last-child { grid-column: 1 / -1; }
+  .registry-quick-controls select, .registry-quick-controls input { padding: 8px 6px; font-size: 14px; min-height: 42px; }
+  .registry-details { margin-left: 0; grid-template-columns: 1fr; }
+  .registry-task-main { grid-template-columns: 24px minmax(0, 1fr) 32px 32px; gap: 6px; }
+  .registry-title { font-size: 14px !important; }
+  .calendar-period { flex-wrap: wrap; }
+  .calendar-period h2 { font-size: 15px; }
+  .planning-calendar-grid { gap: 3px; }
+  .planning-calendar-grid > button { min-height: 58px; padding: 5px; }
+  .planning-calendar-grid button span { display: inline-flex; margin: 3px 2px 0 0; }
+  .calendar-controls > label { flex-basis: 100%; }
+  .flood-entry footer button { flex: 1 1 120px; font-size: 12px; }
+  .planning-main-nav { display: flex; flex-wrap: wrap; }
+  .planning-main-nav a { font-size: 13px; }
+  .event-page .registry-quick-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .notebook-secondary-nav { display: flex; flex-wrap: wrap; gap: 12px; }
+}

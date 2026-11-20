@@ -7,6 +7,7 @@ import { SyncProvider } from './hooks/useSync.tsx'
 import { ToastProvider } from './hooks/useToast.tsx'
 import { ErrorBoundary } from './components/ErrorBoundary.tsx'
 import './styles.css'
+import './planning.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
