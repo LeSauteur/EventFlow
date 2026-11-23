@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-19T19:48:00.321Z",
+  "updated_at": "2026-11-23T13:05:15.767Z",
   "data": {
     "events": [
       {
@@ -806,17 +806,17 @@
             "source": "system"
           },
           {
-            "id": "onenote-f5nyb9b9lxs-timeline-1",
-            "eventId": "onenote-f5nyb9b9lxs",
-            "text": "Направлены предложения по отелям",
-            "timestamp": "2026-07-07T12:00:00.000Z",
-            "source": "user"
-          },
-          {
             "id": "onenote-f5nyb9b9lxs-timeline-2",
             "eventId": "onenote-f5nyb9b9lxs",
             "text": "В OneNote в названии страницы указано «28.09–02.10», а в паспорте — «15–18 сентября 2026». В EventFlow сохранены обе исходные записи: название страницы и даты паспорта.",
             "timestamp": "2026-09-29T18:00:00.000Z",
+            "source": "user"
+          },
+          {
+            "id": "onenote-f5nyb9b9lxs-timeline-1",
+            "eventId": "onenote-f5nyb9b9lxs",
+            "text": "Направлены предложения по отелям",
+            "timestamp": "2026-07-07T12:00:00.000Z",
             "source": "user"
           }
         ]
@@ -4840,6 +4840,333 @@
             "source": "system"
           }
         ]
+      },
+      {
+        "id": "event-1795119829311",
+        "title": "27 ноя Горынина/ Немсицверидзе",
+        "client": "",
+        "city": "Москва",
+        "date": "2026-11-26",
+        "guests": 1,
+        "budget": 0,
+        "type": "Вистакон",
+        "status": "PO",
+        "progress": 0,
+        "createdAt": "2026-11-19T20:23:49.311Z",
+        "updatedAt": "2026-11-19T20:29:56.495Z",
+        "dateFrom": "2026-11-26",
+        "dateTo": "2026-11-27",
+        "sector": "Вистакон",
+        "company": "",
+        "initiator": "Сиротина Ксения",
+        "participants": 1,
+        "stage": "PO",
+        "services": [
+          {
+            "id": "service-1795119829311-ffac4e89ed9cc",
+            "eventId": "event-1795119829311",
+            "type": "rail",
+            "title": "ЖД билеты",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-rail-1795119829311-60ab242e3c71e-0",
+                "title": "Данные пассажиров получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1795119829311-a1731b8107ca7-1",
+                "title": "Варианты получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1795119829311-18d945cfe91bd-2",
+                "title": "Согласовано",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1795119829311-dc658ab9fe33a8-3",
+                "title": "Билеты оформлены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-rail-1795119829311-335c431fdfc07-4",
+                "title": "Билеты отправлены",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          },
+          {
+            "id": "service-1795119829311-e2e3bf37e3096",
+            "eventId": "event-1795119829311",
+            "type": "transfer",
+            "title": "Трансфер",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-transfer-1795119829311-cb3ab258a8e25-0",
+                "title": "Данные пассажиров получены",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795119829311-ca074d3ba38468-1",
+                "title": "Запрос направлен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795119829311-336271d63453b-2",
+                "title": "Предложение / подтверждение",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795119829311-fdd14b18ec0ab8-3",
+                "title": "ССЗ получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795119829311-2b3a62bea95098-4",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-transfer-1795119829311-b354ed03e882c-5",
+                "title": "Ваучер получен / отправлен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          }
+        ],
+        "commonChecklist": [
+          {
+            "id": "common-1795119829311-78e3fc4d8c539-0",
+            "title": "Смета предварительная направлена",
+            "completed": true,
+            "completedAt": "2026-11-19T20:23:55.380Z"
+          },
+          {
+            "id": "common-1795119829311-e6a3e8ef5a3808-1",
+            "title": "PO получено",
+            "completed": true,
+            "completedAt": "2026-11-19T20:23:56.650Z"
+          },
+          {
+            "id": "common-1795119829311-457d6df1942f98-2",
+            "title": "Смета в WORK",
+            "completed": true,
+            "completedAt": "2026-11-19T20:26:15.060Z"
+          },
+          {
+            "id": "common-1795119829311-8a232bdb8c0d28-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          }
+        ],
+        "workTourNumbers": [
+          "RUS261126207",
+          "RUS261126208"
+        ],
+        "waitingItems": [],
+        "nextStep": "",
+        "timeline": [
+          {
+            "id": "timeline-1795120196495-c674edd2299688",
+            "eventId": "event-1795119829311",
+            "text": "Добавлен номер тура RUS261126208",
+            "timestamp": "2026-11-19T20:29:56.495Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795119976414-75e8e75ba4fea8",
+            "eventId": "event-1795119829311",
+            "text": "Добавлен номер тура RUS261126207",
+            "timestamp": "2026-11-19T20:26:16.414Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795119975060-124eeb1e6bef08",
+            "eventId": "event-1795119829311",
+            "text": "Смета в WORK: готово",
+            "timestamp": "2026-11-19T20:26:15.060Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795119836650-0a38874249a7d",
+            "eventId": "event-1795119829311",
+            "text": "PO получено: готово",
+            "timestamp": "2026-11-19T20:23:56.650Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795119835380-8513f233156248",
+            "eventId": "event-1795119829311",
+            "text": "Смета предварительная направлена: готово",
+            "timestamp": "2026-11-19T20:23:55.381Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795119831999-dbfe5bc4174af",
+            "eventId": "event-1795119829311",
+            "text": "Стадия изменена: PO",
+            "timestamp": "2026-11-19T20:23:51.999Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795119829311",
+            "eventId": "event-1795119829311",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-19T20:23:49.311Z",
+            "source": "system"
+          }
+        ]
+      },
+      {
+        "id": "event-1795118056599",
+        "title": "27 ноя  LJNL2K7YNF2",
+        "client": "",
+        "city": "Вологда",
+        "date": "2026-11-27",
+        "guests": 15,
+        "budget": 0,
+        "type": "Янсен",
+        "status": "PO",
+        "progress": 0,
+        "createdAt": "2026-11-19T19:54:16.599Z",
+        "updatedAt": "2026-11-19T19:59:21.830Z",
+        "dateFrom": "2026-11-27",
+        "dateTo": "2026-11-27",
+        "sector": "Янсен",
+        "company": "",
+        "initiator": "Кондратьева Наталья",
+        "participants": 15,
+        "stage": "PO",
+        "services": [
+          {
+            "id": "service-1795118056599-73c79eb4ce86",
+            "eventId": "event-1795118056599",
+            "type": "venue",
+            "title": "Конференц-зал / площадка",
+            "providerName": "Николаевскский",
+            "providerContact": "",
+            "notes": "",
+            "checklist": [
+              {
+                "id": "service-venue-1795118056599-54b5dce3b007d-0",
+                "title": "Запрос направлен",
+                "completed": true,
+                "completedAt": "2026-11-19T19:54:20.676Z"
+              },
+              {
+                "id": "service-venue-1795118056599-d607399a2dfff8-1",
+                "title": "Предложение получено",
+                "completed": true,
+                "completedAt": "2026-11-19T19:54:21.412Z"
+              },
+              {
+                "id": "service-venue-1795118056599-20c5544118922-2",
+                "title": "Подтверждение",
+                "completed": true,
+                "completedAt": "2026-11-19T19:54:22.278Z"
+              },
+              {
+                "id": "service-venue-1795118056599-324c622fe3dad-3",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
+          }
+        ],
+        "commonChecklist": [
+          {
+            "id": "common-1795118056599-4f91234e6d98-0",
+            "title": "Смета предварительная направлена",
+            "completed": true,
+            "completedAt": "2026-11-19T19:57:45.430Z"
+          },
+          {
+            "id": "common-1795118056599-9db889c3e2bc68-1",
+            "title": "PO получено",
+            "completed": true,
+            "completedAt": "2026-11-19T19:59:21.830Z"
+          },
+          {
+            "id": "common-1795118056599-aea74ebcffbe88-2",
+            "title": "Смета в WORK",
+            "completed": true,
+            "completedAt": "2026-11-19T19:57:46.046Z"
+          },
+          {
+            "id": "common-1795118056599-8cc9c9486de9a-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          }
+        ],
+        "workTourNumbers": [
+          "RUS261127160"
+        ],
+        "waitingItems": [],
+        "nextStep": "",
+        "timeline": [
+          {
+            "id": "timeline-1795118361830-485a872b2497a8",
+            "eventId": "event-1795118056599",
+            "text": "PO получено: готово",
+            "timestamp": "2026-11-19T19:59:21.830Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795118360948-35bab66d4be9f",
+            "eventId": "event-1795118056599",
+            "text": "Добавлен номер тура RUS261127160",
+            "timestamp": "2026-11-19T19:59:20.948Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795118266046-07aff9e600d31",
+            "eventId": "event-1795118056599",
+            "text": "Смета в WORK: готово",
+            "timestamp": "2026-11-19T19:57:46.046Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795118265430-aaaf25eded435",
+            "eventId": "event-1795118056599",
+            "text": "Смета предварительная направлена: готово",
+            "timestamp": "2026-11-19T19:57:45.430Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795118264314-b1fe9850164e28",
+            "eventId": "event-1795118056599",
+            "text": "Стадия изменена: PO",
+            "timestamp": "2026-11-19T19:57:44.314Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795118056599",
+            "eventId": "event-1795118056599",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-19T19:54:16.599Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -4940,6 +5267,22 @@
         "description": "18-19 дек Красноярск K2NDGQ7BTND",
         "id": "activity-1795116448471-bf61c2e40e28c8",
         "timestamp": "2026-11-19T19:27:28.471Z"
+      },
+      {
+        "eventId": "event-1795119829311",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "27 ноя Горынина",
+        "id": "activity-1795119829311-6d6081428c59b",
+        "timestamp": "2026-11-19T20:23:49.311Z"
+      },
+      {
+        "eventId": "event-1795118056599",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "27 ноя  LJNL2K7YNF2",
+        "id": "activity-1795118056599-fc563664a1815",
+        "timestamp": "2026-11-19T19:54:16.599Z"
       }
     ],
     "checklistItems": [],
@@ -5071,7 +5414,8 @@
         "updatedAt": "2026-10-02T12:06:52.211Z"
       }
     ],
-    "budgets": []
+    "budgets": [],
+    "floodEntries": []
   },
   "record_versions": {
     "events": {
@@ -5102,7 +5446,9 @@
       "event-1794911675874": "2026-11-19T10:46:50.734Z",
       "event-1794919578755": "2026-11-19T18:58:09.227Z",
       "event-1795026590553": "2026-11-19T17:23:17.672Z",
-      "event-1795116448471": "2026-11-19T19:27:47.584Z"
+      "event-1795116448471": "2026-11-19T19:27:47.584Z",
+      "event-1795119829311": "2026-11-19T20:29:56.495Z",
+      "event-1795118056599": "2026-11-19T19:59:21.830Z"
     },
     "tasks": {},
     "risks": {},
@@ -5118,7 +5464,9 @@
       "activity-1794911675874-ade07af5525f3": "2026-11-17T10:34:35.874Z",
       "activity-1794919578755-c7372d61500be": "2026-11-17T12:46:18.755Z",
       "activity-1795026590554-e995b701aeff68": "2026-11-18T18:29:50.554Z",
-      "activity-1795116448471-bf61c2e40e28c8": "2026-11-19T19:27:28.471Z"
+      "activity-1795116448471-bf61c2e40e28c8": "2026-11-19T19:27:28.471Z",
+      "activity-1795119829311-6d6081428c59b": "2026-11-19T20:23:49.311Z",
+      "activity-1795118056599-fc563664a1815": "2026-11-19T19:54:16.599Z"
     },
     "checklistItems": {},
     "questions": {},
@@ -5135,7 +5483,8 @@
       "template-9": "2026-10-02T12:06:52.226Z",
       "template-10": "2026-10-02T12:06:52.226Z"
     },
-    "budgets": {}
+    "budgets": {},
+    "floodEntries": {}
   },
   "tombstones": {
     "events": [
@@ -6158,6 +6507,7 @@
         "id": "event-1790322134993",
         "deleted_at": "2026-10-02T12:06:52.226Z"
       }
-    ]
+    ],
+    "floodEntries": []
   }
 }
