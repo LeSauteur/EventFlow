@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T08:53:54.706Z",
+  "updated_at": "2026-11-24T12:35:08.788Z",
   "data": {
     "events": [
       {
@@ -3566,7 +3566,7 @@
         "status": "PO",
         "progress": 0,
         "createdAt": "2026-11-17T10:08:18.923Z",
-        "updatedAt": "2026-11-24T07:54:30.531Z",
+        "updatedAt": "2026-11-24T12:35:08.240Z",
         "dateFrom": "2026-11-27",
         "dateTo": "2026-11-27",
         "sector": "Янсен",
@@ -3664,7 +3664,7 @@
             "title": "ЖД билеты",
             "providerName": "",
             "providerContact": "",
-            "notes": "",
+            "notes": "ГОТОВО",
             "checklist": [
               {
                 "id": "service-rail-1794910098923-7cc8638b114c1-0",
@@ -3696,7 +3696,8 @@
                 "completed": true,
                 "completedAt": "2026-11-17T11:16:37.932Z"
               }
-            ]
+            ],
+            "updatedAt": "2026-11-24T12:34:59.664Z"
           },
           {
             "id": "service-1794990516745-bbe3052aaef138",
@@ -3722,14 +3723,18 @@
               {
                 "id": "service-transfer-1794990516745-c844d2d59548a-2",
                 "title": "Предложение / подтверждение",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-24T12:35:05.223Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T12:35:05.223Z"
               },
               {
                 "id": "service-transfer-1794990516745-3f8eb0fc0ae588-3",
                 "title": "ССЗ получено",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-24T12:35:07.524Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T12:35:07.524Z"
               },
               {
                 "id": "service-transfer-1794990516745-e317a12816dcf8-4",
@@ -3740,10 +3745,13 @@
               {
                 "id": "service-transfer-1794990516745-4200293aad857-5",
                 "title": "Ваучер получен / отправлен",
-                "completed": false,
-                "completedAt": null
+                "completed": true,
+                "completedAt": "2026-11-24T12:35:08.240Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T12:35:08.240Z"
               }
-            ]
+            ],
+            "updatedAt": "2026-11-24T12:35:08.240Z"
           }
         ],
         "commonChecklist": [
@@ -5701,7 +5709,7 @@
       "event-1794907902544": "2026-11-18T17:11:23.606Z",
       "event-1794907587508": "2026-11-18T17:09:06.263Z",
       "event-1794906841774": "2026-11-18T18:28:52.026Z",
-      "event-1794910098923": "2026-11-24T07:54:30.531Z",
+      "event-1794910098923": "2026-11-24T12:35:08.240Z",
       "event-1794911675874": "2026-11-24T08:53:08.636Z",
       "event-1794919578755": "2026-11-19T18:58:09.227Z",
       "event-1795026590553": "2026-11-24T08:53:47.692Z",
