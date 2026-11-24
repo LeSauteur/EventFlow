@@ -1,4 +1,5 @@
 export type EventStage = 'WORKING' | 'PO' | 'PROCESSING' | 'ARCHIVE'
+export type EventAttention = 'important' | 'urgent' | 'hot'
 export type EventStatus = 'В работе' | 'PO' | 'Процессинг' | 'Архив' | 'Согласование' | 'В подготовке'
 export type TaskStatus = 'Просрочено' | 'Сегодня' | 'Ожидаем'
 export type RiskSeverity = 'Высокий' | 'Средний'
@@ -116,6 +117,7 @@ export interface Event {
   nextStep: string
   timeline: TimelineEntry[]
   pinned?: boolean
+  attentionFlags?: EventAttention[]
   tags?: string[]
   timeZone?: string
   nextStepTask?: TaskFields

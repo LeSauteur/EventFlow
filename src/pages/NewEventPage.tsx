@@ -26,7 +26,8 @@ export function NewEventPage() {
       initiator: form.initiator.trim(), participants: Number(form.participants), guests: Number(form.participants),
       stage: 'WORKING', status: 'В работе', type: form.sector.trim() || 'Мероприятие', nextStep: '',
     })
-    created.services = services.map((type) => createServiceInstance(id, type))
+    created.commonChecklist = []
+    created.services = services.map((type) => ({ ...createServiceInstance(id, type), checklist: [] }))
     created.timeline = [{ id: `timeline-${Date.now()}`, eventId: id, text: 'Создана рабочая страница мероприятия', timestamp: new Date().toISOString(), source: 'system' }]
     addEvent(created)
     showToast('Мероприятие создано')
