@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-23T13:05:15.767Z",
+  "updated_at": "2026-11-24T07:53:37.127Z",
   "data": {
     "events": [
       {
@@ -5415,7 +5415,16 @@
       }
     ],
     "budgets": [],
-    "floodEntries": []
+    "floodEntries": [
+      {
+        "id": "b4318fe6-5606-4ce6-bec3-448392d1c72f",
+        "text": "Казань перенос",
+        "eventId": "event-1794904828746",
+        "status": "new",
+        "createdAt": "2026-11-24T07:05:56.929Z",
+        "updatedAt": "2026-11-24T07:06:26.192Z"
+      }
+    ]
   },
   "record_versions": {
     "events": {
@@ -5484,7 +5493,9 @@
       "template-10": "2026-10-02T12:06:52.226Z"
     },
     "budgets": {},
-    "floodEntries": {}
+    "floodEntries": {
+      "b4318fe6-5606-4ce6-bec3-448392d1c72f": "2026-11-24T07:06:26.193Z"
+    }
   },
   "tombstones": {
     "events": [
