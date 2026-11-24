@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T07:55:53.021Z",
+  "updated_at": "2026-11-24T07:57:08.149Z",
   "data": {
     "events": [
       {
@@ -5169,6 +5169,82 @@
             "source": "system"
           }
         ]
+      },
+      {
+        "id": "event-1795507014793",
+        "title": "17-18 дек  ZBN5C9MSKLL",
+        "dateFrom": "2026-12-17",
+        "dateTo": "2026-12-18",
+        "sector": "Амджен",
+        "city": "Красноярск",
+        "company": "Амджен",
+        "client": "Амджен",
+        "initiator": "Ольга Лесникова",
+        "participants": 1,
+        "guests": 1,
+        "stage": "PO",
+        "status": "PO",
+        "type": "Амджен",
+        "nextStep": "",
+        "date": "2026-12-17",
+        "budget": 0,
+        "progress": 0,
+        "createdAt": "2026-11-24T07:56:54.793Z",
+        "updatedAt": "2026-11-24T07:56:58.777Z",
+        "services": [
+          {
+            "id": "service-1795507014793-a5bc16dcfda968",
+            "eventId": "event-1795507014793",
+            "type": "accommodation",
+            "title": "Проживание",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T07:56:54.793Z",
+            "checklist": []
+          },
+          {
+            "id": "service-1795507014793-918b4a38c6cea8",
+            "eventId": "event-1795507014793",
+            "type": "flights",
+            "title": "Авиабилеты",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T07:56:54.793Z",
+            "checklist": []
+          },
+          {
+            "id": "service-1795507014793-715506d1020bb8",
+            "eventId": "event-1795507014793",
+            "type": "transfer",
+            "title": "Трансфер",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T07:56:54.793Z",
+            "checklist": []
+          }
+        ],
+        "commonChecklist": [],
+        "workTourNumbers": [],
+        "waitingItems": [],
+        "timeline": [
+          {
+            "id": "timeline-1795507018777-571101837b2288",
+            "eventId": "event-1795507014793",
+            "text": "Стадия изменена: PO",
+            "timestamp": "2026-11-24T07:56:58.777Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795507014793",
+            "eventId": "event-1795507014793",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-24T07:56:54.793Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -5285,6 +5361,14 @@
         "description": "27 ноя  LJNL2K7YNF2",
         "id": "activity-1795118056599-fc563664a1815",
         "timestamp": "2026-11-19T19:54:16.599Z"
+      },
+      {
+        "eventId": "event-1795507014793",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "17-18 дек  ZBN5C9MSKLL",
+        "id": "activity-1795507014793-c53f39467acdb8",
+        "timestamp": "2026-11-24T07:56:54.793Z"
       }
     ],
     "checklistItems": [],
@@ -5459,7 +5543,8 @@
       "event-1795026590553": "2026-11-19T17:23:17.672Z",
       "event-1795116448471": "2026-11-24T07:55:52.441Z",
       "event-1795119829311": "2026-11-19T20:29:56.495Z",
-      "event-1795118056599": "2026-11-19T19:59:21.830Z"
+      "event-1795118056599": "2026-11-19T19:59:21.830Z",
+      "event-1795507014793": "2026-11-24T07:56:58.777Z"
     },
     "tasks": {},
     "risks": {},
@@ -5477,7 +5562,8 @@
       "activity-1795026590554-e995b701aeff68": "2026-11-18T18:29:50.554Z",
       "activity-1795116448471-bf61c2e40e28c8": "2026-11-19T19:27:28.471Z",
       "activity-1795119829311-6d6081428c59b": "2026-11-19T20:23:49.311Z",
-      "activity-1795118056599-fc563664a1815": "2026-11-19T19:54:16.599Z"
+      "activity-1795118056599-fc563664a1815": "2026-11-19T19:54:16.599Z",
+      "activity-1795507014793-c53f39467acdb8": "2026-11-24T07:56:54.793Z"
     },
     "checklistItems": {},
     "questions": {},
