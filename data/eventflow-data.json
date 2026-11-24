@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T19:58:41.566Z",
+  "updated_at": "2026-11-24T20:02:50.621Z",
   "data": {
     "events": [
       {
@@ -5593,23 +5593,56 @@
         "stage": "WORKING",
         "status": "В работе",
         "type": "Медтех",
-        "nextStep": "",
+        "nextStep": "Кейтерингу новую дату",
         "date": "2026-10-11",
         "budget": 0,
         "progress": 0,
         "createdAt": "2026-11-24T19:58:39.309Z",
-        "updatedAt": "2026-11-24T19:58:39.310Z",
+        "updatedAt": "2026-11-24T20:02:47.860Z",
         "services": [
           {
             "id": "service-1795550319309-5e7193ac0793b",
             "eventId": "event-1795550319309",
             "type": "accommodation",
             "title": "Проживание",
-            "providerName": "",
+            "providerName": "\"CORT INN Казань Кремль Отель».",
             "providerContact": "",
-            "notes": "",
-            "updatedAt": "2026-11-24T19:58:39.309Z",
-            "checklist": []
+            "notes": "Перенос на 10-11.12\nЖду инфу по меню/депозиту\n\nУжин 10.12 - лимит 4000\nОбед 11.12 - лимит 3000",
+            "updatedAt": "2026-11-24T20:01:32.644Z",
+            "checklist": [
+              {
+                "id": "service-1795550437437-782fcdf4022e38-0",
+                "title": "Запрос направлен",
+                "completed": true,
+                "completedAt": "2026-11-24T20:00:39.143Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T20:00:39.143Z"
+              },
+              {
+                "id": "service-1795550437437-eac36aa285e3c-1",
+                "title": "Предложение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-1795550437437-ab11296efc284-2",
+                "title": "Подтверждение получено",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-1795550437437-172b3f3dcac14-3",
+                "title": "Счёт получен",
+                "completed": false,
+                "completedAt": null
+              },
+              {
+                "id": "service-1795550437437-1ece9da5689cd8-4",
+                "title": "Ваучер получен / отправлен",
+                "completed": false,
+                "completedAt": null
+              }
+            ]
           },
           {
             "id": "service-1795550319309-66492a0042af28",
@@ -5627,10 +5660,10 @@
             "eventId": "event-1795550319309",
             "type": "flights",
             "title": "Авиабилеты",
-            "providerName": "",
-            "providerContact": "",
-            "notes": "",
-            "updatedAt": "2026-11-24T19:58:39.309Z",
+            "providerName": "АС Медиа",
+            "providerContact": "Айгуль",
+            "notes": "Оплачено. ",
+            "updatedAt": "2026-11-24T20:02:47.779Z",
             "checklist": []
           },
           {
@@ -5645,10 +5678,96 @@
             "checklist": []
           }
         ],
-        "commonChecklist": [],
-        "workTourNumbers": [],
-        "waitingItems": [],
+        "commonChecklist": [
+          {
+            "id": "common-1795550385817-653dffe403fc6-0",
+            "title": "Смета предварительная направлена",
+            "completed": true,
+            "completedAt": "2026-11-24T19:59:47.375Z",
+            "taskStatus": "done",
+            "updatedAt": "2026-11-24T19:59:47.375Z"
+          },
+          {
+            "id": "common-1795550385817-f6f7e48010ea88-1",
+            "title": "PO получено",
+            "completed": true,
+            "completedAt": "2026-11-24T19:59:49.282Z",
+            "taskStatus": "done",
+            "updatedAt": "2026-11-24T19:59:49.282Z"
+          },
+          {
+            "id": "common-1795550385817-08e6ccd14740f8-2",
+            "title": "Смета в WORK",
+            "completed": true,
+            "completedAt": "2026-11-24T19:59:50.517Z",
+            "taskStatus": "done",
+            "updatedAt": "2026-11-24T19:59:50.517Z"
+          },
+          {
+            "id": "common-1795550385817-00c7e4064ddb2-3",
+            "title": "Предварительный счёт",
+            "completed": false,
+            "completedAt": null
+          },
+          {
+            "id": "common-1795550399193-2bc37f2f4062f8",
+            "title": "Трансфер",
+            "completed": false,
+            "updatedAt": "2026-11-24T19:59:59.193Z"
+          },
+          {
+            "id": "common-1795550407777-b09cb51038cb7",
+            "title": "Питание",
+            "completed": false,
+            "updatedAt": "2026-11-24T20:00:07.777Z"
+          },
+          {
+            "id": "common-1795550415227-2ac9276bdf9a48",
+            "title": "Авиабилеты выкуплены",
+            "completed": false,
+            "updatedAt": "2026-11-24T20:00:15.227Z"
+          }
+        ],
+        "workTourNumbers": [
+          "RUS261113098"
+        ],
+        "waitingItems": [
+          {
+            "id": "waiting-1795550332209-5b5c6de15e2dd8",
+            "text": "Подтверждениее новой даты Отель",
+            "completed": false,
+            "createdAt": "2026-11-24T19:58:52.209Z"
+          }
+        ],
         "timeline": [
+          {
+            "id": "timeline-1795550390517-f18b11ee1c258",
+            "eventId": "event-1795550319309",
+            "text": "Смета в WORK: готово",
+            "timestamp": "2026-11-24T19:59:50.517Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795550389282-3e28a5db85d0a8",
+            "eventId": "event-1795550319309",
+            "text": "PO получено: готово",
+            "timestamp": "2026-11-24T19:59:49.282Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795550387375-55b17b4960c33",
+            "eventId": "event-1795550319309",
+            "text": "Смета предварительная направлена: готово",
+            "timestamp": "2026-11-24T19:59:47.375Z",
+            "source": "system"
+          },
+          {
+            "id": "timeline-1795550380376-fa4d36af47a03",
+            "eventId": "event-1795550319309",
+            "text": "Добавлен номер тура RUS261113098",
+            "timestamp": "2026-11-24T19:59:40.376Z",
+            "source": "system"
+          },
           {
             "id": "timeline-1795550319309",
             "eventId": "event-1795550319309",
@@ -5656,6 +5775,13 @@
             "timestamp": "2026-11-24T19:58:39.309Z",
             "source": "system"
           }
+        ],
+        "nextStepTask": {
+          "taskStatus": "todo",
+          "updatedAt": "2026-11-24T19:59:05.461Z"
+        },
+        "attentionFlags": [
+          "important"
         ]
       }
     ],
@@ -5991,7 +6117,7 @@
       "event-1795507014793": "2026-11-24T07:58:39.438Z",
       "event-1795510234103": "2026-11-24T08:52:49.496Z",
       "event-1795548261009": "2026-11-24T19:26:14.644Z",
-      "event-1795550319309": "2026-11-24T19:58:39.310Z"
+      "event-1795550319309": "2026-11-24T20:02:47.860Z"
     },
     "tasks": {},
     "risks": {},
