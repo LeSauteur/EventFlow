@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T08:00:23.105Z",
+  "updated_at": "2026-11-24T08:50:39.714Z",
   "data": {
     "events": [
       {
@@ -5305,6 +5305,53 @@
           "taskStatus": "todo",
           "updatedAt": "2026-11-24T07:58:39.438Z"
         }
+      },
+      {
+        "id": "event-1795510234103",
+        "title": "15 дек Z5NVRDTC7Q8_сотрудники",
+        "dateFrom": "2026-12-15",
+        "dateTo": "2026-12-15",
+        "sector": "Янсен",
+        "city": "Москва",
+        "company": "",
+        "client": "",
+        "initiator": "Табак Алена",
+        "participants": 15,
+        "guests": 15,
+        "stage": "WORKING",
+        "status": "В работе",
+        "type": "Янсен",
+        "nextStep": "",
+        "date": "2026-12-15",
+        "budget": 0,
+        "progress": 0,
+        "createdAt": "2026-11-24T08:50:34.103Z",
+        "updatedAt": "2026-11-24T08:50:34.103Z",
+        "services": [
+          {
+            "id": "service-1795510234103-156fa03570279",
+            "eventId": "event-1795510234103",
+            "type": "event",
+            "title": "Мероприятие",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T08:50:34.103Z",
+            "checklist": []
+          }
+        ],
+        "commonChecklist": [],
+        "workTourNumbers": [],
+        "waitingItems": [],
+        "timeline": [
+          {
+            "id": "timeline-1795510234103",
+            "eventId": "event-1795510234103",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-24T08:50:34.103Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -5429,6 +5476,14 @@
         "description": "17-18 дек  ZBN5C9MSKLL",
         "id": "activity-1795507014793-c53f39467acdb8",
         "timestamp": "2026-11-24T07:56:54.793Z"
+      },
+      {
+        "eventId": "event-1795510234103",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "15 дек Z5NVRDTC7Q8_сотрудники",
+        "id": "activity-1795510234103-87afe4ac9501e",
+        "timestamp": "2026-11-24T08:50:34.103Z"
       }
     ],
     "checklistItems": [],
@@ -5604,7 +5659,8 @@
       "event-1795116448471": "2026-11-24T07:55:52.441Z",
       "event-1795119829311": "2026-11-19T20:29:56.495Z",
       "event-1795118056599": "2026-11-19T19:59:21.830Z",
-      "event-1795507014793": "2026-11-24T07:58:39.438Z"
+      "event-1795507014793": "2026-11-24T07:58:39.438Z",
+      "event-1795510234103": "2026-11-24T08:50:34.103Z"
     },
     "tasks": {},
     "risks": {},
@@ -5623,7 +5679,8 @@
       "activity-1795116448471-bf61c2e40e28c8": "2026-11-19T19:27:28.471Z",
       "activity-1795119829311-6d6081428c59b": "2026-11-19T20:23:49.311Z",
       "activity-1795118056599-fc563664a1815": "2026-11-19T19:54:16.599Z",
-      "activity-1795507014793-c53f39467acdb8": "2026-11-24T07:56:54.793Z"
+      "activity-1795507014793-c53f39467acdb8": "2026-11-24T07:56:54.793Z",
+      "activity-1795510234103-87afe4ac9501e": "2026-11-24T08:50:34.103Z"
     },
     "checklistItems": {},
     "questions": {},
