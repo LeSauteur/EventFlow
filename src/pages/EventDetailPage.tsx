@@ -3,7 +3,8 @@ import { type FormEvent, useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { COMMON_CHECKLIST_TITLES, createWorkChecklist, createServiceInstance, SERVICE_PRESETS, serviceProviderLabel, stageToStatus, STAGES } from '../config/servicePresets.ts'
 import { FloodPanel } from '../components/FloodPanel.tsx'
-import { EventFlags } from '../components/EventFlags.tsx'
+import { EventFlags, EventMarks } from '../components/EventFlags.tsx'
+import { EventDeadlines, EventDeadlineSummary } from '../components/EventDeadlines.tsx'
 import { CompactTaskRow } from '../components/CompactTaskRow.tsx'
 import { taskRegistry } from '../services/taskRegistry.ts'
 import { useEventFlowData } from '../hooks/useEventFlowData.tsx'
@@ -133,10 +134,11 @@ export function EventDetailPage() {
     <div className="event-planning-nav"><button aria-pressed={view === 'work'} onClick={() => setView('work')}>Работа</button><button aria-pressed={view === 'flood'} onClick={() => setView('flood')}>Флуд · {data.floodEntries.filter((entry) => entry.eventId === id && entry.status === 'new').length}</button></div>
     {view === 'flood' ? <><h1>{event.title} · Флуд</h1><FloodPanel eventId={event.id} /></> : <>
     <header className="event-page-header">
-      <div><p>{formatEventDate(event)}</p><input className="event-title-input" key={`${event.id}-title`} defaultValue={event.title} onBlur={(e) => e.target.value.trim() && patchPassport('title', e.target.value.trim())} aria-label="Название мероприятия" /></div>
+      <div><p>{formatEventDate(event)}</p><div className="event-detail-name"><input className="event-title-input" key={`${event.id}-title`} defaultValue={event.title} onBlur={(e) => e.target.value.trim() && patchPassport('title', e.target.value.trim())} aria-label="Название мероприятия" /><EventMarks event={event} /></div></div>
       <div className="event-header-actions"><div className="stage-and-progress"><label><span>Стадия</span><select value={event.stage} onChange={(e) => { const stage = e.target.value as Event['stage']; save({ ...event, stage, status: stageToStatus(stage) }, `Стадия изменена: ${STAGES.find((item) => item.value === stage)?.label}`) }}>{STAGES.map((item) => <option value={item.value} key={item.value}>{item.label}</option>)}</select></label></div><button className="delete-event-button" onClick={removeEvent} aria-label="Удалить мероприятие"><Trash2 size={16} />Удалить</button></div>
     </header>
     <EventFlags event={event} />
+    <EventDeadlineSummary eventId={event.id} />
 
     <section className="passport-section">
       <div className="section-kicker"><UserRound size={17} /><h2>Паспорт</h2><span>Изменения сохраняются после выхода из поля</span></div>
@@ -159,7 +161,7 @@ export function EventDetailPage() {
         {undoWaiting && <button className="notebook-undo" onClick={() => { save({ ...event, waitingItems: event.waitingItems.map((entry) => entry.id === undoWaiting.id ? { ...undoWaiting, updatedAt: new Date().toISOString() } : entry) }); setUndoWaiting(null) }}>Отменить удаление</button>}
         <form className="inline-add" onSubmit={addWaiting}><input value={waitingDraft} onChange={(e) => setWaitingDraft(e.target.value)} placeholder="Добавить ожидание…" /><button aria-label="Добавить"><Plus size={17} /></button></form>
       </section>
-      <section className="focus-block next-step-block"><div className="section-kicker"><CirclePlus size={17} /><h2>Следующий шаг</h2></div><p>Свободная рабочая запись. Сохраняется после выхода из поля.</p><textarea key={`${event.id}-next-${event.nextStep}`} defaultValue={event.nextStep} aria-label="Следующий шаг" onBlur={(e) => { if (e.target.value !== event.nextStep) save({ ...event, nextStep: e.target.value, nextStepTask: { ...event.nextStepTask, taskStatus: 'todo', updatedAt: new Date().toISOString() } }) }} placeholder="Что нужно сделать дальше?" /></section>
+      <section className="focus-block next-step-block" data-task-key={`next:${encodeURIComponent(event.id)}:next-step`}><div className="section-kicker"><CirclePlus size={17} /><h2>Следующий шаг</h2></div><p>Свободная рабочая запись. Сохраняется после выхода из поля.</p><textarea key={`${event.id}-next-${event.nextStep}`} defaultValue={event.nextStep} aria-label="Следующий шаг" onBlur={(e) => { if (e.target.value !== event.nextStep) save({ ...event, nextStep: e.target.value, nextStepTask: { ...event.nextStepTask, taskStatus: 'todo', updatedAt: new Date().toISOString() } }) }} placeholder="Что нужно сделать дальше?" /><EventDeadlines event={event} key={event.id} /></section>
     </div>
 
     <section className="common-section">
@@ -172,7 +174,7 @@ export function EventDetailPage() {
       <div className="service-blocks">{event.services.map((service) => <ServiceBlock key={service.id} service={service} taskDraft={taskDrafts[service.id] ?? ''} setTaskDraft={(value) => setTaskDrafts((current) => ({ ...current, [service.id]: value }))} onChange={updateService} onRemove={() => removeService(service)} onAddTask={(e) => addServiceTask(service, e)} />)}</div>
       {!event.services.length && <div className="empty-services">При необходимости добавьте услугу для контактов и свободных рабочих заметок.</div>}
     </section>
-    {taskRegistry(data).some((task) => task.eventId === event.id && ['checklist', 'question', 'legacy'].includes(task.source)) && <details className="optional-checklist additional-tasks"><summary>Отдельно добавленные задачи</summary>{taskRegistry(data).filter((task) => task.eventId === event.id && ['checklist', 'question', 'legacy'].includes(task.source)).map((task) => <CompactTaskRow task={task} key={task.key} />)}</details>}
+    {taskRegistry(data).some((task) => task.eventId === event.id && !task.deadline && ['checklist', 'question', 'legacy'].includes(task.source)) && <details className="optional-checklist additional-tasks"><summary>Отдельно добавленные задачи</summary>{taskRegistry(data).filter((task) => task.eventId === event.id && !task.deadline && ['checklist', 'question', 'legacy'].includes(task.source)).map((task) => <CompactTaskRow task={task} key={task.key} />)}</details>}
     <section className="timeline-section">
       <div className="section-kicker"><History size={17} /><h2>Рабочие записи</h2><span>Дата и время добавятся автоматически</span></div>
       <form className="timeline-compose" onSubmit={addTimeline}><textarea value={timelineDraft} onChange={(e) => setTimelineDraft(e.target.value)} placeholder="Что произошло?" /><button className="primary-button">Добавить запись</button></form>

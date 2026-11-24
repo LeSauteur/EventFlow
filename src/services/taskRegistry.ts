@@ -34,7 +34,7 @@ export function taskRegistry(data: Pick<EventFlowData, 'events' | 'checklistItem
     for (const item of e.commonChecklist ?? []) emit('common', item.id, e.id, item.title, item, workStatus(item), 'Общее')
     for (const service of e.services ?? []) for (const item of service.checklist) emit('service', item.id, e.id, item.title, item, workStatus(item), service.title, service.id)
     for (const item of e.waitingItems ?? []) emit('waiting', item.id, e.id, item.text, item, workStatus(item, true), 'Жду ответа')
-    if (e.nextStep?.trim()) emit('next', 'next-step', e.id, e.nextStep, e.nextStepTask ?? {}, e.nextStepTask?.taskStatus ?? 'todo', 'Следующий шаг')
+    if (e.nextStep?.trim() || e.nextStepTask?.deadline) emit('next', 'next-step', e.id, e.nextStep.trim() || 'Следующий шаг', e.nextStepTask ?? {}, e.nextStepTask?.taskStatus ?? 'todo', 'Следующий шаг')
   }
   for (const item of data.checklistItems) emit('checklist', item.id, item.eventId, item.title, item, item.status === 'not_applicable' ? 'cancelled' : item.status === 'overdue' ? 'todo' : item.status, 'Задача / чек-лист')
   for (const item of data.questions) emit('question', item.id, item.eventId, item.title, { ...item, waitingFor: item.waitingFor || item.responsibleParty }, item.status === 'resolved' ? 'done' : item.taskStatus ?? (item.status.startsWith('waiting') ? 'waiting' : 'todo'), 'Открытый вопрос')
