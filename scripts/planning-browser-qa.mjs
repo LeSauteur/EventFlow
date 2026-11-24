@@ -224,7 +224,48 @@ try {
       if (width === 390 || width === 430) { await page.locator('main').scrollIntoViewIfNeeded(); await screenshot(page, `${width}-${path.replaceAll('/', '-')}`) }
     }
   }
+  // Ready is an event mark, mutually exclusive with attention marks, never a task or archive action.
+  await go(page, '/events/qa-event')
+  const beforeReady = await page.evaluate(() => JSON.parse(localStorage.getItem('eventflow.events')).find((item) => item.id === 'qa-event'))
+  await page.getByRole('button', { name: 'Готово', exact: true }).click()
+  const ready = await page.evaluate(() => JSON.parse(localStorage.getItem('eventflow.events')).find((item) => item.id === 'qa-event'))
+  assert.deepEqual(ready.attentionFlags, ['ready'])
+  assert.deepEqual({ ...ready, attentionFlags: beforeReady.attentionFlags, updatedAt: beforeReady.updatedAt }, beforeReady)
+  for (const name of ['Важное', 'Срочное', 'Горит']) assert.equal(await page.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'), 'false')
+  assert.equal(await page.locator('.event-index-list > a.active .mark-ready svg').evaluate((icon) => getComputedStyle(icon).color), 'rgb(21, 148, 92)')
+  for (const width of [390, 430, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 })
+    assert.equal(await page.locator('.event-index-list > a.active .mark-ready svg').evaluate((icon) => getComputedStyle(icon).display), 'block')
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  }
+  await page.setViewportSize({ width: 390, height: 1000 })
+  await page.locator('.event-flags').screenshot({ path: `${directory}/11-ready-mobile.png` })
+  await go(page, '/today')
+  await page.getByLabel('Отметка мероприятий').selectOption('ready')
+  assert.equal(await page.locator('.event-overview-card').count(), 1)
+  assert.equal(await page.locator('.event-overview-name .mark-ready').count(), 1)
+  await page.getByLabel('Отметка мероприятий').selectOption('hot')
+  assert.equal(await page.locator('.event-overview-card').count(), 0)
+  await page.reload()
+  await page.waitForSelector('.notebook-today')
+  await page.getByLabel('Отметка мероприятий').selectOption('ready')
+  assert.equal(await page.getByRole('button', { name: 'Готово', exact: true }).getAttribute('aria-pressed'), 'true')
+  await page.getByRole('button', { name: 'Сохранить в GitHub', exact: true }).click()
+  await page.waitForSelector('.notebook-save-state.online')
+  await go(second.page, '/events/qa-event')
+  await second.page.reload()
+  await second.page.waitForFunction(() => JSON.parse(localStorage.getItem('eventflow.events')).find((item) => item.id === 'qa-event')?.attentionFlags?.includes('ready'))
+  assert.equal(await second.page.getByRole('button', { name: 'Готово', exact: true }).getAttribute('aria-pressed'), 'true')
+  for (const [name, flag] of [['Важное', 'important'], ['Срочное', 'urgent'], ['Горит', 'hot']]) {
+    await second.page.getByRole('button', { name, exact: true }).click()
+    assert.equal(await second.page.getByRole('button', { name: 'Готово', exact: true }).getAttribute('aria-pressed'), 'false')
+    assert.deepEqual(await second.page.evaluate(() => JSON.parse(localStorage.getItem('eventflow.events')).find((item) => item.id === 'qa-event').attentionFlags), [flag])
+    await second.page.getByRole('button', { name: 'Готово', exact: true }).click()
+  }
+  await second.page.getByRole('button', { name: 'Готово', exact: true }).click()
+  assert.deepEqual(await second.page.evaluate(() => JSON.parse(localStorage.getItem('eventflow.events')).find((item) => item.id === 'qa-event').attentionFlags), [])
+  assert.equal(await second.page.getByRole('button', { name: 'Закрепить мероприятие', exact: true }).getAttribute('aria-pressed'), 'true')
   assert.deepEqual(errors, [])
   assert.deepEqual(second.errors, [])
-  console.log(JSON.stringify({ result: 'passed', viewportWidths: [390, 430, 768, 1440], syntheticPuts: puts, checks: 'colored event marks in sidebar and Today; optional next-step deadline; add, rename, reschedule, complete, clear and restore an extra deadline without duplicates; nearest open deadline; reload and two-device sync; calendar and flood; 150 existing items preserved; no overflow or page errors', screenshots: directory }, null, 2))
+  console.log(JSON.stringify({ result: 'passed', viewportWidths: [390, 430, 768, 1440], syntheticPuts: puts, checks: 'ready green flag in sidebar, Today and event card; mutual exclusion with attention marks; ready filter; pin and stage preserved; reload and two-device sync; working deadlines, calendar, flood and 150 existing items preserved; no overflow or page errors', screenshots: directory }, null, 2))
 } finally { await browser.close(); server?.kill() }
