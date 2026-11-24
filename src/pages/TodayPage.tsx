@@ -5,7 +5,8 @@ import { usePlanningClock } from '../hooks/usePlanningClock.ts'
 import { attentionEventIds, compareAttentionEvents } from '../services/eventAttention.ts'
 import { eventMatchesSearch } from '../services/eventSearch.ts'
 import { displayPlanningDate } from '../services/planningDates.ts'
-import { EventFlags, attentionLabels } from '../components/EventFlags.tsx'
+import { EventFlags, EventMarks, attentionLabels } from '../components/EventFlags.tsx'
+import { EventDeadlineSummary } from '../components/EventDeadlines.tsx'
 import { FloodComposer } from '../components/FloodPanel.tsx'
 import { CompactTaskRow } from '../components/CompactTaskRow.tsx'
 import { isClosed, taskRegistry } from '../services/taskRegistry.ts'
@@ -30,7 +31,8 @@ export function TodayPage() {
     </div>
     <section className="event-overview-list" aria-label="Мероприятия">
       {events.map((event) => <article className="planning-card event-overview-card" data-event-id={event.id} key={event.id}>
-        <div className="event-overview-title"><div><Link to={`/events/${event.id}`}>{event.title}</Link><p>{displayPlanningDate(event.dateFrom || event.date)}{event.dateTo && event.dateTo !== (event.dateFrom || event.date) ? ` — ${displayPlanningDate(event.dateTo)}` : ''}{event.city ? ` · ${event.city}` : ''}{event.company ? ` · ${event.company}` : ''}</p></div><span>{event.status}</span></div>
+        <div className="event-overview-title"><div><div className="event-overview-name"><Link to={`/events/${event.id}`}>{event.title}</Link><EventMarks event={event} /></div><p>{displayPlanningDate(event.dateFrom || event.date)}{event.dateTo && event.dateTo !== (event.dateFrom || event.date) ? ` — ${displayPlanningDate(event.dateTo)}` : ''}{event.city ? ` · ${event.city}` : ''}{event.company ? ` · ${event.company}` : ''}</p></div><span>{event.status}</span></div>
+        <EventDeadlineSummary eventId={event.id} />
         {event.nextStep && <p className="event-overview-note"><b>Следующий шаг:</b> {event.nextStep}</p>}
         {event.waitingItems.some((item) => !item.completed && item.taskStatus !== 'cancelled') && <p className="event-overview-note"><b>Жду:</b> {event.waitingItems.filter((item) => !item.completed && item.taskStatus !== 'cancelled').map((item) => item.text).join('; ')}</p>}
         {!!event.tags?.length && <div className="event-category-tags">{event.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}

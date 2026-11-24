@@ -1,4 +1,4 @@
-import { CalendarDays, CalendarPlus, ChevronRight, CloudUpload, FileText, House, Inbox, Pin, Search, Settings } from 'lucide-react'
+import { CalendarDays, CalendarPlus, ChevronRight, CloudUpload, FileText, House, Inbox, Search, Settings } from 'lucide-react'
 import { type ReactNode, useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { STAGES } from '../config/servicePresets.ts'
@@ -8,6 +8,7 @@ import { useToast } from '../hooks/useToast.tsx'
 import { eventMatchesSearch } from '../services/eventSearch.ts'
 import type { EventStage } from '../types/index.ts'
 import { Brand } from './Brand.tsx'
+import { EventMarks } from './EventFlags.tsx'
 
 function eventDate(event: ReturnType<typeof useEventFlowData>['events'][number]) {
   const start = event.dateFrom || event.date
@@ -87,8 +88,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       <label className="event-index-search"><Search size={16} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Любое слово или контакт" aria-label="Сквозной поиск" /></label>
       <div className="event-index-list">
         {visibleEvents.map((event) => <Link key={event.id} to={`/events/${event.id}`} className={event.id === eventId ? 'active' : ''}>
-          <span className="event-index-date">{event.pinned ? '📌 ' : ''}{eventDate(event)}</span>
-          <span><strong>{event.title}</strong><small>{searching && <b className="event-index-stage">{STAGES.find((item) => item.value === event.stage)?.label}</b>}{event.city}{event.initiator ? ` · ${event.initiator}` : ''}</small></span>
+          <span className="event-index-date">{eventDate(event)}</span>
+          <span><span className="event-index-title"><strong>{event.title}</strong><EventMarks event={event} /></span><small>{searching && <b className="event-index-stage">{STAGES.find((item) => item.value === event.stage)?.label}</b>}{event.city}{event.initiator ? ` · ${event.initiator}` : ''}</small></span>
           <ChevronRight size={15} />
         </Link>)}
         {!visibleEvents.length && <div className="event-index-empty"><span>{searching ? 'Ничего не найдено. Попробуйте другое слово.' : 'В этой стадии пока нет мероприятий.'}</span>{!searching && <Link to="/events/new">Создать первое</Link>}</div>}

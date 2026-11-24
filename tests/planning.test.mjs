@@ -7,6 +7,7 @@ import { calendarEntries, entriesOnDay } from '../src/services/planningCalendar.
 import { dayInZone, urgency, zonedDateTime } from '../src/services/planningDates.ts'
 import { EventFlowSyncEngine, initializeSyncState, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
 import { attentionEventIds, compareAttentionEvents } from '../src/services/eventAttention.ts'
+import { eventDeadlineTasks, nearestEventDeadline } from '../src/services/eventDeadlines.ts'
 
 class MemoryStorage {
   values = new Map()
@@ -194,4 +195,66 @@ test('event-level flags and categories survive backup and sync without altering 
   const shared = mergeSnapshots(snapshotFromLocal(loadAll(copy), readSyncMeta(copy), '2026-11-24T12:00:00Z'), normalizeSnapshot({ events: [] }))
   assert.deepEqual(shared.data.events[0].tags, ['VIP', 'Выездное'])
   assert.equal(compareAttentionEvents(event, { ...event, id: 'other', pinned: false }), -1)
+})
+
+test('next-step and extra deadlines are views of existing records; clearing and completion preserve text and metadata', () => {
+  const original = fixture(), key = taskRegistry(original).find((task) => task.source === 'next').key
+  const updated = patchRegistryTask(original, key, { deadline: '2026-11-25', priority: 'high', reminderAt: '2026-11-24T10:00:00Z' })
+  updated.checklistItems[0].deadline = '2026-11-26'
+  const before = structuredClone(updated)
+  assert.equal(nearestEventDeadline(updated, 'synthetic-event').key, key)
+  assert.equal(eventDeadlineTasks(updated, 'synthetic-event').length, 2)
+  assert.equal(calendarEntries(updated).filter((entry) => entry.taskKey === key && entry.kind === 'deadline').length, 1)
+  assert.deepEqual(updated, before)
+  const completed = patchRegistryTask(updated, key, { status: 'done' })
+  assert.equal(nearestEventDeadline(completed, 'synthetic-event').sourceId, 'quick')
+  assert.equal(calendarEntries(completed).some((entry) => entry.taskKey === key), false)
+  const cleared = patchRegistryTask(updated, key, { deadline: null })
+  assert.equal(cleared.events[0].nextStep, original.events[0].nextStep)
+  assert.equal(cleared.events[0].nextStepTask.priority, 'high')
+  assert.equal(cleared.events[0].nextStepTask.reminderAt, '2026-11-24T10:00:00Z')
+  assert.equal(eventDeadlineTasks(cleared, 'synthetic-event').length, 1)
+  const cancelled = patchRegistryTask(completed, nearestEventDeadline(completed, 'synthetic-event').key, { status: 'cancelled' })
+  assert.equal(nearestEventDeadline(cancelled, 'synthetic-event'), undefined)
+})
+
+test('deadline-only next step and exact instants stay readable; nearest deadline uses each task timezone', () => {
+  const data = fixture()
+  data.events[0].nextStep = ''
+  data.events[0].nextStepTask = { deadline: '2026-11-25', timeZone: 'Asia/Vladivostok' }
+  data.checklistItems[0].deadline = '2026-11-25T15:00:00Z'
+  assert.equal(nearestEventDeadline(data, 'synthetic-event').source, 'next')
+  assert.equal(taskRegistry(data).find((task) => task.source === 'next').title, 'Следующий шаг')
+  assert.equal(calendarEntries(data).filter((entry) => entry.kind === 'deadline').length, 2)
+  assert.equal(data.checklistItems[0].deadline, '2026-11-25T15:00:00Z')
+  data.events[0].nextStepTask.deadline = '2027-01-01'
+  assert.equal(nearestEventDeadline(data, 'synthetic-event').sourceId, 'quick')
+})
+
+test('an explicit working deadline brings a distant event to Today until the action is completed', () => {
+  const data = fixture(), now = new Date('2026-11-24T12:00:00Z')
+  data.events[0].dateFrom = '2027-10-01'; data.events[0].dateTo = '2027-10-02'; data.events[0].waitingItems = []
+  assert.equal(attentionEventIds(data, now).size, 0)
+  const key = taskRegistry(data).find((task) => task.source === 'next').key
+  const updated = patchRegistryTask(data, key, { deadline: '2026-11-24' })
+  assert.equal(attentionEventIds(updated, now).has('synthetic-event'), true)
+  assert.equal(attentionEventIds(patchRegistryTask(updated, key, { status: 'done' }), now).size, 0)
+  assert.equal(attentionEventIds(patchRegistryTask(updated, key, { deadline: null }), now).size, 0)
+})
+
+test('deadline changes and flags survive backup and two-device merge without new task copies', () => {
+  const original = fixture(), key = taskRegistry(original).find((task) => task.source === 'next').key
+  const left = patchRegistryTask(original, key, { deadline: '2026-11-26' }, '2026-11-24T10:00:00Z')
+  const right = structuredClone(original)
+  right.events[0] = { ...right.events[0], pinned: true, attentionFlags: ['important', 'urgent', 'hot'], updatedAt: '2026-11-24T11:00:00Z' }
+  for (const merged of [mergeSnapshots(normalizeSnapshot({ version: 1, updated_at: '2026-11-24T10:00:00Z', data: left }), normalizeSnapshot({ version: 1, updated_at: '2026-11-24T11:00:00Z', data: right }))]) {
+    const data = { ...original, ...merged.data }, storage = new MemoryStorage()
+    saveAll(data, storage)
+    const restored = new MemoryStorage(); saveAll(fixture(), restored); importBackup(createBackup(storage), restored)
+    const copy = loadAll(restored)
+    assert.equal(copy.events[0].nextStepTask.deadline, '2026-11-26')
+    assert.deepEqual(copy.events[0].attentionFlags, ['important', 'urgent', 'hot'])
+    assert.equal(copy.events[0].pinned, true)
+    assert.equal(taskRegistry(copy).length, taskRegistry(original).length)
+  }
 })

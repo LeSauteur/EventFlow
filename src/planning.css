@@ -94,11 +94,53 @@
 .flood-entry .flood-actions > label:not(.planning-checkbox) { display: grid; gap: 4px; flex: 1 1 170px; font-size: 11px; color: #687e9b; }
 .flood-entry footer { justify-content: flex-start; margin-top: 12px; }
 .event-flags { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0; }
-.event-flags button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 34px; padding: 6px 11px; border: 1px solid #d8e2ef; background: #fff; color: #60728b; border-radius: 8px; font: 12px/1.4 inherit; cursor: pointer; }
+.event-flags button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 34px; padding: 6px 11px; border: 1px solid #d8e2ef; background: #fff; color: #60728b; border-radius: 8px; font: inherit; font-size: 12px; line-height: 1.4; cursor: pointer; }
 .event-flags .active.flag-pin { color: #225ea7; border-color: #bdd5f4; background: #edf5ff; }
-.event-flags .active.flag-important { color: #655099; border-color: #d7c9f0; background: #f3edff; }
-.event-flags .active.flag-urgent { color: #916000; border-color: #efd79c; background: #fff7df; }
-.event-flags .active.flag-hot { color: #b73327; border-color: #f2bab4; background: #fff0ee; }
+.event-flags .active.flag-important { color: #145fc0; border-color: #6b9ee6; background: #e6f0ff; box-shadow: inset 0 0 0 1px #6b9ee6; }
+.event-flags .active.flag-urgent { color: #cb283d; border-color: #e76c7a; background: #fff0f2; box-shadow: inset 0 0 0 1px #e76c7a; }
+.event-flags .active.flag-hot { color: #bf4b08; border-color: #e88c4b; background: #fff0df; box-shadow: inset 0 0 0 1px #e88c4b; }
+.event-flags button:not(.active) svg { fill: none; }
+.event-marks { display: inline-flex; flex: 0 0 auto; align-items: center; flex-wrap: wrap; gap: 5px; vertical-align: middle; }
+.event-marks > span { display: inline-flex; align-items: center; }
+.event-marks .mark-pin { color: #59708d; }
+.event-marks .mark-important { color: #1769dc; }
+.event-marks .mark-urgent { color: #de2941; }
+.event-marks .mark-hot { color: #df650c; }
+.event-marks svg, .event-index .event-marks svg { display: block; color: inherit; flex-shrink: 0; }
+.event-index-list > a.active .event-marks svg { color: inherit; }
+.event-index-title { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+.event-index-title strong { min-width: 0; }
+.event-overview-name { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.event-detail-name { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.event-detail-name .event-title-input { width: auto; min-width: 0; flex: 1 1 240px; }
+.event-deadline-summary { display: flex; align-items: center; gap: 8px; max-width: 100%; margin: 12px 0; padding: 9px 11px; border-radius: 8px; background: #f0f6ff; color: #31649d !important; text-decoration: none; font-size: 12px; line-height: 1.5; }
+.event-deadline-summary > svg { flex-shrink: 0; }
+.event-deadline-summary > span { min-width: 0; overflow-wrap: anywhere; }
+.event-deadline-summary b, .event-deadline-summary span > span { display: block; }
+.event-deadline-summary span > span { color: #62748f; font-weight: 400; }
+.event-deadline-summary.deadline-overdue { background: #fff0f2; color: #bd2b42 !important; }
+.event-deadline-summary.deadline-today { background: #fff5e7; color: #9c5a07 !important; }
+.event-deadlines { margin-top: 12px; color: #536c8d; font-size: 12px; }
+.event-deadlines button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 9px; min-height: 34px; border: 1px solid #ccdbed; border-radius: 7px; background: #f6faff; color: #356ca8; font: inherit; cursor: pointer; }
+.event-deadlines button:disabled { opacity: .5; cursor: default; }
+.event-deadlines input { width: 100%; min-width: 0; min-height: 36px; padding: 6px 8px; border: 1px solid #cedced; border-radius: 7px; color: #2e496a; background: white; font: inherit; }
+.next-step-deadline { display: flex; align-items: end; flex-wrap: wrap; gap: 7px; }
+.next-step-deadline label { display: grid; gap: 5px; min-width: 0; flex: 1 1 140px; }
+.event-deadlines .deadline-clear { color: #7c8ba0; width: 34px; padding: 6px; flex-shrink: 0; }
+.deadline-hint { display: block; margin: 7px 0 12px; color: #8090a5; font-size: 11px; line-height: 1.5; }
+.event-deadlines .deadline-done, .event-deadline-row.is-done .deadline-check { color: #16734b; border-color: #8dceb1; background: #eaf9f0; }
+.event-deadlines .add-deadline-button { margin-top: 10px; background: white; border-style: dashed; }
+.deadline-compose { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.deadline-compose > input:first-child { flex: 1 1 100%; }
+.deadline-compose > input[type=date] { flex: 1 1 140px; width: auto; }
+.event-deadline-row { display: grid; grid-template-columns: 30px minmax(0, 1fr) 34px; gap: 6px; align-items: center; padding: 10px 0; border-top: 1px solid #e8eef6; }
+.event-deadline-row > input[type=date] { grid-column: 2; grid-row: 2; }
+.event-deadline-row > .deadline-clear { grid-column: 3; grid-row: 1; }
+.event-deadlines .deadline-check { padding: 5px; min-height: 30px; color: #9caabd; background: white; }
+.event-deadline-row.is-done > input:first-of-type { color: #8c9aae; text-decoration: line-through; }
+.deadline-exact { grid-column: 2 / -1; font-size: 10px; }
+.completed-deadlines { margin-top: 8px; }
+.completed-deadlines > summary, .additional-deadlines > summary { cursor: pointer; padding: 7px 0; color: #7a8ba1; }
 .event-overview-toolbar { display: grid; gap: 14px; margin-bottom: 20px; }
 .event-overview-toolbar .planning-segments { display: flex; flex-wrap: wrap; gap: 7px; }
 .event-overview-toolbar small { margin-left: 5px; opacity: .7; }
