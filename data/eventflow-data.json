@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T07:57:52.850Z",
+  "updated_at": "2026-11-24T07:58:08.041Z",
   "data": {
     "events": [
       {
@@ -5190,7 +5190,7 @@
         "budget": 0,
         "progress": 0,
         "createdAt": "2026-11-24T07:56:54.793Z",
-        "updatedAt": "2026-11-24T07:57:44.472Z",
+        "updatedAt": "2026-11-24T07:58:03.856Z",
         "services": [
           {
             "id": "service-1795507014793-a5bc16dcfda968",
@@ -5211,8 +5211,49 @@
             "providerName": "",
             "providerContact": "",
             "notes": "",
-            "updatedAt": "2026-11-24T07:56:54.793Z",
-            "checklist": []
+            "updatedAt": "2026-11-24T07:58:03.856Z",
+            "checklist": [
+              {
+                "id": "service-1795507076187-835720507376b-0",
+                "title": "Данные пассажиров получены",
+                "completed": true,
+                "completedAt": "2026-11-24T07:58:03.856Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T07:58:03.856Z"
+              },
+              {
+                "id": "service-1795507076187-e859e53671dd1-1",
+                "title": "Варианты получены",
+                "completed": true,
+                "completedAt": "2026-11-24T07:58:00.504Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T07:58:00.504Z"
+              },
+              {
+                "id": "service-1795507076187-44be32c176b96-2",
+                "title": "Согласовано",
+                "completed": true,
+                "completedAt": "2026-11-24T07:58:02.920Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T07:58:02.920Z"
+              },
+              {
+                "id": "service-1795507076187-e981ab11bdf75-3",
+                "title": "Билеты оформлены",
+                "completed": true,
+                "completedAt": "2026-11-24T07:58:01.569Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T07:58:01.569Z"
+              },
+              {
+                "id": "service-1795507076187-549b1f5e32aed8-4",
+                "title": "Билеты / ваучеры отправлены",
+                "completed": true,
+                "completedAt": "2026-11-24T07:58:02.121Z",
+                "taskStatus": "done",
+                "updatedAt": "2026-11-24T07:58:02.121Z"
+              }
+            ]
           },
           {
             "id": "service-1795507014793-715506d1020bb8",
@@ -5551,7 +5592,7 @@
       "event-1795116448471": "2026-11-24T07:55:52.441Z",
       "event-1795119829311": "2026-11-19T20:29:56.495Z",
       "event-1795118056599": "2026-11-19T19:59:21.830Z",
-      "event-1795507014793": "2026-11-24T07:57:44.472Z"
+      "event-1795507014793": "2026-11-24T07:58:03.856Z"
     },
     "tasks": {},
     "risks": {},
