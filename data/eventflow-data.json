@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T19:48:11.891Z",
+  "updated_at": "2026-11-24T19:58:41.566Z",
   "data": {
     "events": [
       {
@@ -5577,6 +5577,86 @@
             "source": "system"
           }
         ]
+      },
+      {
+        "id": "event-1795550319309",
+        "title": "11 дек ZXNDGJMZJFC",
+        "dateFrom": "2026-10-11",
+        "dateTo": "2026-12-11",
+        "sector": "Медтех",
+        "city": "Казань",
+        "company": "",
+        "client": "",
+        "initiator": "Лаврентий Шахмурдян",
+        "participants": 1,
+        "guests": 1,
+        "stage": "WORKING",
+        "status": "В работе",
+        "type": "Медтех",
+        "nextStep": "",
+        "date": "2026-10-11",
+        "budget": 0,
+        "progress": 0,
+        "createdAt": "2026-11-24T19:58:39.309Z",
+        "updatedAt": "2026-11-24T19:58:39.310Z",
+        "services": [
+          {
+            "id": "service-1795550319309-5e7193ac0793b",
+            "eventId": "event-1795550319309",
+            "type": "accommodation",
+            "title": "Проживание",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T19:58:39.309Z",
+            "checklist": []
+          },
+          {
+            "id": "service-1795550319309-66492a0042af28",
+            "eventId": "event-1795550319309",
+            "type": "catering",
+            "title": "Кейтеринг / питание",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T19:58:39.309Z",
+            "checklist": []
+          },
+          {
+            "id": "service-1795550319309-03b78d0cf4eb38",
+            "eventId": "event-1795550319309",
+            "type": "flights",
+            "title": "Авиабилеты",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T19:58:39.309Z",
+            "checklist": []
+          },
+          {
+            "id": "service-1795550319309-5b02630f0d7b88",
+            "eventId": "event-1795550319309",
+            "type": "transfer",
+            "title": "Трансфер",
+            "providerName": "",
+            "providerContact": "",
+            "notes": "",
+            "updatedAt": "2026-11-24T19:58:39.309Z",
+            "checklist": []
+          }
+        ],
+        "commonChecklist": [],
+        "workTourNumbers": [],
+        "waitingItems": [],
+        "timeline": [
+          {
+            "id": "timeline-1795550319309",
+            "eventId": "event-1795550319309",
+            "text": "Создана рабочая страница мероприятия",
+            "timestamp": "2026-11-24T19:58:39.309Z",
+            "source": "system"
+          }
+        ]
       }
     ],
     "tasks": [],
@@ -5717,6 +5797,14 @@
         "description": "2 дек DHN8TV6TZWR",
         "id": "activity-1795548261009-2b298025be0c9",
         "timestamp": "2026-11-24T19:24:21.009Z"
+      },
+      {
+        "eventId": "event-1795550319309",
+        "type": "event",
+        "title": "Создано мероприятие",
+        "description": "11 дек ZXNDGJMZJFC",
+        "id": "activity-1795550319310-c8b38ec0fdc528",
+        "timestamp": "2026-11-24T19:58:39.310Z"
       }
     ],
     "checklistItems": [],
@@ -5902,7 +5990,8 @@
       "event-1795118056599": "2026-11-24T19:48:02.004Z",
       "event-1795507014793": "2026-11-24T07:58:39.438Z",
       "event-1795510234103": "2026-11-24T08:52:49.496Z",
-      "event-1795548261009": "2026-11-24T19:26:14.644Z"
+      "event-1795548261009": "2026-11-24T19:26:14.644Z",
+      "event-1795550319309": "2026-11-24T19:58:39.310Z"
     },
     "tasks": {},
     "risks": {},
@@ -5923,7 +6012,8 @@
       "activity-1795118056599-fc563664a1815": "2026-11-19T19:54:16.599Z",
       "activity-1795507014793-c53f39467acdb8": "2026-11-24T07:56:54.793Z",
       "activity-1795510234103-87afe4ac9501e": "2026-11-24T08:50:34.103Z",
-      "activity-1795548261009-2b298025be0c9": "2026-11-24T19:24:21.009Z"
+      "activity-1795548261009-2b298025be0c9": "2026-11-24T19:24:21.009Z",
+      "activity-1795550319310-c8b38ec0fdc528": "2026-11-24T19:58:39.310Z"
     },
     "checklistItems": {},
     "questions": {},
