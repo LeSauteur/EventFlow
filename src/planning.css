@@ -99,6 +99,7 @@
 .event-flags .active.flag-important { color: #145fc0; border-color: #6b9ee6; background: #e6f0ff; box-shadow: inset 0 0 0 1px #6b9ee6; }
 .event-flags .active.flag-urgent { color: #cb283d; border-color: #e76c7a; background: #fff0f2; box-shadow: inset 0 0 0 1px #e76c7a; }
 .event-flags .active.flag-hot { color: #bf4b08; border-color: #e88c4b; background: #fff0df; box-shadow: inset 0 0 0 1px #e88c4b; }
+.event-flags .active.flag-ready { color: #16734b; border-color: #58b98a; background: #e6f7ed; box-shadow: inset 0 0 0 1px #58b98a; }
 .event-flags button:not(.active) svg { fill: none; }
 .event-marks { display: inline-flex; flex: 0 0 auto; align-items: center; flex-wrap: wrap; gap: 5px; vertical-align: middle; }
 .event-marks > span { display: inline-flex; align-items: center; }
@@ -106,6 +107,7 @@
 .event-marks .mark-important { color: #1769dc; }
 .event-marks .mark-urgent { color: #de2941; }
 .event-marks .mark-hot { color: #df650c; }
+.event-marks .mark-ready { color: #15945c; }
 .event-marks svg, .event-index .event-marks svg { display: block; color: inherit; flex-shrink: 0; }
 .event-index-list > a.active .event-marks svg { color: inherit; }
 .event-index-title { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }

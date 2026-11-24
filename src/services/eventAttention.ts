@@ -1,7 +1,12 @@
 import type { EventFlowData } from './storage.ts'
 import { taskRegistry, isClosed } from './taskRegistry.ts'
 import { addCalendarDays, dayInZone, urgency } from './planningDates.ts'
-import type { Event } from '../types/index.ts'
+import type { Event, EventAttention } from '../types/index.ts'
+
+export function toggleEventAttention(flags: EventAttention[], flag: EventAttention): EventAttention[] {
+  if (flags.includes(flag)) return flags.filter((value) => value !== flag)
+  return flag === 'ready' ? ['ready'] : [...flags.filter((value) => value !== 'ready'), flag]
+}
 
 /** Aggregate real attention signals, never count every preset checkbox as urgent work. */
 export function attentionEventIds(data: EventFlowData, now = new Date()) {

@@ -6,7 +6,7 @@ import { patchRegistryTask, taskRegistry } from '../src/services/taskRegistry.ts
 import { calendarEntries, entriesOnDay } from '../src/services/planningCalendar.ts'
 import { dayInZone, urgency, zonedDateTime } from '../src/services/planningDates.ts'
 import { EventFlowSyncEngine, initializeSyncState, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
-import { attentionEventIds, compareAttentionEvents } from '../src/services/eventAttention.ts'
+import { attentionEventIds, compareAttentionEvents, toggleEventAttention } from '../src/services/eventAttention.ts'
 import { eventDeadlineTasks, nearestEventDeadline } from '../src/services/eventDeadlines.ts'
 
 class MemoryStorage {
@@ -195,6 +195,16 @@ test('event-level flags and categories survive backup and sync without altering 
   const shared = mergeSnapshots(snapshotFromLocal(loadAll(copy), readSyncMeta(copy), '2026-11-24T12:00:00Z'), normalizeSnapshot({ events: [] }))
   assert.deepEqual(shared.data.events[0].tags, ['VIP', 'Выездное'])
   assert.equal(compareAttentionEvents(event, { ...event, id: 'other', pinned: false }), -1)
+  const ready = { ...event, attentionFlags: toggleEventAttention(event.attentionFlags, 'ready') }
+  assert.deepEqual(ready.attentionFlags, ['ready'])
+  assert.deepEqual({ ...ready, attentionFlags: event.attentionFlags }, event)
+  assert.deepEqual(calendarEntries({ ...data, events: [ready] }), calendarEntries(data))
+  saveAll({ ...data, events: [ready] }, storage)
+  importBackup(createBackup(storage), copy)
+  const readyShared = mergeSnapshots(snapshotFromLocal(loadAll(copy), readSyncMeta(copy), '2026-11-24T13:00:00Z'), normalizeSnapshot({ events: [] }))
+  assert.deepEqual(readyShared.data.events[0].attentionFlags, ['ready'])
+  assert.equal(readyShared.data.events[0].pinned, true)
+  assert.equal(readyShared.data.events[0].stage, event.stage)
 })
 
 test('next-step and extra deadlines are views of existing records; clearing and completion preserve text and metadata', () => {

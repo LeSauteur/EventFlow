@@ -1,5 +1,5 @@
 export type EventStage = 'WORKING' | 'PO' | 'PROCESSING' | 'ARCHIVE'
-export type EventAttention = 'important' | 'urgent' | 'hot'
+export type EventAttention = 'important' | 'urgent' | 'hot' | 'ready'
 export type EventStatus = 'В работе' | 'PO' | 'Процессинг' | 'Архив' | 'Согласование' | 'В подготовке'
 export type TaskStatus = 'Просрочено' | 'Сегодня' | 'Ожидаем'
 export type RiskSeverity = 'Высокий' | 'Средний'
