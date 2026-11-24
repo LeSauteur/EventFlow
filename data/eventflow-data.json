@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T07:57:22.881Z",
+  "updated_at": "2026-11-24T07:57:37.904Z",
   "data": {
     "events": [
       {
@@ -5190,17 +5190,17 @@
         "budget": 0,
         "progress": 0,
         "createdAt": "2026-11-24T07:56:54.793Z",
-        "updatedAt": "2026-11-24T07:57:13.820Z",
+        "updatedAt": "2026-11-24T07:57:34.171Z",
         "services": [
           {
             "id": "service-1795507014793-a5bc16dcfda968",
             "eventId": "event-1795507014793",
             "type": "accommodation",
             "title": "Проживание",
-            "providerName": "",
+            "providerName": "Хилтон",
             "providerContact": "",
             "notes": "",
-            "updatedAt": "2026-11-24T07:56:54.793Z",
+            "updatedAt": "2026-11-24T07:57:34.171Z",
             "checklist": []
           },
           {
@@ -5551,7 +5551,7 @@
       "event-1795116448471": "2026-11-24T07:55:52.441Z",
       "event-1795119829311": "2026-11-19T20:29:56.495Z",
       "event-1795118056599": "2026-11-19T19:59:21.830Z",
-      "event-1795507014793": "2026-11-24T07:57:13.820Z"
+      "event-1795507014793": "2026-11-24T07:57:34.171Z"
     },
     "tasks": {},
     "risks": {},
