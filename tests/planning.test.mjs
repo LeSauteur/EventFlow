@@ -6,6 +6,7 @@ import { patchRegistryTask, taskRegistry } from '../src/services/taskRegistry.ts
 import { calendarEntries, entriesOnDay } from '../src/services/planningCalendar.ts'
 import { dayInZone, urgency, zonedDateTime } from '../src/services/planningDates.ts'
 import { EventFlowSyncEngine, initializeSyncState, markSyncDirty, mergeSnapshots, normalizeSnapshot, readSyncMeta, snapshotFromLocal, SYNC_TOKEN_KEY } from '../src/services/sync.ts'
+import { attentionEventIds, compareAttentionEvents } from '../src/services/eventAttention.ts'
 
 class MemoryStorage {
   values = new Map()
@@ -165,4 +166,32 @@ test('independent task edits inside one event survive two-device synchronization
   right.events[0] = { ...right.events[0], services: [], removedServices: { [serviceId]: '2099-01-01T00:00:00Z' } }
   const removed = normalizeSnapshot({ version: 1, updated_at: '2099-01-01T00:00:00Z', data: right })
   assert.equal(mergeSnapshots(a, removed).data.events[0].services.length, 0)
+})
+
+test('150 undated checklist items do not become 150 attention items or mark an event urgent', () => {
+  const data = fixture()
+  data.events[0].dateFrom = '2027-10-01'; data.events[0].dateTo = '2027-10-02'
+  data.events[0].waitingItems = []
+  data.events[0].services[0].checklist = Array.from({ length: 150 }, (_, index) => ({ id: `item-${index}`, title: `Пункт ${index}`, completed: false }))
+  const before = JSON.stringify(data)
+  assert.equal(attentionEventIds(data, new Date('2026-11-24T12:00:00Z')).size, 0)
+  assert.equal(JSON.stringify(data), before)
+  data.events[0].attentionFlags = ['important', 'hot']
+  assert.deepEqual([...attentionEventIds(data, new Date('2026-11-24T12:00:00Z'))], ['synthetic-event'])
+  assert.equal(data.events[0].services[0].checklist.length, 150)
+})
+
+test('event-level flags and categories survive backup and sync without altering notebook records', () => {
+  const data = fixture(), storage = new MemoryStorage()
+  data.events[0] = { ...data.events[0], pinned: true, attentionFlags: ['important', 'urgent', 'hot'], tags: ['VIP', 'Выездное'] }
+  const checklist = structuredClone(data.events[0].services[0].checklist)
+  saveAll(data, storage)
+  const copy = new MemoryStorage(); saveAll(fixture(), copy); importBackup(createBackup(storage), copy)
+  const event = loadAll(copy).events[0]
+  assert.deepEqual(event.attentionFlags, ['important', 'urgent', 'hot'])
+  assert.deepEqual(event.tags, ['VIP', 'Выездное'])
+  assert.deepEqual(event.services[0].checklist, checklist)
+  const shared = mergeSnapshots(snapshotFromLocal(loadAll(copy), readSyncMeta(copy), '2026-11-24T12:00:00Z'), normalizeSnapshot({ events: [] }))
+  assert.deepEqual(shared.data.events[0].tags, ['VIP', 'Выездное'])
+  assert.equal(compareAttentionEvents(event, { ...event, id: 'other', pinned: false }), -1)
 })

@@ -23,6 +23,7 @@ export function eventSearchText(event: Event) {
     event.stage,
     event.status,
     event.nextStep,
+    ...(event.tags ?? []),
     ...event.workTourNumbers,
     ...event.commonChecklist.flatMap((item) => [item.title, item.notes]),
     ...event.waitingItems.map((item) => item.text),
